@@ -1,0 +1,471 @@
+/**
+ * AlpineUI Custom Theme for VitePress
+ * Inspired by ChadCN UI and React Bits
+ */
+
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* CSS Variables - Light Theme */
+:root {
+  --au-background: #ffffff;
+  --au-background-secondary: #fafafa;
+  --au-foreground: #0a0a0a;
+  --au-muted: #737373;
+  --au-muted-foreground: #737373;
+  --au-border: #e5e5e5;
+  --au-accent: #f5f5f5;
+  --au-accent-foreground: #0a0a0a;
+  --au-primary: #0a0a0a;
+  --au-primary-foreground: #ffffff;
+  --au-destructive: #ef4444;
+  --au-destructive-foreground: #ffffff;
+  --au-ring: #0a0a0a;
+  --au-radius: 0.5rem;
+
+  /* VitePress overrides */
+  --vp-c-brand-1: #0a0a0a;
+  --vp-c-brand-2: #404040;
+  --vp-c-brand-3: #666666;
+  --vp-c-brand-soft: rgba(10, 10, 10, 0.1);
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --vp-sidebar-width: 280px;
+  --vp-layout-max-width: 1440px;
+}
+
+/* Dark Theme */
+.dark {
+  --au-background: #0a0a0a;
+  --au-background-secondary: #171717;
+  --au-foreground: #fafafa;
+  --au-muted: #a3a3a3;
+  --au-muted-foreground: #a3a3a3;
+  --au-border: #2e2e2e;
+  --au-accent: #262626;
+  --au-accent-foreground: #fafafa;
+  --au-primary: #fafafa;
+  --au-primary-foreground: #0a0a0a;
+  --au-destructive: #ef4444;
+  --au-destructive-foreground: #ffffff;
+  --au-ring: #fafafa;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--vp-font-family-base);
+}
+
+/* Navbar */
+.VPNav {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--au-border) !important;
+}
+
+.dark .VPNav {
+  background-color: rgba(10, 10, 10, 0.8) !important;
+}
+
+.VPNavBar {
+  background-color: transparent !important;
+}
+
+/* Sidebar */
+.VPSidebar {
+  background-color: var(--au-background-secondary) !important;
+  border-right: 1px solid var(--au-border) !important;
+}
+
+.VPSidebarItem .text {
+  font-size: 0.875rem;
+}
+
+/* Content */
+.VPContent {
+  background-color: var(--au-background) !important;
+}
+
+/* Typography */
+.vp-doc h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+
+.vp-doc h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--au-border);
+}
+
+.vp-doc h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Code Blocks */
+.vp-doc div[class*='language-'] {
+  background-color: var(--au-background-secondary) !important;
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+}
+
+.vp-doc pre {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Inline Code */
+.vp-doc :not(pre) > code {
+  background-color: var(--au-accent);
+  color: var(--au-foreground);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+/* Links */
+.vp-doc a {
+  color: var(--au-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.vp-doc a:hover {
+  text-decoration: underline;
+}
+
+/* Tables */
+.vp-doc table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.vp-doc th,
+.vp-doc td {
+  border: 1px solid var(--au-border);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.vp-doc th {
+  background-color: var(--au-background-secondary);
+  font-weight: 600;
+}
+
+/* Component Preview Container */
+.component-preview {
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.component-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background-color: var(--au-background-secondary);
+  border-bottom: 1px solid var(--au-border);
+}
+
+.component-preview-content {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  min-height: 120px;
+  background-color: var(--au-background);
+}
+
+/* Component Tabs */
+.component-tabs {
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.component-tabs-header {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--au-border);
+  background-color: var(--au-background-secondary);
+}
+
+.component-tabs-header button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--au-muted-foreground);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.component-tabs-header button:hover {
+  color: var(--au-foreground);
+  background-color: var(--au-accent);
+}
+
+.component-tabs-header button.active {
+  color: var(--au-primary);
+  border-bottom-color: var(--au-primary);
+}
+
+.component-tabs-content {
+  padding: 1rem;
+}
+
+.component-tabs-content pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+/* Copy Button */
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--au-border);
+  border-radius: 0.375rem;
+  background-color: var(--au-background);
+  color: var(--au-muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.copy-button:hover {
+  background-color: var(--au-accent);
+  color: var(--au-foreground);
+}
+
+.copy-button.copied {
+  background-color: #22c55e;
+  color: white;
+  border-color: #22c55e;
+}
+
+/* Homepage Hero */
+.VPHero {
+  padding: 4rem 2rem !important;
+  text-align: center;
+}
+
+.VPHero .name {
+  font-size: 4rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.05em !important;
+  background: linear-gradient(135deg, var(--au-foreground) 0%, var(--au-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .VPHero .name {
+  background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.VPHero .text {
+  font-size: 1.5rem !important;
+  color: var(--au-muted-foreground) !important;
+}
+
+.VPHero .tagline {
+  font-size: 1.125rem !important;
+  color: var(--au-muted-foreground) !important;
+  max-width: 600px;
+  margin: 0 auto !important;
+}
+
+.VPHero .actions {
+  gap: 1rem !important;
+  margin-top: 2rem !important;
+}
+
+/* Homepage Feature Cards */
+.VPFeature {
+  border: 1px solid var(--au-border) !important;
+  border-radius: var(--au-radius) !important;
+  background-color: var(--au-background) !important;
+  transition: all 0.2s ease !important;
+}
+
+.VPFeature:hover {
+  border-color: var(--au-primary) !important;
+  transform: translateY(-2px);
+}
+
+.VPFeature .title {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+.VPFeature .details {
+  color: var(--au-muted-foreground) !important;
+  font-size: 0.875rem !important;
+}
+
+/* Component Cards Grid */
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.component-card {
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+  padding: 1.5rem;
+  background-color: var(--au-background);
+  transition: all 0.2s ease;
+}
+
+.component-card:hover {
+  border-color: var(--au-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark .component-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.component-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.component-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.component-card-badge {
+  font-size: 0.625rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--au-accent);
+  color: var(--au-muted-foreground);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.component-card-badge.complete {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+.component-card-badge.development {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.component-card-description {
+  font-size: 0.875rem;
+  color: var(--au-muted-foreground);
+  margin-bottom: 1rem;
+}
+
+.component-card-preview {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--au-background-secondary);
+  border-radius: calc(var(--au-radius) - 2px);
+  margin-bottom: 1rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+.badge-warning {
+  background-color: rgba(234, 179, 8, 0.1);
+  color: #eab308;
+}
+
+.badge-info {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+/* Callout / Tip Boxes */
+.callout {
+  padding: 1rem;
+  border-radius: var(--au-radius);
+  margin: 1rem 0;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.callout-info {
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.callout-warning {
+  background-color: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.callout-success {
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .VPHero .name {
+    font-size: 2.5rem !important;
+  }
+  
+  .VPHero .text {
+    font-size: 1.25rem !important;
+  }
+
+  .component-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -7,9 +7,12 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w @alpineui/cli",
-    "build": "npm run build -w @alpineui/cli",
-    "test": "npm run test -w @alpineui/cli"
+    "dev": "npm run dev -w @Fernando-Ligabue/cli",
+    "build": "npm run build -w @Fernando-Ligabue/cli",
+    "test": "npm run test -w @Fernando-Ligabue/cli",
+    "docs:dev": "npm run dev -C docs",
+    "docs:build": "npm run build -C docs",
+    "docs:preview": "npm run preview -C docs"
   },
   "keywords": [
     "alpinejs",
@@ -19,7 +22,7 @@
     "tailwindcss",
     "tailwind"
   ],
-  "author": "AlpineUI Contributors",
+  "author": "Fernando-Ligabue",
   "license": "MIT",
   "repository": {
     "type": "git",
