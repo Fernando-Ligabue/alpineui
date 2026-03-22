@@ -34,95 +34,97 @@ features:
     details: Install individual components via npm or use our CLI tool.
 ---
 
-<script setup>
-import { ref, onMounted } from 'vue'
-
-const components = [
-  {
-    name: 'Button',
-    description: 'A clickable button component with multiple variants and sizes.',
-    status: 'complete',
-    preview: 'Button',
-    link: '/components/button'
-  },
-  {
-    name: 'Input',
-    description: 'Form input component with validation, icons, and various states.',
-    status: 'complete',
-    preview: 'Input',
-    link: '/components/input'
-  },
-  {
-    name: 'Card',
-    description: 'A flexible card container for grouping content.',
-    status: 'development',
-    preview: 'Card',
-    link: '/components#card'
-  },
-  {
-    name: 'Badge',
-    description: 'Small status indicators and labels.',
-    status: 'development',
-    preview: 'Badge',
-    link: '/components#badge'
-  },
-  {
-    name: 'Dialog',
-    description: 'Modal dialog component for focused interactions.',
-    status: 'development',
-    preview: 'Dialog',
-    link: '/components#dialog'
-  },
-  {
-    name: 'Dropdown',
-    description: 'Collapsible menu for navigation and actions.',
-    status: 'development',
-    preview: 'Dropdown',
-    link: '/components#dropdown'
-  },
-  {
-    name: 'Tabs',
-    description: 'Tabbed interface for organizing content.',
-    status: 'development',
-    preview: 'Tabs',
-    link: '/components#tabs'
-  },
-  {
-    name: 'Accordion',
-    description: 'Expandable content sections.',
-    status: 'development',
-    preview: 'Accordion',
-    link: '/components#accordion'
-  }
-]
-</script>
-
 <div class="home">
   <section class="components-section">
     <h2 class="section-title">Components</h2>
     <p class="section-description">Beautiful, accessible components ready to use in your projects.</p>
     
     <div class="component-grid">
-      <a 
-        v-for="component in components" 
-        :key="component.name"
-        :href="component.link"
-        class="component-card"
-        :class="{ 'disabled': component.status === 'development' }"
-      >
+      <a href="/components/button" class="component-card">
         <div class="component-card-header">
-          <span class="component-card-title">{{ component.name }}</span>
-          <span 
-            class="component-card-badge"
-            :class="component.status === 'complete' ? 'complete' : 'development'"
-          >
-            {{ component.status === 'complete' ? '✓ Complete' : 'Coming Soon' }}
-          </span>
+          <span class="component-card-title">Button</span>
+          <span class="component-card-badge complete">✓ Complete</span>
         </div>
-        <p class="component-card-description">{{ component.description }}</p>
+        <p class="component-card-description">A clickable button component with multiple variants and sizes.</p>
         <div class="component-card-preview">
-          <span v-if="component.status === 'complete'" class="preview-placeholder">{{ component.preview }}</span>
-          <span v-else class="preview-soon">🔜</span>
+          <span class="preview-placeholder">Button</span>
+        </div>
+      </a>
+
+      <a href="/components/input" class="component-card">
+        <div class="component-card-header">
+          <span class="component-card-title">Input</span>
+          <span class="component-card-badge complete">✓ Complete</span>
+        </div>
+        <p class="component-card-description">Form input component with validation, icons, and various states.</p>
+        <div class="component-card-preview">
+          <span class="preview-placeholder">Input</span>
+        </div>
+      </a>
+
+      <a href="/components/#card" class="component-card disabled">
+        <div class="component-card-header">
+          <span class="component-card-title">Card</span>
+          <span class="component-card-badge development">Coming Soon</span>
+        </div>
+        <p class="component-card-description">A flexible card container for grouping content.</p>
+        <div class="component-card-preview">
+          <span class="preview-soon">🔜</span>
+        </div>
+      </a>
+
+      <a href="/components/#badge" class="component-card disabled">
+        <div class="component-card-header">
+          <span class="component-card-title">Badge</span>
+          <span class="component-card-badge development">Coming Soon</span>
+        </div>
+        <p class="component-card-description">Small status indicators and labels.</p>
+        <div class="component-card-preview">
+          <span class="preview-soon">🔜</span>
+        </div>
+      </a>
+
+      <a href="/components/#dialog" class="component-card disabled">
+        <div class="component-card-header">
+          <span class="component-card-title">Dialog</span>
+          <span class="component-card-badge development">Coming Soon</span>
+        </div>
+        <p class="component-card-description">Modal dialog for focused interactions.</p>
+        <div class="component-card-preview">
+          <span class="preview-soon">🔜</span>
+        </div>
+      </a>
+
+      <a href="/components/#dropdown" class="component-card disabled">
+        <div class="component-card-header">
+          <span class="component-card-title">Dropdown</span>
+          <span class="component-card-badge development">Coming Soon</span>
+        </div>
+        <p class="component-card-description">Collapsible menu for navigation and actions.</p>
+        <div class="component-card-preview">
+          <span class="preview-soon">🔜</span>
+        </div>
+      </a>
+
+      <a href="/components/#tabs" class="component-card disabled">
+        <div class="component-card-header">
+          <span class="component-card-title">Tabs</span>
+          <span class="component-card-badge development">Coming Soon</span>
+        </div>
+        <p class="component-card-description">Tabbed interface for organizing content.</p>
+        <div class="component-card-preview">
+          <span class="preview-soon">🔜</span>
+        </div>
+      </a>
+
+      <a href="/components/#accordion" class="component-card disabled">
+        <div class="component-card-header">
+          <span class="component-card-title">Accordion</span>
+          <span class="component-card-badge development">Coming Soon</span>
+        </div>
+        <p class="component-card-description">Expandable content sections.</p>
+        <div class="component-card-preview">
+          <span class="preview-soon">🔜</span>
         </div>
       </a>
     </div>
@@ -153,7 +155,7 @@ const components = [
 
 .component-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
 }
 
@@ -168,7 +170,7 @@ const components = [
   color: inherit;
 }
 
-.component-card:hover {
+.component-card:hover:not(.disabled) {
   border-color: var(--au-primary);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -177,12 +179,6 @@ const components = [
 .component-card.disabled {
   opacity: 0.7;
   cursor: not-allowed;
-}
-
-.component-card.disabled:hover {
-  transform: none;
-  box-shadow: none;
-  border-color: var(--au-border);
 }
 
 .component-card-header {

@@ -46,7 +46,7 @@ import Alpine from 'alpinejs'
 
 window.Alpine = Alpine
 
-import '@ Fernando-Ligabue/button'
+import '@Fernando-Ligabue/button'
 
 Alpine.start()
 ```
@@ -82,7 +82,7 @@ npx alpineui add button --yes
 
 The simplest approach is to copy the component code directly into your project.
 
-1. Find the component you want in the [Components](/components) section
+1. Find the component you want in the [Components](/components/) section
 2. Click the **Copy** button to copy the code
 3. Paste it into your HTML file
 4. Add the component's CSS to your stylesheet
@@ -90,4 +90,4 @@ The simplest approach is to copy the component code directly into your project.
 ## Next Steps
 
 - Learn about [Theming](/getting-started/theming) to customize colors and styles
-- Browse available [Components](/components)
+- Browse available [Components](/components/)
