@@ -1,5 +1,5 @@
 {
-  "name": "@alpineui/cli",
+  "name": "@Fernando-Ligabue/cli",
   "version": "0.1.0",
   "description": "CLI for AlpineUI components",
   "type": "module",
@@ -19,7 +19,8 @@
   "author": "AlpineUI Contributors",
   "license": "MIT",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "dependencies": {
     "commander": "^12.0.0",

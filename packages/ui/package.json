@@ -1,5 +1,5 @@
 {
-  "name": "@alpineui/button",
+  "name": "@Fernando-Ligabue/button",
   "version": "1.0.0",
   "description": "Button component for AlpineUI",
   "type": "module",
@@ -31,7 +31,8 @@
   "author": "AlpineUI Contributors",
   "license": "MIT",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "peerDependencies": {
     "alpinejs": "^3.0.0"

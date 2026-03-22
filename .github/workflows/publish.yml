@@ -20,14 +20,14 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@alpineui'
+          scope: '@Fernando-Ligabue'
       
       - run: npm ci
       
-      - run: npm publish --workspace=@alpineui/button
+      - run: npm publish --workspace=@Fernando-Ligabue/button
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - run: npm publish --workspace=@alpineui/cli
+      - run: npm publish --workspace=@Fernando-Ligabue/cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
