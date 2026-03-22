@@ -1,0 +1,308 @@
+/* Input Base Styles */
+.au-input {
+  display: flex;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: var(--au-radius);
+  border: 1px solid var(--au-input-border, var(--au-border));
+  background-color: var(--au-background);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--au-foreground);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.au-input::placeholder {
+  color: var(--au-muted-foreground);
+}
+
+.au-input:focus {
+  outline: none;
+  border-color: var(--au-ring);
+  box-shadow: 0 0 0 2px var(--au-ring-alpha, rgba(10, 10, 10, 0.1));
+}
+
+.au-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: var(--au-muted);
+}
+
+.au-input[readonly] {
+  cursor: default;
+  background-color: var(--au-muted);
+}
+
+/* Input Sizes */
+.au-input-sm {
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: calc(var(--au-radius) - 2px);
+}
+
+.au-input-md {
+  height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.au-input-lg {
+  height: 3rem;
+  padding: 0.625rem 1rem;
+  font-size: 1rem;
+  border-radius: calc(var(--au-radius) + 2px);
+}
+
+/* Input States */
+.au-input-error {
+  border-color: var(--au-destructive) !important;
+}
+
+.au-input-error:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.au-input-success {
+  border-color: #22c55e !important;
+}
+
+.au-input-success:focus {
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+/* Input with Icons */
+.au-input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.au-input-wrapper .au-input {
+  flex: 1;
+}
+
+.au-input-icon-left {
+  padding-left: 2.5rem;
+}
+
+.au-input-icon-right {
+  padding-right: 2.5rem;
+}
+
+.au-input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 100%;
+  color: var(--au-muted-foreground);
+  pointer-events: none;
+}
+
+.au-input-icon-left {
+  left: 0;
+}
+
+.au-input-icon-right {
+  right: 0;
+}
+
+/* Input with Suffix/Prefix Text (Addons) */
+.au-input-addon {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--au-input-border, var(--au-border));
+  background-color: var(--au-muted);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--au-muted-foreground);
+  border-radius: var(--au-radius);
+}
+
+.au-input-with-addon-left .au-input-addon-left {
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.au-input-with-addon-left .au-input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.au-input-with-addon-right .au-input-addon-right {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.au-input-with-addon-right .au-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.au-input-with-both-addons .au-input-addon-left {
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.au-input-with-both-addons .au-input-addon-right {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.au-input-with-both-addons .au-input {
+  border-radius: 0;
+}
+
+/* Textarea */
+.au-textarea {
+  display: flex;
+  min-height: 5rem;
+  width: 100%;
+  border-radius: var(--au-radius);
+  border: 1px solid var(--au-input-border, var(--au-border));
+  background-color: var(--au-background);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--au-foreground);
+  resize: vertical;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.au-textarea::placeholder {
+  color: var(--au-muted-foreground);
+}
+
+.au-textarea:focus {
+  outline: none;
+  border-color: var(--au-ring);
+  box-shadow: 0 0 0 2px var(--au-ring-alpha, rgba(10, 10, 10, 0.1));
+}
+
+.au-textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: var(--au-muted);
+}
+
+/* Textarea Sizes */
+.au-textarea-sm {
+  min-height: 4rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.au-textarea-md {
+  min-height: 5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.au-textarea-lg {
+  min-height: 6rem;
+  padding: 0.625rem 1rem;
+  font-size: 1rem;
+}
+
+/* Input Helper Text */
+.au-input-helper {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--au-muted-foreground);
+}
+
+.au-input-error-message {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--au-destructive);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.au-input-success-message {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #22c55e;
+}
+
+/* Character Counter */
+.au-input-counter {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--au-muted-foreground);
+  text-align: right;
+}
+
+.au-input-counter-exceeded {
+  color: var(--au-destructive);
+}
+
+/* Label */
+.au-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--au-foreground);
+  margin-bottom: 0.25rem;
+}
+
+.au-label-required::after {
+  content: ' *';
+  color: var(--au-destructive);
+}
+
+/* Form Field Container */
+.au-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Input Group (Radio/Toggle) */
+.au-input-group {
+  display: inline-flex;
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+  overflow: hidden;
+}
+
+.au-input-group-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--au-background);
+  border: none;
+  border-right: 1px solid var(--au-border);
+  font-size: 0.875rem;
+  color: var(--au-foreground);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.au-input-group-item:last-child {
+  border-right: none;
+}
+
+.au-input-group-item:hover {
+  background-color: var(--au-muted);
+}
+
+.au-input-group-item-active {
+  background-color: var(--au-primary);
+  color: var(--au-primary-foreground);
+}
+
+.au-input-group-item-active:hover {
+  background-color: var(--au-primary);
+}
