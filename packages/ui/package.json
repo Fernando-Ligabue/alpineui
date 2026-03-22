@@ -30,6 +30,9 @@
   ],
   "author": "AlpineUI Contributors",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "peerDependencies": {
     "alpinejs": "^3.0.0"
   }
