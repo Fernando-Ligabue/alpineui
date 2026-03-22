@@ -4,6 +4,10 @@ export default defineConfig({
   title: 'AlpineUI',
   description: 'Beautiful and copy-paste components for Alpine.js',
   
+  lang: 'en-US',
+  
+  appearance: 'dark',
+  
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],

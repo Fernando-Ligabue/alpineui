@@ -8,14 +8,7 @@ import CopyButton from './components/CopyButton.vue'
 export default {
   extends: DefaultTheme,
 
-  Layout() {
-    return h(DefaultTheme.Layout, null, {
-      // Slot para enhance o layout se necessário
-    })
-  },
-
-  enhanceApp({ app, router, siteData }) {
-    // Registar componentes globais
+  enhanceApp({ app }) {
     app.component('ComponentPreview', ComponentPreview)
     app.component('ComponentTabs', ComponentTabs)
     app.component('CopyButton', CopyButton)
