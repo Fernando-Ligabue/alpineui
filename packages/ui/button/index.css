@@ -1,0 +1,127 @@
+.au-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: var(--au-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 150ms;
+  cursor: pointer;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.au-button:focus-visible {
+  outline: 2px solid var(--au-ring);
+  outline-offset: 2px;
+}
+
+.au-button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Sizes */
+.au-button-sm {
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+}
+
+.au-button-md {
+  height: 2.5rem;
+  padding: 0 1rem;
+}
+
+.au-button-lg {
+  height: 3rem;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+}
+
+.au-button-icon {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+/* Variants */
+.au-button-default {
+  background-color: var(--au-primary);
+  color: var(--au-primary-foreground);
+}
+
+.au-button-default:hover {
+  opacity: 0.9;
+}
+
+.au-button-destructive {
+  background-color: var(--au-destructive);
+  color: var(--au-destructive-foreground);
+}
+
+.au-button-destructive:hover {
+  opacity: 0.9;
+}
+
+.au-button-outline {
+  border-color: var(--au-border);
+  background-color: transparent;
+  color: var(--au-foreground);
+}
+
+.au-button-outline:hover {
+  background-color: var(--au-accent);
+}
+
+.au-button-secondary {
+  background-color: var(--au-secondary);
+  color: var(--au-secondary-foreground);
+}
+
+.au-button-secondary:hover {
+  background-color: var(--au-muted);
+}
+
+.au-button-ghost {
+  background-color: transparent;
+  color: var(--au-foreground);
+}
+
+.au-button-ghost:hover {
+  background-color: var(--au-accent);
+}
+
+.au-button-link {
+  background-color: transparent;
+  color: var(--au-primary);
+  text-decoration: underline;
+}
+
+.au-button-link:hover {
+  opacity: 0.8;
+}
+
+/* Loading */
+.au-button-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.au-button-loading::after {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: au-spin 0.6s linear infinite;
+}
+
+@keyframes au-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

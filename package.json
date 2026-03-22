@@ -1,0 +1,31 @@
+{
+  "name": "alpineui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A collection of re-usable components built with Alpine.js and Tailwind CSS",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @alpineui/cli",
+    "build": "npm run build -w @alpineui/cli",
+    "test": "npm run test -w @alpineui/cli"
+  },
+  "keywords": [
+    "alpinejs",
+    "alpine",
+    "components",
+    "ui",
+    "tailwindcss",
+    "tailwind"
+  ],
+  "author": "AlpineUI Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fernando-Ligabue/alpineui"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

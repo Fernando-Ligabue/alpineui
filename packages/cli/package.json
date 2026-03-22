@@ -1,0 +1,32 @@
+{
+  "name": "@alpineui/cli",
+  "version": "0.1.0",
+  "description": "CLI for AlpineUI components",
+  "type": "module",
+  "bin": {
+    "alpineui": "./bin/index.js"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "test": "vitest"
+  },
+  "keywords": [
+    "alpinejs",
+    "cli",
+    "components"
+  ],
+  "author": "AlpineUI Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "fs-extra": "^11.2.0",
+    "kolorist": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  }
+}
