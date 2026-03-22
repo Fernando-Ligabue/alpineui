@@ -43,7 +43,8 @@
   
   /* Layout */
   --vp-sidebar-width: 260px;
-  --vp-layout-max-width: 1400px;
+  --vp-layout-max-width: 1600px;
+  --vp-content-max-width: 900px;
   
   /* VitePress Brand */
   --vp-c-brand-1: #10b981;
@@ -248,34 +249,50 @@ body {
 }
 
 .VPDoc {
-  padding: 32px 48px;
-  max-width: 800px;
+  padding: 40px 64px;
+  max-width: var(--vp-content-max-width);
+}
+
+.VPDoc .content-container {
+  max-width: var(--vp-content-max-width) !important;
+}
+
+.VPDoc .vp-doc {
+  max-width: var(--vp-content-max-width);
 }
 
 /* ============================================
    Typography
    ============================================ */
 .vp-doc h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-  line-height: 1.2;
-  margin-bottom: 16px;
+  line-height: 1.15;
+  margin-bottom: 20px;
   color: var(--au-foreground);
 }
 
 .vp-doc h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
-  margin-top: 48px;
-  margin-bottom: 16px;
-  padding-top: 24px;
+  margin-top: 56px;
+  margin-bottom: 20px;
+  padding-top: 32px;
   border-top: 1px solid var(--vp-c-border);
   color: var(--au-foreground);
 }
 
 .vp-doc h3 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 16px;
+  color: var(--au-foreground);
+}
+
+.vp-doc h4 {
+  font-size: 1rem;
   font-weight: 600;
   margin-top: 32px;
   margin-bottom: 12px;
@@ -283,45 +300,93 @@ body {
 }
 
 .vp-doc p {
-  line-height: 1.75;
+  line-height: 1.8;
   color: var(--au-foreground-muted);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  font-size: 1rem;
 }
 
 .vp-doc ul,
 .vp-doc ol {
-  padding-left: 24px;
-  margin: 16px 0;
+  padding-left: 28px;
+  margin: 20px 0;
   color: var(--au-foreground-muted);
 }
 
 .vp-doc li {
-  margin-bottom: 8px;
-  line-height: 1.75;
+  margin-bottom: 12px;
+  line-height: 1.8;
 }
 
 /* ============================================
    Code
    ============================================ */
 .vp-doc div[class*='language-'] {
-  background-color: var(--vp-c-bg-soft) !important;
+  position: relative;
+  background-color: #0d1117 !important;
   border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 20px 0;
+  border-radius: 12px;
+  margin: 24px 0;
   overflow: hidden;
 }
 
+.vp-doc div[class*='language-']::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+  border-bottom: 1px solid var(--vp-c-border);
+}
+
 .vp-doc div[class*='language-'] pre {
-  padding: 16px 20px;
+  padding: 48px 24px 24px;
   overflow-x: auto;
   font-family: var(--vp-font-family-mono);
   font-size: 0.875rem;
-  line-height: 1.7;
+  line-height: 1.8;
+  background: transparent !important;
 }
 
 .vp-doc div[class*='language-'] code {
   font-family: var(--vp-font-family-mono);
   font-size: 0.875rem;
+  background: transparent !important;
+}
+
+/* Language label */
+.vp-doc div[class*='language-'] .lang {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--au-foreground-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Copy button styling */
+.vp-doc div[class*='language-'] .copy {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  padding: 6px 12px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: var(--au-foreground-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.vp-doc div[class*='language-'] .copy:hover {
+  background: var(--au-accent);
+  color: var(--au-primary);
+  border-color: var(--au-primary);
 }
 
 .vp-doc :not(pre) > code {
