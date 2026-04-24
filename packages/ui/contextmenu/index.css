@@ -1,0 +1,120 @@
+.au-context-menu {
+  position: fixed;
+  min-width: 12rem;
+  padding: 0.25rem;
+  background: var(--au-background);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+
+.au-context-menu-open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.au-context-menu-trigger {
+  display: inline-block;
+}
+
+.au-context-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--au-foreground);
+  border-radius: var(--au-radius-sm);
+  cursor: pointer;
+  transition: background 0.1s ease;
+  user-select: none;
+}
+
+.au-context-menu-item:hover:not([data-disabled="true"]) {
+  background: var(--au-secondary);
+}
+
+.au-context-menu-item[data-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.au-context-menu-item-danger {
+  color: var(--au-destructive);
+}
+
+.au-context-menu-item-danger:hover:not([data-disabled="true"]) {
+  background: color-mix(in srgb, var(--au-destructive) 10%, transparent);
+}
+
+.au-context-menu-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.au-context-menu-shortcut {
+  font-size: 0.75rem;
+  color: var(--au-muted-foreground);
+}
+
+.au-context-menu-separator {
+  height: 1px;
+  margin: 0.25rem 0;
+  background: var(--au-border);
+}
+
+.au-context-menu-submenu {
+  position: relative;
+}
+
+.au-context-menu-submenu-content {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 12rem;
+  padding: 0.25rem;
+  margin-left: 0.25rem;
+  background: var(--au-background);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-5px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+
+.au-context-menu-submenu:hover .au-context-menu-submenu-content,
+.au-context-menu-submenu-open .au-context-menu-submenu-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.au-context-menu-submenu-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-left: auto;
+}
+
+/* Group */
+.au-context-menu-group {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--au-muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.au-context-menu-group-items {
+  padding: 0.25rem 0;
+}

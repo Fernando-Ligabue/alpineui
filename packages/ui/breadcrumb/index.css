@@ -1,0 +1,93 @@
+.au-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.au-breadcrumb-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.au-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.au-breadcrumb-link {
+  color: var(--au-muted-foreground);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  border-radius: var(--au-radius);
+  padding: 0.125rem 0.25rem;
+}
+
+.au-breadcrumb-link:hover {
+  color: var(--au-foreground);
+  text-decoration: underline;
+}
+
+.au-breadcrumb-link-current {
+  color: var(--au-foreground);
+  font-weight: 500;
+  cursor: default;
+}
+
+.au-breadcrumb-link-current:hover {
+  text-decoration: none;
+}
+
+.au-breadcrumb-separator {
+  color: var(--au-muted-foreground);
+  display: inline-flex;
+  align-items: center;
+}
+
+.au-breadcrumb-separator-chevron {
+  width: 1rem;
+  height: 1rem;
+}
+
+.au-breadcrumb-separator-slash {
+  font-weight: 300;
+}
+
+/* Sizes */
+.au-breadcrumb-sm {
+  font-size: 0.75rem;
+}
+
+.au-breadcrumb-sm .au-breadcrumb-link {
+  padding: 0.0625rem 0.125rem;
+}
+
+.au-breadcrumb-lg {
+  font-size: 1rem;
+}
+
+/* Truncate */
+.au-breadcrumb-truncate {
+  max-width: 200px;
+}
+
+.au-breadcrumb-truncate .au-breadcrumb-item:last-child .au-breadcrumb-link {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* With icons */
+.au-breadcrumb-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}

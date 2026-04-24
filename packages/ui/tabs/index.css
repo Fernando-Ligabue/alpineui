@@ -1,0 +1,124 @@
+.au-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.au-tabs-list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--au-border);
+}
+
+.au-tabs-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--au-muted-foreground);
+  background: transparent;
+  border: none;
+  border-radius: var(--au-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.au-tabs-trigger:hover {
+  color: var(--au-foreground);
+  background: var(--au-secondary);
+}
+
+.au-tabs-trigger.active {
+  color: var(--au-foreground);
+  background: var(--au-secondary);
+}
+
+.au-tabs-trigger.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--au-ring);
+}
+
+.au-tabs-trigger:disabled,
+.au-tabs-trigger[data-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.au-tabs-trigger-sm {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.au-tabs-trigger-md {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.au-tabs-trigger-lg {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+}
+
+.au-tabs-content {
+  padding: 1rem 0;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pill variant */
+.au-tabs-pill .au-tabs-list {
+  border-bottom: none;
+  gap: 0.5rem;
+}
+
+.au-tabs-pill .au-tabs-trigger.active {
+  background: var(--au-primary);
+  color: var(--au-primary-foreground);
+}
+
+.au-tabs-pill .au-tabs-trigger.active::after {
+  display: none;
+}
+
+.au-tabs-pill .au-tabs-content {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: var(--au-background);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+}
+
+/* Underline variant */
+.au-tabs-underline .au-tabs-list {
+  border-bottom: 2px solid var(--au-ring);
+}
+
+.au-tabs-underline .au-tabs-trigger.active {
+  color: var(--au-ring);
+}
+
+.au-tabs-underline .au-tabs-trigger.active::after {
+  height: 3px;
+  background: var(--au-ring);
+}

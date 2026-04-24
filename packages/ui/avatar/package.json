@@ -1,0 +1,40 @@
+{
+  "name": "@Fernando-Ligabue/avatar",
+  "version": "1.0.0",
+  "description": "Avatar component for AlpineUI",
+  "type": "module",
+  "main": "./avatar.js",
+  "module": "./avatar.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./avatar.js",
+      "types": "./index.d.ts"
+    },
+    "./styles.css": "./index.css"
+  },
+  "files": [
+    "*.js",
+    "*.css",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "alpinejs",
+    "avatar",
+    "ui",
+    "components"
+  ],
+  "author": "AlpineUI Contributors",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "peerDependencies": {
+    "alpinejs": "^3.0.0"
+  }
+}

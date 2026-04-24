@@ -1,0 +1,42 @@
+export declare function table(): {
+  sortColumn: string | null;
+  sortDirection: 'asc' | 'desc';
+  selectedRows: Set<any>;
+  selectAll: boolean;
+  init(): void;
+  sortBy(column: string): void;
+  toggleSort(column: string): void;
+  isSorted(column: string): boolean;
+  toggleRowSelection(row: any): void;
+  selectAllRows(rows: any[]): void;
+  deselectAllRows(): void;
+  isSelected(row: any): boolean;
+};
+
+export declare function dataTable(): {
+  data: any[];
+  filteredData: any[];
+  currentPage: number;
+  pageSize: number;
+  sortColumn: string | null;
+  sortDirection: 'asc' | 'desc';
+  selectedRows: Set<any>;
+  searchQuery: string;
+  init(): void;
+  get totalPages(): number;
+  get startIndex(): number;
+  get endIndex(): number;
+  get paginatedData(): any[];
+  get selectedCount(): number;
+  get totalCount(): number;
+  setPage(page: number): void;
+  nextPage(): void;
+  prevPage(): void;
+  setPageSize(size: number): void;
+  sortBy(column: string): void;
+  search(query: string): void;
+  toggleRowSelection(item: any): void;
+  selectAll(): void;
+  deselectAll(): void;
+  isSelected(item: any): boolean;
+};

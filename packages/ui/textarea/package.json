@@ -1,0 +1,40 @@
+{
+  "name": "@Fernando-Ligabue/textarea",
+  "version": "1.0.0",
+  "description": "Textarea component for AlpineUI",
+  "type": "module",
+  "main": "./textarea.js",
+  "module": "./textarea.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./textarea.js",
+      "types": "./index.d.ts"
+    },
+    "./styles.css": "./index.css"
+  },
+  "files": [
+    "*.js",
+    "*.css",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "alpinejs",
+    "textarea",
+    "ui",
+    "components"
+  ],
+  "author": "AlpineUI Contributors",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "peerDependencies": {
+    "alpinejs": "^3.0.0"
+  }
+}

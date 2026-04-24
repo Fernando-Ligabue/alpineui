@@ -1,0 +1,56 @@
+name: Publish Packages to GitHub Packages
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Publish all UI components
+        run: |
+          for dir in packages/ui/*/; do
+            name=$(basename "$dir")
+            if [ -f "$dir/package.json" ]; then
+              echo "Publishing @Fernando-Ligabue/$name..."
+              cd "$dir"
+              npm publish --registry=https://npm.pkg.github.com --access public
+              if [ $? -eq 0 ]; then
+                echo "✅ Published @Fernando-Ligabue/$name"
+              else
+                echo "❌ Failed to publish @Fernando-Ligabue/$name"
+              fi
+              cd ../..
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish CLI
+        run: |
+          if [ -d "packages/cli" ] && [ -f "packages/cli/package.json" ]; then
+            echo "Publishing @Fernando-Ligabue/cli..."
+            cd packages/cli
+            npm publish --registry=https://npm.pkg.github.com --access public
+            if [ $? -eq 0 ]; then
+              echo "✅ Published @Fernando-Ligabue/cli"
+            else
+              echo "❌ Failed to publish @Fernando-Ligabue/cli"
+            fi
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

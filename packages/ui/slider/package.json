@@ -1,0 +1,40 @@
+{
+  "name": "@Fernando-Ligabue/slider",
+  "version": "1.0.0",
+  "description": "Slider component for AlpineUI",
+  "type": "module",
+  "main": "./slider.js",
+  "module": "./slider.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./slider.js",
+      "types": "./index.d.ts"
+    },
+    "./styles.css": "./index.css"
+  },
+  "files": [
+    "*.js",
+    "*.css",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "alpinejs",
+    "slider",
+    "ui",
+    "components"
+  ],
+  "author": "AlpineUI Contributors",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "peerDependencies": {
+    "alpinejs": "^3.0.0"
+  }
+}

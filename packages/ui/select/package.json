@@ -1,0 +1,40 @@
+{
+  "name": "@Fernando-Ligabue/select",
+  "version": "1.0.0",
+  "description": "Select component for AlpineUI",
+  "type": "module",
+  "main": "./select.js",
+  "module": "./select.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./select.js",
+      "types": "./index.d.ts"
+    },
+    "./styles.css": "./index.css"
+  },
+  "files": [
+    "*.js",
+    "*.css",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "alpinejs",
+    "select",
+    "ui",
+    "components"
+  ],
+  "author": "AlpineUI Contributors",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "peerDependencies": {
+    "alpinejs": "^3.0.0"
+  }
+}
