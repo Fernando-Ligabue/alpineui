@@ -7,7 +7,72 @@ on:
     types: [published]
 
 jobs:
-  publish:
+  publish-ui:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package: accordion
+          - package: avatar
+          - package: badge
+          - package: breadcrumb
+          - package: card
+          - package: checkbox
+          - package: contextmenu
+          - package: datepicker
+          - package: dialog
+          - package: dropdown
+          - package: input
+          - package: navigationmenu
+          - package: pagination
+          - package: popover
+          - package: progress
+          - package: radiogroup
+          - package: select
+          - package: slider
+          - package: switch
+          - package: table
+          - package: tabs
+          - package: textarea
+          - package: toast
+          - package: tooltip
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check package exists
+        id: check_package
+        run: |
+          if [ -d "packages/ui/${{ matrix.package }}" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Configure npm authentication
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > packages/ui/${{ matrix.package }}/.npmrc
+
+      - name: Publish package
+        run: |
+          cd packages/ui/${{ matrix.package }}
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-cli:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -16,41 +81,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Publish all UI components
+      - name: Configure npm authentication
         run: |
-          for dir in packages/ui/*/; do
-            name=$(basename "$dir")
-            if [ -f "$dir/package.json" ]; then
-              echo "Publishing @Fernando-Ligabue/$name..."
-              cd "$dir"
-              npm publish --registry=https://npm.pkg.github.com --access public
-              if [ $? -eq 0 ]; then
-                echo "✅ Published @Fernando-Ligabue/$name"
-              else
-                echo "❌ Failed to publish @Fernando-Ligabue/$name"
-              fi
-              cd ../..
-            fi
-          done
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > packages/cli/.npmrc
 
       - name: Publish CLI
         run: |
-          if [ -d "packages/cli" ] && [ -f "packages/cli/package.json" ]; then
-            echo "Publishing @Fernando-Ligabue/cli..."
-            cd packages/cli
-            npm publish --registry=https://npm.pkg.github.com --access public
-            if [ $? -eq 0 ]; then
-              echo "✅ Published @Fernando-Ligabue/cli"
-            else
-              echo "❌ Failed to publish @Fernando-Ligabue/cli"
-            fi
-          fi
+          cd packages/cli
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
