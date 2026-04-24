@@ -28,7 +28,7 @@ jobs:
             if [ -f "$dir/package.json" ]; then
               echo "Publishing @Fernando-Ligabue/$name..."
               cd "$dir"
-              npm publish --registry=https://npm.pkg.github.com --access public --force
+              npm publish --registry=https://npm.pkg.github.com --access public
               if [ $? -eq 0 ]; then
                 echo "✅ Published @Fernando-Ligabue/$name"
               else
@@ -45,7 +45,7 @@ jobs:
           if [ -d "packages/cli" ] && [ -f "packages/cli/package.json" ]; then
             echo "Publishing @Fernando-Ligabue/cli..."
             cd packages/cli
-            npm publish --registry=https://npm.pkg.github.com --access public --force
+            npm publish --registry=https://npm.pkg.github.com --access public
             if [ $? -eq 0 ]; then
               echo "✅ Published @Fernando-Ligabue/cli"
             else

@@ -1,6 +1,6 @@
 {
   "name": "@Fernando-Ligabue/toast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Toast notification component for AlpineUI",
   "type": "module",
   "main": "./toast.js",

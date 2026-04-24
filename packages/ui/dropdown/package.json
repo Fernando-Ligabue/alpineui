@@ -1,6 +1,6 @@
 {
   "name": "@Fernando-Ligabue/dropdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dropdown menu component for AlpineUI",
   "type": "module",
   "main": "./dropdown.js",

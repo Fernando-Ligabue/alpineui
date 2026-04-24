@@ -1,6 +1,6 @@
 {
   "name": "@Fernando-Ligabue/tabs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tabs component for AlpineUI",
   "type": "module",
   "main": "./tabs.js",

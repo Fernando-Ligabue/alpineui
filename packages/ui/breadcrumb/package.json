@@ -1,6 +1,6 @@
 {
   "name": "@Fernando-Ligabue/breadcrumb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Breadcrumb component for AlpineUI",
   "type": "module",
   "main": "./breadcrumb.js",

@@ -1,6 +1,6 @@
 {
   "name": "@Fernando-Ligabue/navigationmenu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Navigation menu component for AlpineUI",
   "type": "module",
   "main": "./navigationmenu.js",

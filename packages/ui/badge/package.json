@@ -1,6 +1,6 @@
 {
   "name": "@Fernando-Ligabue/badge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Badge component for AlpineUI",
   "type": "module",
   "main": "./badge.js",

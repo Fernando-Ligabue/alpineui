@@ -1,6 +1,6 @@
 {
   "name": "@Fernando-Ligabue/pagination",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pagination component for AlpineUI",
   "type": "module",
   "main": "./pagination.js",
