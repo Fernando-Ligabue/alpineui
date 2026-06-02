@@ -2,70 +2,69 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function InteractiveTabs() {
   const [activeTab, setActiveTab] = useState("account");
 
   return (
     <div className="w-full max-w-md">
-      <div className="au-tabs-list">
+      <div className="inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500">
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "account" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "account" ? "bg-white text-gray-900 shadow-sm" : "hover:text-gray-900"}`}
           onClick={() => setActiveTab("account")}
         >
           Account
         </button>
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "password" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "password" ? "bg-white text-gray-900 shadow-sm" : "hover:text-gray-900"}`}
           onClick={() => setActiveTab("password")}
         >
           Password
         </button>
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "notifications" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "notifications" ? "bg-white text-gray-900 shadow-sm" : "hover:text-gray-900"}`}
           onClick={() => setActiveTab("notifications")}
         >
           Notifications
         </button>
       </div>
-      <div className="au-tabs-content">
+      <div className="mt-2">
         {activeTab === "account" && (
           <div className="space-y-4">
-            <div className="au-field">
-              <label className="au-label">Username</label>
-              <input type="text" className="au-input au-input-md" defaultValue="johndoe" />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+              <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" defaultValue="johndoe" />
             </div>
-            <div className="au-field">
-              <label className="au-label au-label-required">Email</label>
-              <input type="email" className="au-input au-input-md" defaultValue="john@example.com" />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" defaultValue="john@example.com" />
             </div>
           </div>
         )}
         {activeTab === "password" && (
           <div className="space-y-4">
-            <div className="au-field">
-              <label className="au-label">Current Password</label>
-              <input type="password" className="au-input au-input-md" placeholder="Enter current password" />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+              <input type="password" className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" placeholder="Enter current password" />
             </div>
-            <div className="au-field">
-              <label className="au-label">New Password</label>
-              <input type="password" className="au-input au-input-md" placeholder="Enter new password" />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+              <input type="password" className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" placeholder="Enter new password" />
             </div>
           </div>
         )}
         {activeTab === "notifications" && (
           <div className="space-y-3">
             <label className="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" className="au-checkbox" defaultChecked />
+              <input type="checkbox" className="rounded border-gray-300" defaultChecked />
               <span>Email notifications</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" className="au-checkbox" defaultChecked />
+              <input type="checkbox" className="rounded border-gray-300" defaultChecked />
               <span>Push notifications</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" className="au-checkbox" />
+              <input type="checkbox" className="rounded border-gray-300" />
               <span>SMS notifications</span>
             </label>
           </div>
@@ -79,28 +78,28 @@ function InteractiveTabsPill() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="au-tabs-pill w-full max-w-md">
-      <div className="au-tabs-list">
+    <div className="w-full max-w-md">
+      <div className="inline-flex h-10 items-center justify-center p-1 text-gray-500 gap-2">
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "overview" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "overview" ? "bg-black text-white shadow-sm" : "hover:text-gray-900 hover:bg-gray-100"}`}
           onClick={() => setActiveTab("overview")}
         >
           Overview
         </button>
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "analytics" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "analytics" ? "bg-black text-white shadow-sm" : "hover:text-gray-900 hover:bg-gray-100"}`}
           onClick={() => setActiveTab("analytics")}
         >
           Analytics
         </button>
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "reports" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "reports" ? "bg-black text-white shadow-sm" : "hover:text-gray-900 hover:bg-gray-100"}`}
           onClick={() => setActiveTab("reports")}
         >
           Reports
         </button>
       </div>
-      <div className="au-tabs-content">
+      <div className="mt-2 p-4 bg-white border border-gray-200 rounded-lg">
         {activeTab === "overview" && <p>This is the overview content.</p>}
         {activeTab === "analytics" && <p>This is the analytics content.</p>}
         {activeTab === "reports" && <p>This is the reports content.</p>}
@@ -113,28 +112,31 @@ function InteractiveTabsUnderline() {
   const [activeTab, setActiveTab] = useState("first");
 
   return (
-    <div className="au-tabs-underline w-full max-w-md">
-      <div className="au-tabs-list">
+    <div className="w-full max-w-md">
+      <div className="flex h-10 items-center border-b border-gray-200">
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "first" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-all relative ${activeTab === "first" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
           onClick={() => setActiveTab("first")}
         >
           First
+          {activeTab === "first" && <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-gray-900" />}
         </button>
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "second" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-all relative ${activeTab === "second" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
           onClick={() => setActiveTab("second")}
         >
           Second
+          {activeTab === "second" && <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-gray-900" />}
         </button>
         <button
-          className={`au-tabs-trigger au-tabs-trigger-md ${activeTab === "third" ? "active" : ""}`}
+          className={`inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-all relative ${activeTab === "third" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
           onClick={() => setActiveTab("third")}
         >
           Third
+          {activeTab === "third" && <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-gray-900" />}
         </button>
       </div>
-      <div className="au-tabs-content">
+      <div className="mt-2">
         {activeTab === "first" && <p>First tab content.</p>}
         {activeTab === "second" && <p>Second tab content.</p>}
         {activeTab === "third" && <p>Third tab content.</p>}
@@ -146,194 +148,199 @@ function InteractiveTabsUnderline() {
 export default function TabsPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Tabs</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Tabs</h1>
+      <p className="text-gray-500 mb-8">
         A navigable tab component for organizing content into switchable sections.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add tabs" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveTabs />}
-          code={`function App() {
-  const [activeTab, setActiveTab] = useState("account");
-
-  return (
-    <div class="au-tabs">
-      <div class="au-tabs-list">
-        <button
-          className={\`au-tabs-trigger au-tabs-trigger-md \${activeTab === "account" ? "active" : ""}\`}
-          onClick={() => setActiveTab("account")}
-        >
-          Account
-        </button>
-        <button
-          className={\`au-tabs-trigger au-tabs-trigger-md \${activeTab === "password" ? "active" : ""}\`}
-          onClick={() => setActiveTab("password")}
-        >
-          Password
-        </button>
+          code={`<div x-data="{ activeTab: 'account' }" class="w-full max-w-md">
+  <div class="inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500">
+    <button @click="activeTab = 'account'"
+      :class="activeTab === 'account' ? 'bg-white text-gray-900 shadow-sm' : 'hover:text-gray-900'"
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all">
+      Account
+    </button>
+    <button @click="activeTab = 'password'"
+      :class="activeTab === 'password' ? 'bg-white text-gray-900 shadow-sm' : 'hover:text-gray-900'"
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all">
+      Password
+    </button>
+    <button @click="activeTab = 'notifications'"
+      :class="activeTab === 'notifications' ? 'bg-white text-gray-900 shadow-sm' : 'hover:text-gray-900'"
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all">
+      Notifications
+    </button>
+  </div>
+  <div class="mt-2">
+    <template x-if="activeTab === 'account'">
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+          <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" value="johndoe" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" value="john@example.com" />
+        </div>
       </div>
-      <div class="au-tabs-content">
-        {activeTab === "account" && <div>Account settings...</div>}
-        {activeTab === "password" && <div>Password settings...</div>}
+    </template>
+    <template x-if="activeTab === 'password'">
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+          <input type="password" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" placeholder="Enter current password" />
+        </div>
       </div>
-    </div>
-  );
-}`}
+    </template>
+    <template x-if="activeTab === 'notifications'">
+      <div class="space-y-3">
+        <label class="flex items-center gap-3"><input type="checkbox" class="rounded border-gray-300" checked /> <span>Email notifications</span></label>
+        <label class="flex items-center gap-3"><input type="checkbox" class="rounded border-gray-300" checked /> <span>Push notifications</span></label>
+      </div>
+    </template>
+  </div>
+</div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Variants</h2>
         <DemoBlock
           preview={
             <div className="space-y-8 w-full">
               <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Default</h4>
-                <div className="au-tabs">
-                  <div className="au-tabs-list">
-                    <button className="au-tabs-trigger au-tabs-trigger-md active">Tab 1</button>
-                    <button className="au-tabs-trigger au-tabs-trigger-md">Tab 2</button>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Default</h4>
+                <div className="w-full">
+                  <div className="inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500">
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-white text-gray-900 shadow-sm">Tab 1</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-gray-900">Tab 2</button>
                   </div>
                 </div>
               </div>
               <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Pill</h4>
-                <div className="au-tabs-pill">
-                  <div className="au-tabs-list">
-                    <button className="au-tabs-trigger au-tabs-trigger-md active">Tab 1</button>
-                    <button className="au-tabs-trigger au-tabs-trigger-md">Tab 2</button>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Pill</h4>
+                <div>
+                  <div className="inline-flex h-10 items-center justify-center p-1 text-gray-500 gap-2">
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium bg-black text-white shadow-sm">Tab 1</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium hover:text-gray-900 hover:bg-gray-100">Tab 2</button>
                   </div>
                 </div>
               </div>
               <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Underline</h4>
-                <div className="au-tabs-underline">
-                  <div className="au-tabs-list">
-                    <button className="au-tabs-trigger au-tabs-trigger-md active">Tab 1</button>
-                    <button className="au-tabs-trigger au-tabs-trigger-md">Tab 2</button>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Underline</h4>
+                <div>
+                  <div className="flex h-10 items-center border-b border-gray-200">
+                    <button className="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium text-gray-900 relative">
+                      Tab 1
+                      <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-gray-900" />
+                    </button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium text-gray-500 hover:text-gray-900">Tab 2</button>
                   </div>
                 </div>
               </div>
             </div>
           }
           code={`<!-- Default -->
-<div class="au-tabs">
-  <div class="au-tabs-list">
-    <button class="au-tabs-trigger au-tabs-trigger-md active">Tab 1</button>
-    <button class="au-tabs-trigger au-tabs-trigger-md">Tab 2</button>
+<div class="w-full">
+  <div class="inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500">
+    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-white text-gray-900 shadow-sm">Tab 1</button>
+    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-gray-900">Tab 2</button>
   </div>
-  <div class="au-tabs-content">...</div>
+  <div class="mt-2">...</div>
 </div>
 
 <!-- Pill -->
-<div class="au-tabs-pill">
-  <div class="au-tabs-list">...</div>
-  <div class="au-tabs-content">...</div>
+<div>
+  <div class="inline-flex h-10 items-center justify-center p-1 text-gray-500 gap-2">
+    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium bg-black text-white shadow-sm">Tab 1</button>
+    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium hover:text-gray-900 hover:bg-gray-100">Tab 2</button>
+  </div>
+  <div class="mt-2 p-4 bg-white border border-gray-200 rounded-lg">...</div>
 </div>
 
 <!-- Underline -->
-<div class="au-tabs-underline">
-  <div class="au-tabs-list">...</div>
-  <div class="au-tabs-content">...</div>
+<div>
+  <div class="flex h-10 items-center border-b border-gray-200">
+    <button class="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium text-gray-900 relative">
+      Tab 1
+      <span class="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-gray-900" />
+    </button>
+    <button class="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium text-gray-500 hover:text-gray-900">Tab 2</button>
+  </div>
+  <div class="mt-2">...</div>
 </div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="space-y-6 w-full max-w-md">
               <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Small</h4>
-                <div className="au-tabs au-tabs-default">
-                  <div className="au-tabs-list">
-                    <button className="au-tabs-trigger au-tabs-trigger-sm active">Tab</button>
-                    <button className="au-tabs-trigger au-tabs-trigger-sm">Tab</button>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Small</h4>
+                <div className="w-full">
+                  <div className="inline-flex h-8 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500">
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-2.5 py-1 text-xs font-medium bg-white text-gray-900 shadow-sm">Tab</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-2.5 py-1 text-xs font-medium hover:text-gray-900">Tab</button>
                   </div>
                 </div>
               </div>
               <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Medium</h4>
-                <div className="au-tabs au-tabs-default">
-                  <div className="au-tabs-list">
-                    <button className="au-tabs-trigger au-tabs-trigger-md active">Tab</button>
-                    <button className="au-tabs-trigger au-tabs-trigger-md">Tab</button>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Medium</h4>
+                <div className="w-full">
+                  <div className="inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500">
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-white text-gray-900 shadow-sm">Tab</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-gray-900">Tab</button>
                   </div>
                 </div>
               </div>
               <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Large</h4>
-                <div className="au-tabs au-tabs-default">
-                  <div className="au-tabs-list">
-                    <button className="au-tabs-trigger au-tabs-trigger-lg active">Tab</button>
-                    <button className="au-tabs-trigger au-tabs-trigger-lg">Tab</button>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Large</h4>
+                <div className="w-full">
+                  <div className="inline-flex h-12 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500">
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-4 py-2 text-base font-medium bg-white text-gray-900 shadow-sm">Tab</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-4 py-2 text-base font-medium hover:text-gray-900">Tab</button>
                   </div>
                 </div>
               </div>
             </div>
           }
-          code={`<button class="au-tabs-trigger au-tabs-trigger-sm">Small</button>
-<button class="au-tabs-trigger au-tabs-trigger-md">Medium</button>
-<button class="au-tabs-trigger au-tabs-trigger-lg">Large</button>`}
+          code={`<button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-2.5 py-1 text-xs font-medium bg-white text-gray-900 shadow-sm">Small</button>
+<button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-white text-gray-900 shadow-sm">Medium</button>
+<button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-4 py-2 text-base font-medium bg-white text-gray-900 shadow-sm">Large</button>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Disabled Tab</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Disabled Tab</h2>
         <DemoBlock
           preview={
-            <div className="au-tabs au-tabs-default w-full max-w-md">
-              <div className="au-tabs-list">
-                <button className="au-tabs-trigger au-tabs-trigger-md active">
+            <div className="w-full max-w-md">
+              <div className="inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500">
+                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-white text-gray-900 shadow-sm">
                   Active
                 </button>
-                <button className="au-tabs-trigger au-tabs-trigger-md" disabled>
+                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-gray-900 opacity-50 cursor-not-allowed" disabled>
                   Disabled
                 </button>
-                <button className="au-tabs-trigger au-tabs-trigger-md">Tab</button>
+                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-gray-900">
+                  Tab
+                </button>
               </div>
-              <div className="au-tabs-content">
+              <div className="mt-2">
                 <p>Content for active tab.</p>
               </div>
             </div>
           }
-          code={`<button class="au-tabs-trigger au-tabs-trigger-md" data-disabled="true" disabled>
+          code={`<button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-gray-900 opacity-50 cursor-not-allowed" disabled>
   Disabled
 </button>`}
         />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs</td><td className="px-4 py-2">Container base</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs-list</td><td className="px-4 py-2">Tab list container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs-list-pill</td><td className="px-4 py-2">Pill variant list</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs-list-underline</td><td className="px-4 py-2">Underline variant list</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs-trigger</td><td className="px-4 py-2">Tab button</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs-trigger-sm|md|lg</td><td className="px-4 py-2">Sizes</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs-content</td><td className="px-4 py-2">Content area</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs-pill</td><td className="px-4 py-2">Pill container variant</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tabs-underline</td><td className="px-4 py-2">Underline container variant</td></tr>
-            </tbody>
-          </table>
-        </div>
       </section>
     </div>
   );

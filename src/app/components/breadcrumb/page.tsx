@@ -3,33 +3,32 @@
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function BreadcrumbItem({ href, children, active = false }: { href?: string; children: React.ReactNode; active?: boolean }) {
   if (href) {
     return (
-      <Link href={href} className={`text-sm ${active ? "text-au-foreground font-medium" : "text-au-muted-foreground hover:text-au-foreground"}`}>
+      <Link href={href} className={`flex items-center gap-1 text-sm ${active ? "text-gray-900 font-medium" : "text-gray-500 hover:text-gray-900 transition-colors"}`}>
         {children}
       </Link>
     );
   }
-  return <span className="text-sm text-au-muted-foreground">{children}</span>;
+  return <span className="flex items-center gap-1 text-sm text-gray-500">{children}</span>;
 }
 
 function InteractiveBreadcrumb() {
   return (
     <nav className="flex" aria-label="Breadcrumb">
-      <ol className="flex items-center gap-1">
+      <ol className="flex items-center gap-1 flex-wrap">
         <li>
           <BreadcrumbItem href="/">
             <Home className="w-4 h-4" />
           </BreadcrumbItem>
         </li>
-        <li><ChevronRight className="w-4 h-4 text-au-muted-foreground" /></li>
+        <li className="text-gray-400 mx-1"><ChevronRight className="w-4 h-4" /></li>
         <li>
           <BreadcrumbItem href="/components">Components</BreadcrumbItem>
         </li>
-        <li><ChevronRight className="w-4 h-4 text-au-muted-foreground" /></li>
+        <li className="text-gray-400 mx-1"><ChevronRight className="w-4 h-4" /></li>
         <li>
           <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
         </li>
@@ -41,49 +40,25 @@ function InteractiveBreadcrumb() {
 export default function BreadcrumbPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Breadcrumb</h1>
-      <p className="text-au-muted-foreground mb-8">
-        A navigation component that shows the user's location in the application.
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Breadcrumb</h1>
+      <p className="text-gray-500 mb-8">
+        A navigation component that shows the user&rsquo;s location in the application.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add breadcrumb" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveBreadcrumb />}
           code={`<nav aria-label="Breadcrumb">
-  <ol class="flex items-center gap-1">
+  <ol class="flex items-center gap-1 flex-wrap">
     <li><a href="/">Home</a></li>
-    <li>/</li>
+    <li class="text-gray-400 mx-1">/</li>
     <li><a href="/components">Components</a></li>
-    <li>/</li>
+    <li class="text-gray-400 mx-1">/</li>
     <li>Breadcrumb</li>
   </ol>
 </nav>`}
         />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-breadcrumb</td><td className="px-4 py-2">Breadcrumb container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-breadcrumb-item</td><td className="px-4 py-2">Breadcrumb item</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-breadcrumb-separator</td><td className="px-4 py-2">Separator</td></tr>
-            </tbody>
-          </table>
-        </div>
       </section>
     </div>
   );

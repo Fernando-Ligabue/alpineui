@@ -18,7 +18,7 @@ export default function Footer() {
           <span>MIT License</span>
         </div>
         <div className="flex items-center gap-1.5 text-sm text-au-muted-foreground">
-          <span>Made by FDWeb</span>
+          <span>Made by <a href="https://fernandodornelles.netlify.app" target="_blank" >FDWeb Developer</a></span>
         </div>
       </div>
     </footer>

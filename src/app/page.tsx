@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   ArrowRight,
@@ -14,8 +16,10 @@ import {
   Type,
   MousePointerClick,
   Users,
-  Rocket
+  Rocket,
+  Check
 } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
   return (
@@ -99,7 +103,7 @@ export default function Home() {
 
           {/* Stats */}
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 animate-fade-in-up delay-500">
-            <Stat icon={<Box className="w-5 h-5" />} value="20+" label="Components" />
+            <Stat icon={<Box className="w-5 h-5" />} value="38+" label="Components" />
             <Stat icon={<Download className="w-5 h-5" />} value="2.5k" label="Weekly Downloads" />
             <Stat icon={<Star className="w-5 h-5" />} value="200+" label="GitHub Stars" />
             <Stat icon={<Users className="w-5 h-5" />} value="500+" label="Users" />
@@ -140,20 +144,20 @@ export default function Home() {
             <div className="p-12">
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {/* Button Variants */}
-                <button className="au-button au-button-default au-button-md">Default</button>
-                <button className="au-button au-button-secondary au-button-md">Secondary</button>
-                <button className="au-button au-button-outline au-button-md">Outline</button>
-                <button className="au-button au-button-ghost au-button-md">Ghost</button>
-                <button className="au-button au-button-destructive au-button-md">Destructive</button>
-                <button className="au-button au-button-default au-button-md au-button-icon">
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Default</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-gray-100 text-gray-900 text-sm font-medium hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Secondary</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md border border-gray-300 bg-transparent text-gray-900 text-sm font-medium hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Outline</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-transparent text-gray-900 text-sm font-medium hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Ghost</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-red-600 text-white text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Destructive</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 w-10 px-0 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                   <Zap className="w-4 h-4" />
                 </button>
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
-                <button className="au-button au-button-default au-button-sm">Small</button>
-                <button className="au-button au-button-default au-button-md">Medium</button>
-                <button className="au-button au-button-default au-button-lg">Large</button>
+                <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-black text-white text-xs font-medium hover:opacity-90">Small</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90">Medium</button>
+                <button className="inline-flex items-center justify-center gap-2 h-12 px-6 py-3 rounded-md bg-black text-white text-base font-medium hover:opacity-90">Large</button>
               </div>
             </div>
           </div>
@@ -164,18 +168,20 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <span className="text-xs text-[#858585]">HTML</span>
               </div>
-              <button className="flex items-center gap-2 px-3 py-1 text-xs text-[#858585] hover:text-white transition-colors">
-                <Copy className="w-3.5 h-3.5" />
-                Copy
-              </button>
+              <CopyButton code={`<div x-data="{ count: 0 }" class="text-center">
+  <p class="text-lg mb-4">Count: <span x-text="count">0</span></p>
+  <button @click="count++"
+    class="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90">
+    Increment
+  </button>
+</div>`} />
             </div>
             <pre className="p-6 text-sm overflow-x-auto">
               <code className="text-[#d4d4d4]">
                 <span className="text-[#569cd6]">{`<div`}</span> <span className="text-[#9cdcfe]">x-data</span><span className="text-[#d4d4d4]">=</span><span className="text-[#ce9178]">&quot;{"{ count: 0 }"}&quot;</span><span className="text-[#569cd6]">{`>`}</span>
                 {"\n  "}<span className="text-[#569cd6]">{`<button`}</span>
                 {"\n    "}<span className="text-[#9cdcfe]">@click</span><span className="text-[#d4d4d4]">=</span><span className="text-[#ce9178]">&quot;count++&quot;</span>
-                {"\n    "}<span className="text-[#9cdcfe]">class</span><span className="text-[#d4d4d4]">=</span><span className="text-[#ce9178]">&quot;au-button au-button-default&quot;</span>
-                {"\n  "}<span className="text-[#569cd6]">{`>`}</span>Count: <span className="text-[#569cd6]">{"{{"}</span>count<span className="text-[#569cd6]">{"}}"}</span><span className="text-[#569cd6]">{`</button>`}</span>
+                {"\n  "}<span className="text-[#569cd6]">{`>`}</span>Increment<span className="text-[#569cd6]">{`</button>`}</span>
                 {"\n"}<span className="text-[#569cd6]">{`</div>`}</span>
               </code>
             </pre>
@@ -250,7 +256,7 @@ export default function Home() {
 
               <ul className="space-y-4">
                 {[
-                  "24 production-ready components",
+                  "38 production-ready components",
                   "Dark mode support out of the box",
                   "Responsive across all devices",
                   "TypeScript type definitions included",
@@ -290,8 +296,8 @@ export default function Home() {
                       A collection of reusable components that help you build beautiful interfaces faster.
                     </p>
                     <div className="flex gap-2">
-                      <button className="au-button au-button-primary au-button-sm">Get Started</button>
-                      <button className="au-button au-button-ghost au-button-sm">Learn More</button>
+              <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-black text-white text-xs font-medium hover:opacity-90">Get Started</button>
+              <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-transparent text-gray-900 text-xs font-medium hover:bg-gray-100">Learn More</button>
                     </div>
                   </div>
 
@@ -331,27 +337,21 @@ export default function Home() {
             Get started in seconds
           </h2>
           <p className="text-lg text-au-muted-foreground mb-12 max-w-2xl mx-auto">
-            Three ways to add AlpineUI to your project. Choose what works best for you.
+            AlpineUI is a copy-paste component library. No CLI, no npm install — just copy the HTML.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             <InstallCard
-              title="CLI"
-              description="Interactive command to add components"
-              command="npx alpineui add button"
+              title="Copy &amp; Paste"
+              description="Browse components, copy the HTML, and paste into your project."
+              command="See installation guide"
               icon={<Terminal className="w-6 h-6" />}
             />
             <InstallCard
-              title="NPM"
-              description="Install individual packages"
-              command="npm install @alpineui/button"
+              title="What you need"
+              description="Alpine.js 3.x + Tailwind CSS (already using them? Just paste!)"
+              command="No dependencies — just HTML"
               icon={<Box className="w-6 h-6" />}
-            />
-            <InstallCard
-              title="CDN"
-              description="Quick prototyping without build"
-              command="unpkg.com/@alpineui/button"
-              icon={<Globe className="w-6 h-6" />}
             />
           </div>
         </div>
@@ -439,6 +439,26 @@ function InstallCard({ title, description, command, icon }: { title: string; des
   );
 }
 
+function CopyButton({ code }: { code: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  return (
+    <button onClick={handleCopy} className="flex items-center gap-2 px-3 py-1 text-xs text-[#858585] hover:text-white hover:bg-[#3c3c3c] rounded transition-colors">
+      {copied ? <><Check className="w-3.5 h-3.5 text-green-500" /> Copied!</> : <><Copy className="w-3.5 h-3.5" /> Copy</>}
+    </button>
+  );
+}
+
 function Download(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -458,12 +478,4 @@ function Terminal(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function Globe(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" x2="22" y1="12" y2="12" />
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  );
-}
+

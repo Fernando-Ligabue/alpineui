@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function InteractiveTextarea() {
   const [value, setValue] = useState("");
 
   return (
     <textarea
-      className="au-textarea"
+      className="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
       placeholder="Type your message here..."
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -20,63 +19,39 @@ function InteractiveTextarea() {
 export default function TextareaPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Textarea</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Textarea</h1>
+      <p className="text-gray-500 mb-8">
         A multi-line text input component for entering longer text.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add textarea" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveTextarea />}
-          code={`<textarea
-  class="au-textarea"
-  placeholder="Type your message here..."
-  value={value}
-  onChange={(e) => setValue(e.target.value)}
-/>`}
+          code={`<div x-data="{ message: '' }">
+  <textarea x-model="message"
+    class="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+    placeholder="Type your message here..."></textarea>
+  <p class="text-xs text-gray-500 mt-1" x-text="message ? message.length + ' characters' : ''"></p>
+</div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">States</h2>
         <DemoBlock
           preview={
             <div className="space-y-4 w-full max-w-md">
-              <textarea className="au-textarea" placeholder="Default" />
-              <textarea className="au-textarea" defaultValue="With default content" />
-              <textarea className="au-textarea au-textarea-error" placeholder="Error state" />
-              <textarea className="au-textarea au-textarea-disabled" placeholder="Disabled" disabled />
+              <textarea className="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Default" />
+              <textarea className="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" defaultValue="With default content" />
+              <textarea className="flex min-h-[80px] w-full rounded-md border border-red-500 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Error state" />
+              <textarea className="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Disabled" disabled />
             </div>
           }
-          code={`<textarea class="au-textarea" placeholder="Default" />
-<textarea class="au-textarea au-textarea-error" placeholder="Error" />
-<textarea class="au-textarea" disabled />`}
+          code={`<textarea class="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Default" />
+<textarea class="flex min-h-[80px] w-full rounded-md border border-red-500 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Error" />
+<textarea class="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" disabled />`}
         />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-textarea</td><td className="px-4 py-2">Textarea base</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-textarea-error</td><td className="px-4 py-2">Error state</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-textarea-disabled</td><td className="px-4 py-2">Disabled state</td></tr>
-            </tbody>
-          </table>
-        </div>
       </section>
     </div>
   );

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, ChevronsLeftRight } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 const usersData = [
   { id: 1, name: "John Doe", email: "john@example.com", role: "Admin", status: "Active" },
@@ -45,10 +44,10 @@ function InteractiveTable() {
 
   const sortedData = [...data].sort((a, b) => {
     if (!sortColumn || !sortDirection) return 0;
-    
+
     const aVal = a[sortColumn as keyof typeof a];
     const bVal = b[sortColumn as keyof typeof b];
-    
+
     if (aVal < bVal) return sortDirection === "asc" ? -1 : 1;
     if (aVal > bVal) return sortDirection === "asc" ? 1 : -1;
     return 0;
@@ -77,30 +76,30 @@ function InteractiveTable() {
 
   const getSortIcon = (column: string) => {
     if (sortColumn !== column) return <ArrowUpDown className="w-4 h-4 opacity-30" />;
-    return sortDirection === "asc" 
-      ? <ArrowUp className="w-4 h-4 text-au-primary" />
-      : <ArrowDown className="w-4 h-4 text-au-primary" />;
+    return sortDirection === "asc"
+      ? <ArrowUp className="w-4 h-4 text-gray-900" />
+      : <ArrowDown className="w-4 h-4 text-gray-900" />;
   };
 
   const getStatusClass = (status: string) => {
     switch (status) {
-      case "Active": return "au-badge-default";
-      case "Inactive": return "au-badge-outline";
-      case "Pending": return "au-badge-secondary";
-      default: return "au-badge-outline";
+      case "Active": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-900 text-white";
+      case "Inactive": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-gray-300 text-gray-700";
+      case "Pending": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700";
+      default: return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-gray-300 text-gray-700";
     }
   };
 
   return (
     <div className="space-y-4 w-full">
-      <div className="au-table-wrapper">
-        <table className="au-table">
-          <thead>
+      <div className="overflow-x-auto border border-gray-200 rounded-lg bg-white">
+        <table className="w-full caption-bottom text-sm">
+          <thead className="border-b border-gray-200 bg-gray-50">
             <tr>
-              <th className="au-table-checkbox">
-                <input 
-                  type="checkbox" 
-                  className="au-checkbox"
+              <th className="h-12 px-4 text-left align-middle font-medium text-gray-500 w-10">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                   checked={selectedRows.size === paginatedData.length && paginatedData.length > 0}
                   ref={(el) => {
                     if (el) el.indeterminate = selectedRows.size > 0 && selectedRows.size < paginatedData.length;
@@ -108,32 +107,32 @@ function InteractiveTable() {
                   onChange={toggleSelectAll}
                 />
               </th>
-              <th 
-                className="cursor-pointer hover:bg-au-muted transition-colors"
+              <th
+                className="h-12 px-4 text-left align-middle font-medium text-gray-500 cursor-pointer hover:bg-gray-100 transition-colors"
                 onClick={() => handleSort("name")}
               >
                 <div className="flex items-center gap-1">
                   Name {getSortIcon("name")}
                 </div>
               </th>
-              <th 
-                className="cursor-pointer hover:bg-au-muted transition-colors"
+              <th
+                className="h-12 px-4 text-left align-middle font-medium text-gray-500 cursor-pointer hover:bg-gray-100 transition-colors"
                 onClick={() => handleSort("email")}
               >
                 <div className="flex items-center gap-1">
                   Email {getSortIcon("email")}
                 </div>
               </th>
-              <th 
-                className="cursor-pointer hover:bg-au-muted transition-colors"
+              <th
+                className="h-12 px-4 text-left align-middle font-medium text-gray-500 cursor-pointer hover:bg-gray-100 transition-colors"
                 onClick={() => handleSort("role")}
               >
                 <div className="flex items-center gap-1">
                   Role {getSortIcon("role")}
                 </div>
               </th>
-              <th 
-                className="cursor-pointer hover:bg-au-muted transition-colors"
+              <th
+                className="h-12 px-4 text-left align-middle font-medium text-gray-500 cursor-pointer hover:bg-gray-100 transition-colors"
                 onClick={() => handleSort("status")}
               >
                 <div className="flex items-center gap-1">
@@ -142,25 +141,25 @@ function InteractiveTable() {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="[&_tr:last-child]:border-0">
             {paginatedData.map((user) => (
-              <tr 
+              <tr
                 key={user.id}
-                className={selectedRows.has(user.id) ? "selected" : ""}
+                className={`border-b border-gray-200 transition-colors hover:bg-gray-50 ${selectedRows.has(user.id) ? "bg-gray-100" : ""}`}
               >
-                <td className="au-table-checkbox">
-                  <input 
-                    type="checkbox" 
-                    className="au-checkbox"
+                <td className="p-4 align-middle w-10">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                     checked={selectedRows.has(user.id)}
                     onChange={() => toggleRowSelection(user.id)}
                   />
                 </td>
-                <td className="font-medium">{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
-                <td>
-                  <span className={`au-badge ${getStatusClass(user.status)}`}>
+                <td className="p-4 align-middle font-medium">{user.name}</td>
+                <td className="p-4 align-middle">{user.email}</td>
+                <td className="p-4 align-middle">{user.role}</td>
+                <td className="p-4 align-middle">
+                  <span className={getStatusClass(user.status)}>
                     {user.status}
                   </span>
                 </td>
@@ -169,15 +168,15 @@ function InteractiveTable() {
           </tbody>
         </table>
       </div>
-      
-      <div className="flex items-center justify-between p-3 border border-au-border rounded-lg bg-au-secondary">
+
+      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-gray-50">
         <div className="flex items-center gap-4">
-          <span className="text-sm text-au-muted-foreground">
+          <span className="text-sm text-gray-500">
             {selectedRows.size} of {data.length} selected
           </span>
           {selectedRows.size > 0 && (
-            <button 
-              className="text-sm text-au-primary hover:underline"
+            <button
+              className="text-sm text-gray-900 hover:underline"
               onClick={() => setSelectedRows(new Set())}
             >
               Clear selection
@@ -185,33 +184,33 @@ function InteractiveTable() {
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-au-muted-foreground">
+          <span className="text-sm text-gray-500">
             Page {currentPage} of {totalPages}
           </span>
           <div className="flex gap-1">
-            <button 
-              className="au-button au-button-sm au-button-outline au-button-icon"
+            <button
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
             >
               <ChevronsLeftRight className="w-4 h-4 rotate-180" />
             </button>
-            <button 
-              className="au-button au-button-sm au-button-outline au-button-icon"
+            <button
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button 
-              className="au-button au-button-sm au-button-outline au-button-icon"
+            <button
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
             >
               <ChevronRight className="w-4 h-4" />
             </button>
-            <button 
-              className="au-button au-button-sm au-button-outline au-button-icon"
+            <button
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}
             >
@@ -227,71 +226,42 @@ function InteractiveTable() {
 export default function TablePage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Table</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Table</h1>
+      <p className="text-gray-500 mb-8">
         A data table component with sorting, pagination, and row selection.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add table" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
-        <DemoBlock preview={<InteractiveTable />} code={`<div x-data="dataTable({ items: users })">
-  <table class="au-table">
-    <thead>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <DemoBlock preview={<InteractiveTable />} code={`<div class="overflow-x-auto border border-gray-200 rounded-lg bg-white">
+  <table class="w-full caption-bottom text-sm">
+    <thead class="border-b border-gray-200 bg-gray-50">
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Role</th>
+        <th class="h-12 px-4 text-left align-middle font-medium text-gray-500">Name</th>
+        <th class="h-12 px-4 text-left align-middle font-medium text-gray-500">Email</th>
+        <th class="h-12 px-4 text-left align-middle font-medium text-gray-500">Role</th>
       </tr>
     </thead>
-    <tbody>
-      <template x-for="user in paginatedData" :key="user.id">
-        <tr :class="{ 'selected': isSelected(user) }">
-          <td x-text="user.name"></td>
-          <td x-text="user.email"></td>
-          <td x-text="user.role"></td>
-        </tr>
-      </template>
+    <tbody class="[&_tr:last-child]:border-0">
+      <tr class="border-b border-gray-200 transition-colors hover:bg-gray-50">
+        <td class="p-4 align-middle">John Doe</td>
+        <td class="p-4 align-middle">john@example.com</td>
+        <td class="p-4 align-middle">Admin</td>
+      </tr>
     </tbody>
   </table>
 </div>`} />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Features</h2>
-        <ul className="list-disc list-inside space-y-2 text-au-muted-foreground">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Features</h2>
+        <ul className="list-disc list-inside space-y-2 text-gray-500">
           <li>Column sorting (click headers to sort)</li>
           <li>Pagination with page navigation</li>
           <li>Row selection with checkboxes</li>
           <li>Select all / clear selection</li>
           <li>Visual feedback for selected rows</li>
         </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-table-wrapper</td><td className="px-4 py-2">Table container with overflow scroll</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-table</td><td className="px-4 py-2">Base table styles</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-table-checkbox</td><td className="px-4 py-2">Checkbox column width</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-table-pagination</td><td className="px-4 py-2">Pagination container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-table-striped</td><td className="px-4 py-2">Alternating row colors</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-table-compact</td><td className="px-4 py-2">Reduced padding for compact view</td></tr>
-            </tbody>
-          </table>
-        </div>
       </section>
     </div>
   );

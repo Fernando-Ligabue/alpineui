@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
@@ -57,36 +56,40 @@ function InteractiveDatepicker() {
   };
 
   return (
-    <div className="au-datepicker w-full max-w-sm" ref={ref}>
-      <button className="au-datepicker-trigger" onClick={() => setIsOpen(!isOpen)} data-placeholder={!selectedDate ? "true" : undefined}>
+    <div className="relative inline-block w-full max-w-sm" ref={ref}>
+      <button
+        className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        onClick={() => setIsOpen(!isOpen)}
+        data-placeholder={!selectedDate ? "true" : undefined}
+      >
         <span>{selectedDate ? formatDate(selectedDate) : "Pick a date"}</span>
         <CalendarIcon className="w-4 h-4" />
       </button>
       {isOpen && (
-        <div className="au-datepicker-dropdown" data-state="open">
-          <div className="au-datepicker-header">
+        <div className="absolute z-50 mt-1 w-72 rounded-md border border-gray-200 bg-white p-3 shadow-md" data-state="open">
+          <div className="flex items-center justify-between mb-2">
             <button
-              className="au-datepicker-nav-button"
+              className="inline-flex items-center justify-center rounded-md p-1 hover:bg-gray-100"
               onClick={() => setCurrentDate(new Date(year, month - 1, 1))}
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="au-datepicker-title">
+            <span className="text-sm font-medium">
               {MONTHS[month]} {year}
             </span>
             <button
-              className="au-datepicker-nav-button"
+              className="inline-flex items-center justify-center rounded-md p-1 hover:bg-gray-100"
               onClick={() => setCurrentDate(new Date(year, month + 1, 1))}
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
-          <div className="au-datepicker-weekdays">
+          <div className="grid grid-cols-7 gap-1 mb-1">
             {WEEKDAYS.map((day) => (
-              <div key={day} className="au-datepicker-weekday">{day}</div>
+              <div key={day} className="inline-flex items-center justify-center w-8 h-8 text-xs text-gray-500">{day}</div>
             ))}
           </div>
-          <div className="au-datepicker-days">
+          <div className="grid grid-cols-7 gap-1">
             {days.map((d, i) => {
               const date = new Date(d.year, d.month, d.day);
               const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
@@ -94,10 +97,13 @@ function InteractiveDatepicker() {
               return (
                 <button
                   key={i}
-                  className="au-datepicker-day"
-                  data-selected={isSelected ? "true" : undefined}
-                  data-today={isToday ? "true" : undefined}
-                  data-other-month={d.otherMonth ? "true" : undefined}
+                  className={`inline-flex items-center justify-center rounded-md w-8 h-8 text-sm hover:bg-gray-100 ${
+                    isSelected ? "bg-black text-white hover:bg-black" : ""
+                  } ${
+                    isToday ? "border border-gray-300" : ""
+                  } ${
+                    d.otherMonth ? "text-gray-400" : ""
+                  }`}
                   onClick={() => {
                     setSelectedDate(date);
                     setIsOpen(false);
@@ -118,83 +124,55 @@ function InteractiveDatepicker() {
 export default function DatepickerPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">DatePicker</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">DatePicker</h1>
+      <p className="text-gray-500 mb-8">
         A date selection component with calendar view.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add datepicker" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveDatepicker />}
-          code={`function App() {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(null);
-  
-  return (
-    <div class="au-datepicker">
-      <button class="au-datepicker-trigger" onClick={() => setOpen(!open)}>
-        {selected ? formatDate(selected) : "Pick a date"}
-        <CalendarIcon class="w-4 h-4" />
+          code={`<div x-data="{ open: false, selected: null, month: new Date().getMonth(), year: new Date().getFullYear() }"
+  @click.outside="open = false" class="relative inline-block w-full max-w-sm">
+  <button @click="open = !open"
+    class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+    <span x-text="selected ? selected : 'Pick a date'">Pick a date</span>
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+    </svg>
+  </button>
+  <div x-show="open" class="absolute z-50 mt-1 w-72 rounded-md border border-gray-200 bg-white p-3 shadow-md">
+    <div class="flex items-center justify-between mb-2">
+      <button @click="month = month - 1; if(month < 0) { month = 11; year = year - 1; }"
+        class="inline-flex items-center justify-center rounded-md p-1 hover:bg-gray-100">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
       </button>
-      {open && (
-        <div class="au-datepicker-dropdown">
-          <div class="au-datepicker-header">
-            <button onClick={prevMonth}>←</button>
-            <span>{month} {year}</span>
-            <button onClick={nextMonth}>→</button>
-          </div>
-          <div class="au-datepicker-weekdays">...</div>
-          <div class="au-datepicker-days">
-            {days.map(day => (
-              <button 
-                key={day}
-                class="au-datepicker-day"
-                data-selected={isSelected}
-                onClick={() => { setSelected(day); setOpen(false); }}
-              >
-                {day}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      <span class="text-sm font-medium" x-text="['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][month] + ' ' + year"></span>
+      <button @click="month = month + 1; if(month > 11) { month = 0; year = year + 1; }"
+        class="inline-flex items-center justify-center rounded-md p-1 hover:bg-gray-100">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
     </div>
-  );
-}`}
+    <div class="grid grid-cols-7 gap-1 mb-1">
+      <template x-for="day in ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']" :key="day">
+        <div class="inline-flex items-center justify-center w-8 h-8 text-xs text-gray-500" x-text="day"></div>
+      </template>
+    </div>
+    <div class="grid grid-cols-7 gap-1">
+      <template x-for="(d, i) in days" :key="i">
+        <button @click="selected = d; open = false"
+          class="inline-flex items-center justify-center rounded-md w-8 h-8 text-sm hover:bg-gray-100"
+          x-text="d"></button>
+      </template>
+    </div>
+  </div>
+</div>`}
         />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker</td><td className="px-4 py-2">Container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-trigger</td><td className="px-4 py-2">Input button</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-dropdown</td><td className="px-4 py-2">Calendar dropdown</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-header</td><td className="px-4 py-2">Month/year navigation</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-title</td><td className="px-4 py-2">Current month display</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-nav</td><td className="px-4 py-2">Navigation buttons</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-weekdays</td><td className="px-4 py-2">Week day labels</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-days</td><td className="px-4 py-2">Days grid</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-day</td><td className="px-4 py-2">Single day button</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-months</td><td className="px-4 py-2">Month selection grid</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-datepicker-years</td><td className="px-4 py-2">Year selection grid</td></tr>
-            </tbody>
-          </table>
-        </div>
       </section>
     </div>
   );

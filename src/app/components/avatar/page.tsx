@@ -3,21 +3,38 @@
 import { useState } from "react";
 import { User } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
+
+const sizeClasses: Record<string, string> = {
+  xs: "w-6 h-6",
+  sm: "w-8 h-8",
+  md: "w-10 h-10",
+  lg: "w-16 h-16",
+  xl: "w-24 h-24",
+};
+
+const fallbackTextClasses: Record<string, string> = {
+  xs: "text-[10px]",
+  sm: "text-xs",
+  md: "text-sm",
+  lg: "text-lg",
+  xl: "text-2xl",
+};
 
 function AvatarWithFallback({ size }: { size: string }) {
   const [hasError, setHasError] = useState(false);
   const fallback = "JD";
 
   return (
-    <div className={`au-avatar au-avatar-${size} au-avatar-circle relative`}>
+    <div className={`relative flex shrink-0 overflow-hidden rounded-full ${sizeClasses[size] || ""}`}>
       {hasError ? (
-        <div className="au-avatar-fallback">{fallback}</div>
+        <div className={`flex h-full w-full items-center justify-center rounded-full bg-gray-100 text-gray-600 font-medium ${fallbackTextClasses[size] || ""}`}>
+          {fallback}
+        </div>
       ) : (
         <img
           src="https://i.pravatar.cc/150?img=1"
           alt="Avatar"
-          className="au-avatar-image"
+          className="aspect-square h-full w-full object-cover"
           onError={() => setHasError(true)}
         />
       )}
@@ -31,7 +48,7 @@ function InteractiveAvatars() {
       {["xs", "sm", "md", "lg", "xl"].map((size) => (
         <div key={size} className="flex flex-col items-center gap-2">
           <AvatarWithFallback size={size} />
-          <span className="text-xs text-au-muted-foreground">{size}</span>
+          <span className="text-xs text-gray-500">{size}</span>
         </div>
       ))}
     </div>
@@ -42,22 +59,22 @@ function InteractiveAvatarShapes() {
   return (
     <div className="flex items-end gap-4">
       <div className="flex flex-col items-center gap-2">
-        <div className="au-avatar au-avatar-md au-avatar-circle">
-          <img src="https://i.pravatar.cc/150?img=2" alt="Circle" className="au-avatar-image" />
+        <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+          <img src="https://i.pravatar.cc/150?img=2" alt="Circle" className="aspect-square h-full w-full object-cover" />
         </div>
-        <span className="text-xs text-au-muted-foreground">circle</span>
+        <span className="text-xs text-gray-500">circle</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <div className="au-avatar au-avatar-md au-avatar-square">
-          <img src="https://i.pravatar.cc/150?img=3" alt="Square" className="au-avatar-image" />
+        <div className="relative flex shrink-0 overflow-hidden rounded-none w-10 h-10">
+          <img src="https://i.pravatar.cc/150?img=3" alt="Square" className="aspect-square h-full w-full object-cover" />
         </div>
-        <span className="text-xs text-au-muted-foreground">square</span>
+        <span className="text-xs text-gray-500">square</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <div className="au-avatar au-avatar-md au-avatar-rounded">
-          <img src="https://i.pravatar.cc/150?img=4" alt="Rounded" className="au-avatar-image" />
+        <div className="relative flex shrink-0 overflow-hidden rounded-md w-10 h-10">
+          <img src="https://i.pravatar.cc/150?img=4" alt="Rounded" className="aspect-square h-full w-full object-cover" />
         </div>
-        <span className="text-xs text-au-muted-foreground">rounded</span>
+        <span className="text-xs text-gray-500">rounded</span>
       </div>
     </div>
   );
@@ -67,28 +84,28 @@ function InteractiveAvatarStatus() {
   return (
     <div className="flex gap-4">
       <div className="relative">
-        <div className="au-avatar au-avatar-md au-avatar-circle">
-          <img src="https://i.pravatar.cc/150?img=5" alt="Online" className="au-avatar-image" />
+        <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+          <img src="https://i.pravatar.cc/150?img=5" alt="Online" className="aspect-square h-full w-full object-cover" />
         </div>
-        <div className="au-avatar-status au-avatar-status-online" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-green-500" />
       </div>
       <div className="relative">
-        <div className="au-avatar au-avatar-md au-avatar-circle">
-          <img src="https://i.pravatar.cc/150?img=6" alt="Busy" className="au-avatar-image" />
+        <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+          <img src="https://i.pravatar.cc/150?img=6" alt="Busy" className="aspect-square h-full w-full object-cover" />
         </div>
-        <div className="au-avatar-status au-avatar-status-busy" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-red-500" />
       </div>
       <div className="relative">
-        <div className="au-avatar au-avatar-md au-avatar-circle">
-          <img src="https://i.pravatar.cc/150?img=7" alt="Away" className="au-avatar-image" />
+        <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+          <img src="https://i.pravatar.cc/150?img=7" alt="Away" className="aspect-square h-full w-full object-cover" />
         </div>
-        <div className="au-avatar-status au-avatar-status-away" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-yellow-500" />
       </div>
       <div className="relative">
-        <div className="au-avatar au-avatar-md au-avatar-circle">
-          <img src="https://i.pravatar.cc/150?img=8" alt="Offline" className="au-avatar-image" />
+        <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+          <img src="https://i.pravatar.cc/150?img=8" alt="Offline" className="aspect-square h-full w-full object-cover" />
         </div>
-        <div className="au-avatar-status au-avatar-status-offline" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-gray-400" />
       </div>
     </div>
   );
@@ -104,13 +121,13 @@ function InteractiveAvatarGroup() {
   const extra = users.length - 3;
 
   return (
-    <div className="au-avatar-group">
+    <div className="flex -space-x-2">
       {users.slice(0, 3).map((user, i) => (
-        <div key={i} className="au-avatar au-avatar-sm au-avatar-circle">
-          <img src={user.src} alt={user.fallback} className="au-avatar-image" />
+        <div key={i} className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white">
+          <img src={user.src} alt={user.fallback} className="aspect-square h-full w-full object-cover" />
         </div>
       ))}
-      <div className="au-avatar au-avatar-sm au-avatar-circle au-avatar-group-counter">
+      <div className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white flex items-center justify-center bg-gray-100 text-xs font-medium text-gray-600">
         +{extra}
       </div>
     </div>
@@ -120,104 +137,75 @@ function InteractiveAvatarGroup() {
 export default function AvatarPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Avatar</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Avatar</h1>
+      <p className="text-gray-500 mb-8">
         A user avatar component with fallback support.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add avatar" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={
             <div className="flex gap-4">
-              <div className="au-avatar au-avatar-md au-avatar-circle">
-                <img src="https://i.pravatar.cc/150?img=20" alt="User" className="au-avatar-image" />
+              <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+                <img src="https://i.pravatar.cc/150?img=20" alt="User" className="aspect-square h-full w-full object-cover" />
               </div>
-              <div className="au-avatar au-avatar-md au-avatar-circle">
-                <div className="au-avatar-fallback">JD</div>
+              <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+                <div className="flex h-full w-full items-center justify-center rounded-full bg-gray-100 text-gray-600 font-medium text-sm">JD</div>
               </div>
-              <div className="au-avatar au-avatar-md au-avatar-circle">
-                <User className="w-6 h-6 text-au-muted-foreground" />
+              <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+                <User className="w-6 h-6 text-gray-500" />
               </div>
             </div>
           }
           code={`// With image
-<div class="au-avatar au-avatar-md au-avatar-circle">
-  <img src="..." class="au-avatar-image" />
+<div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+  <img src="..." class="aspect-square h-full w-full object-cover" />
 </div>
 
 // With fallback
-<div class="au-avatar au-avatar-md au-avatar-circle">
-  <div class="au-avatar-fallback">JD</div>
+<div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+  <div class="flex h-full w-full items-center justify-center rounded-full bg-gray-100 text-gray-600 font-medium text-sm">JD</div>
 </div>
 
 // With icon
-<div class="au-avatar au-avatar-md au-avatar-circle">
-  <UserIcon />
+<div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+  <svg class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
 </div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
-        <DemoBlock preview={<InteractiveAvatars />} code={`<div class="au-avatar au-avatar-xs">...</div>
-<div class="au-avatar au-avatar-sm">...</div>
-<div class="au-avatar au-avatar-md">...</div>
-<div class="au-avatar au-avatar-lg">...</div>
-<div class="au-avatar au-avatar-xl">...</div>`} />
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <DemoBlock preview={<InteractiveAvatars />} code={`<div class="relative flex shrink-0 overflow-hidden rounded-full w-6 h-6">...</div>
+<div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">...</div>
+<div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
+<div class="relative flex shrink-0 overflow-hidden rounded-full w-16 h-16">...</div>
+<div class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">...</div>`} />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Shapes</h2>
-        <DemoBlock preview={<InteractiveAvatarShapes />} code={`<div class="au-avatar au-avatar-md au-avatar-circle">...</div>
-<div class="au-avatar au-avatar-md au-avatar-square">...</div>
-<div class="au-avatar au-avatar-md au-avatar-rounded">...</div>`} />
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Shapes</h2>
+        <DemoBlock preview={<InteractiveAvatarShapes />} code={`<div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
+<div class="relative flex shrink-0 overflow-hidden rounded-none w-10 h-10">...</div>
+<div class="relative flex shrink-0 overflow-hidden rounded-md w-10 h-10">...</div>`} />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Status</h2>
-        <DemoBlock preview={<InteractiveAvatarStatus />} code={`<div class="au-avatar au-avatar-status au-avatar-status-online"></div>
-<div class="au-avatar au-avatar-status au-avatar-status-busy"></div>
-<div class="au-avatar au-avatar-status au-avatar-status-away"></div>
-<div class="au-avatar au-avatar-status au-avatar-status-offline"></div>`} />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Avatar Group</h2>
-        <DemoBlock preview={<InteractiveAvatarGroup />} code={`<div class="au-avatar-group">
-  <div class="au-avatar">...</div>
-  <div class="au-avatar">...</div>
-  <div class="au-avatar au-avatar-group-counter">+N</div>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Status</h2>
+        <DemoBlock preview={<InteractiveAvatarStatus />} code={`<div class="relative">
+  <div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
+  <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-green-500"></div>
 </div>`} />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-avatar</td><td className="px-4 py-2">Container base</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-avatar-xs|sm|md|lg|xl</td><td className="px-4 py-2">Sizes</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-avatar-circle|square|rounded</td><td className="px-4 py-2">Shapes</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-avatar-image</td><td className="px-4 py-2">Image element</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-avatar-fallback</td><td className="px-4 py-2">Fallback text</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-avatar-status</td><td className="px-4 py-2">Status indicator</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-avatar-status-online|offline|busy|away</td><td className="px-4 py-2">Status colors</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-avatar-group</td><td className="px-4 py-2">Group container</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Avatar Group</h2>
+        <DemoBlock preview={<InteractiveAvatarGroup />} code={`<div class="flex -space-x-2">
+  <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white">...</div>
+  <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white">...</div>
+  <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white flex items-center justify-center bg-gray-100 text-xs font-medium text-gray-600">+N</div>
+</div>`} />
       </section>
     </div>
   );

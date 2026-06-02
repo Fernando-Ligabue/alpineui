@@ -2,24 +2,23 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function InteractiveProgress() {
   const [value, setValue] = useState(45);
 
   return (
     <div className="space-y-4 w-full max-w-sm">
-      <div className="au-progress">
-        <div className="au-progress-bar" style={{ width: `${value}%` }} />
+      <div className="relative h-4 w-full overflow-hidden rounded-full bg-gray-100">
+        <div className="h-full w-full flex-1 bg-black transition-all duration-500 ease-in-out" style={{ width: `${value}%` }} />
       </div>
       <div className="flex gap-2">
-        <button className="au-button au-button-sm au-button-outline" onClick={() => setValue(Math.max(0, value - 10))}>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 px-3" onClick={() => setValue(Math.max(0, value - 10))}>
           -10%
         </button>
-        <button className="au-button au-button-sm au-button-outline" onClick={() => setValue(Math.min(100, value + 10))}>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 px-3" onClick={() => setValue(Math.min(100, value + 10))}>
           +10%
         </button>
-        <span className="ml-auto text-sm text-au-muted-foreground">{value}%</span>
+        <span className="ml-auto text-sm text-gray-500">{value}%</span>
       </div>
     </div>
   );
@@ -28,62 +27,38 @@ function InteractiveProgress() {
 export default function ProgressPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Progress</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Progress</h1>
+      <p className="text-gray-500 mb-8">
         A component that displays the progress of an action.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add progress" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
-        <DemoBlock preview={<InteractiveProgress />} code={`<div class="au-progress">
-  <div class="au-progress-bar" style={{ width: "\${value}%" }} />
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <DemoBlock preview={<InteractiveProgress />} code={`<div class="relative h-4 w-full overflow-hidden rounded-full bg-gray-100">
+  <div class="h-full w-full flex-1 bg-black transition-all duration-500 ease-in-out" style="width: \${value}%" />
 </div>`} />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="space-y-4 w-full max-w-sm">
-              <div className="au-progress au-progress-sm">
-                <div className="au-progress-bar" style={{ width: "60%" }} />
+              <div className="relative h-2 w-full overflow-hidden rounded-full bg-gray-100">
+                <div className="h-full w-full flex-1 bg-black transition-all duration-500 ease-in-out" style={{ width: "60%" }} />
               </div>
-              <div className="au-progress">
-                <div className="au-progress-bar" style={{ width: "60%" }} />
+              <div className="relative h-4 w-full overflow-hidden rounded-full bg-gray-100">
+                <div className="h-full w-full flex-1 bg-black transition-all duration-500 ease-in-out" style={{ width: "60%" }} />
               </div>
-              <div className="au-progress au-progress-lg">
-                <div className="au-progress-bar" style={{ width: "60%" }} />
+              <div className="relative h-6 w-full overflow-hidden rounded-full bg-gray-100">
+                <div className="h-full w-full flex-1 bg-black transition-all duration-500 ease-in-out" style={{ width: "60%" }} />
               </div>
             </div>
           }
-          code={`<div class="au-progress au-progress-sm">...</div>
-<div class="au-progress">...</div>
-<div class="au-progress au-progress-lg">...</div>`}
+          code={`<div class="relative h-2 w-full overflow-hidden rounded-full bg-gray-100">...</div>
+<div class="relative h-4 w-full overflow-hidden rounded-full bg-gray-100">...</div>
+<div class="relative h-6 w-full overflow-hidden rounded-full bg-gray-100">...</div>`}
         />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-progress</td><td className="px-4 py-2">Progress container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-progress-bar</td><td className="px-4 py-2">Progress fill</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-progress-sm|lg</td><td className="px-4 py-2">Sizes</td></tr>
-            </tbody>
-          </table>
-        </div>
       </section>
     </div>
   );

@@ -3,32 +3,31 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function InteractiveAccordionDefault() {
   const [openItem, setOpenItem] = useState<string | null>("faq-1");
 
   const items = [
     { id: "faq-1", title: "What is AlpineUI?", content: "AlpineUI is a collection of beautiful, copy-paste ready components built with Alpine.js and Tailwind CSS." },
-    { id: "faq-2", title: "How do I install it?", content: "You can install individual components using our CLI: npx alpineui add button, or copy the CSS directly from our docs." },
+    { id: "faq-2", title: "How do I install it?", content: "Just copy the component HTML from this page and paste it into your project. No CLI, no npm install needed." },
     { id: "faq-3", title: "Can I customize the styles?", content: "Yes! All components use CSS variables that you can override to match your design system. Check the Theming page for more details." },
   ];
 
   return (
-    <div className="au-accordion au-accordion-default w-full max-w-md">
+    <div className="divide-y divide-gray-200 border border-gray-200 rounded-lg w-full max-w-md">
       {items.map((item) => (
-        <div key={item.id} className="au-accordion-item">
+        <div key={item.id} className="[&:first-child>div]:rounded-t-lg [&:last-child>div]:rounded-b-lg">
           <button
-            className="au-accordion-trigger"
+            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors"
             onClick={() => setOpenItem(openItem === item.id ? null : item.id)}
             data-state={openItem === item.id ? "open" : undefined}
           >
-            <span className="au-accordion-title">{item.title}</span>
-            <ChevronDown className="au-accordion-icon" />
+            {item.title}
+            <ChevronDown className={`w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200 ${openItem === item.id ? "rotate-180" : ""}`} />
           </button>
           {openItem === item.id && (
-            <div className="au-accordion-content">
-              <p className="text-sm text-au-muted-foreground">{item.content}</p>
+            <div className="px-4 pb-4 text-sm text-gray-500">
+              {item.content}
             </div>
           )}
         </div>
@@ -47,20 +46,20 @@ function InteractiveAccordionGhost() {
   ];
 
   return (
-    <div className="au-accordion au-accordion-ghost w-full max-w-md">
+    <div className="w-full max-w-md">
       {items.map((item) => (
-        <div key={item.id} className="au-accordion-item">
+        <div key={item.id}>
           <button
-            className="au-accordion-trigger"
+            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors rounded-lg"
             onClick={() => setOpenItem(openItem === item.id ? null : item.id)}
             data-state={openItem === item.id ? "open" : undefined}
           >
-            <span className="au-accordion-title">{item.title}</span>
-            <ChevronDown className="au-accordion-icon" />
+            {item.title}
+            <ChevronDown className={`w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200 ${openItem === item.id ? "rotate-180" : ""}`} />
           </button>
           {openItem === item.id && (
-            <div className="au-accordion-content">
-              <p className="text-sm text-au-muted-foreground">{item.content}</p>
+            <div className="px-4 pb-4 text-sm text-gray-500">
+              {item.content}
             </div>
           )}
         </div>
@@ -85,20 +84,20 @@ function InteractiveAccordionMultiple() {
   };
 
   return (
-    <div className="au-accordion au-accordion-bordered w-full max-w-md">
+    <div className="w-full max-w-md space-y-2">
       {items.map((item) => (
-        <div key={item.id} className="au-accordion-item">
+        <div key={item.id} className="border border-gray-200 rounded-lg overflow-hidden">
           <button
-            className="au-accordion-trigger"
+            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors"
             onClick={() => toggleItem(item.id)}
             data-state={openItems.includes(item.id) ? "open" : undefined}
           >
-            <span className="au-accordion-title">{item.title}</span>
-            <ChevronDown className="au-accordion-icon" />
+            {item.title}
+            <ChevronDown className={`w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200 ${openItems.includes(item.id) ? "rotate-180" : ""}`} />
           </button>
           {openItems.includes(item.id) && (
-            <div className="au-accordion-content">
-              <p className="text-sm text-au-muted-foreground">{item.content}</p>
+            <div className="px-4 pb-4 text-sm text-gray-500 border-t border-gray-200">
+              {item.content}
             </div>
           )}
         </div>
@@ -110,159 +109,150 @@ function InteractiveAccordionMultiple() {
 export default function AccordionPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Accordion</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Accordion</h1>
+      <p className="text-gray-500 mb-8">
         An expandable content component for showing and hiding sections.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add accordion" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveAccordionDefault />}
-          code={`function App() {
-  const [openItem, setOpenItem] = useState(null);
-
-  const items = [
-    { id: "faq-1", title: "Question 1", content: "Answer 1" },
-    { id: "faq-2", title: "Question 2", content: "Answer 2" },
-  ];
-
-  return (
-    <div class="au-accordion au-accordion-default">
-      {items.map((item) => (
-        <div key={item.id} class="au-accordion-item">
-          <button
-            class="au-accordion-trigger"
-            onClick={() => setOpenItem(openItem === item.id ? null : item.id)}
-            data-state={openItem === item.id ? "open" : undefined}
-          >
-            <span class="au-accordion-title">{item.title}</span>
-            <ChevronDown class="au-accordion-icon" />
-          </button>
-          {openItem === item.id && (
-            <div class="au-accordion-content">
-              <p>{item.content}</p>
-            </div>
-          )}
-        </div>
-      ))}
+          code={`<div x-data="{ open: 'faq-1' }" class="divide-y divide-gray-200 border border-gray-200 rounded-lg">
+  <div>
+    <button @click="open = open === 'faq-1' ? null : 'faq-1'"
+      class="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors">
+      <span>What is AlpineUI?</span>
+      <svg :class="open === 'faq-1' ? 'rotate-180' : ''" class="w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <div x-show="open === 'faq-1'" class="px-4 pb-4 text-sm text-gray-500" x-transition>
+      AlpineUI is a collection of beautiful, copy-paste ready components built with Alpine.js and Tailwind CSS.
     </div>
-  );
-}`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
-        <DemoBlock
-          preview={
-            <div className="space-y-8 w-full max-w-md">
-              <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Default</h4>
-                <InteractiveAccordionDefault />
-              </div>
-              <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Ghost</h4>
-                <InteractiveAccordionGhost />
-              </div>
-              <div>
-                <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Bordered (Multi-select)</h4>
-                <InteractiveAccordionMultiple />
-              </div>
-            </div>
-          }
-          code={`<!-- Default -->
-<div class="au-accordion au-accordion-default">
-  <div class="au-accordion-item">...</div>
-</div>
-
-<!-- Ghost -->
-<div class="au-accordion au-accordion-ghost">
-  <div class="au-accordion-item">...</div>
-</div>
-
-<!-- Bordered -->
-<div class="au-accordion au-accordion-bordered">
-  <div class="au-accordion-item">...</div>
+  </div>
+  <div>
+    <button @click="open = open === 'faq-2' ? null : 'faq-2'"
+      class="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors">
+      <span>How do I install it?</span>
+      <svg :class="open === 'faq-2' ? 'rotate-180' : ''" class="w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <div x-show="open === 'faq-2'" class="px-4 pb-4 text-sm text-gray-500" x-transition>
+      Copy the component HTML directly from this page and paste it into your project.
+    </div>
+  </div>
+  <div>
+    <button @click="open = open === 'faq-3' ? null : 'faq-3'"
+      class="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors">
+      <span>Can I customize the styles?</span>
+      <svg :class="open === 'faq-3' ? 'rotate-180' : ''" class="w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <div x-show="open === 'faq-3'" class="px-4 pb-4 text-sm text-gray-500" x-transition>
+      Yes! All components use Tailwind utility classes that you can override directly.
+    </div>
+  </div>
 </div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Variants</h2>
+        <DemoBlock
+          preview={
+            <div className="space-y-8 w-full max-w-md">
+              <div>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Default</h4>
+                <InteractiveAccordionDefault />
+              </div>
+              <div>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Ghost</h4>
+                <InteractiveAccordionGhost />
+              </div>
+              <div>
+                <h4 className="text-sm font-medium mb-2 text-gray-500">Bordered (Multi-select)</h4>
+                <InteractiveAccordionMultiple />
+              </div>
+            </div>
+          }
+          code={`<!-- Default -->
+<div class="divide-y divide-gray-200 border border-gray-200 rounded-lg">
+  <div>...</div>
+</div>
+
+<!-- Ghost -->
+<div>
+  <div>...</div>
+</div>
+
+<!-- Bordered -->
+<div class="space-y-2">
+  <div class="border border-gray-200 rounded-lg overflow-hidden">...</div>
+</div>`}
+        />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="space-y-6 w-full max-w-md">
-              <div className="au-accordion au-accordion-default au-accordion-sm">
-                <div className="au-accordion-item">
-                  <button className="au-accordion-trigger" data-state="open">
-                    <span className="au-accordion-title">Small</span>
-                    <ChevronDown className="au-accordion-icon" />
+              <div className="border border-gray-200 rounded-lg overflow-hidden">
+                <div>
+                  <button className="flex w-full items-center justify-between px-3 py-2 text-xs font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors" data-state="open">
+                    Small
+                    <ChevronDown className="w-3 h-3 shrink-0 text-gray-500 transition-transform duration-200" />
                   </button>
-                  <div className="au-accordion-content">
-                    <p className="text-sm text-au-muted-foreground">Small accordion item.</p>
+                  <div className="px-3 pb-2 text-xs text-gray-500">
+                    Small accordion item.
                   </div>
                 </div>
               </div>
-              <div className="au-accordion au-accordion-default au-accordion-md">
-                <div className="au-accordion-item">
-                  <button className="au-accordion-trigger" data-state="open">
-                    <span className="au-accordion-title">Medium</span>
-                    <ChevronDown className="au-accordion-icon" />
+              <div className="border border-gray-200 rounded-lg overflow-hidden">
+                <div>
+                  <button className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors" data-state="open">
+                    Medium
+                    <ChevronDown className="w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200" />
                   </button>
-                  <div className="au-accordion-content">
-                    <p className="text-sm text-au-muted-foreground">Medium accordion item.</p>
+                  <div className="px-4 pb-4 text-sm text-gray-500">
+                    Medium accordion item.
                   </div>
                 </div>
               </div>
-              <div className="au-accordion au-accordion-default au-accordion-lg">
-                <div className="au-accordion-item">
-                  <button className="au-accordion-trigger" data-state="open">
-                    <span className="au-accordion-title">Large</span>
-                    <ChevronDown className="au-accordion-icon" />
+              <div className="border border-gray-200 rounded-lg overflow-hidden">
+                <div>
+                  <button className="flex w-full items-center justify-between px-5 py-5 text-base font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors" data-state="open">
+                    Large
+                    <ChevronDown className="w-5 h-5 shrink-0 text-gray-500 transition-transform duration-200" />
                   </button>
-                  <div className="au-accordion-content">
-                    <p className="text-sm text-au-muted-foreground">Large accordion item.</p>
+                  <div className="px-5 pb-5 text-base text-gray-500">
+                    Large accordion item.
                   </div>
                 </div>
               </div>
             </div>
           }
-          code={`<div class="au-accordion au-accordion-default au-accordion-sm">...</div>
-<div class="au-accordion au-accordion-default au-accordion-md">...</div>
-<div class="au-accordion au-accordion-default au-accordion-lg">...</div>`}
-        />
-      </section>
+          code={`<!-- Small -->
+<div class="border border-gray-200 rounded-lg overflow-hidden">
+  <button class="flex w-full items-center justify-between px-3 py-2 text-xs font-medium ...">Small</button>
+  <div class="px-3 pb-2 text-xs text-gray-500">...</div>
+</div>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion</td><td className="px-4 py-2">Container base</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-item</td><td className="px-4 py-2">Accordion item wrapper</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-trigger</td><td className="px-4 py-2">Trigger button</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-title</td><td className="px-4 py-2">Title text</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-icon</td><td className="px-4 py-2">Chevron icon</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-content</td><td className="px-4 py-2">Content area</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-default</td><td className="px-4 py-2">Default variant</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-ghost</td><td className="px-4 py-2">Ghost variant</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-bordered</td><td className="px-4 py-2">Bordered variant</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-accordion-sm|md|lg</td><td className="px-4 py-2">Sizes</td></tr>
-            </tbody>
-          </table>
-        </div>
+<!-- Medium -->
+<div class="border border-gray-200 rounded-lg overflow-hidden">
+  <button class="flex w-full items-center justify-between px-4 py-4 text-sm font-medium ...">Medium</button>
+  <div class="px-4 pb-4 text-sm text-gray-500">...</div>
+</div>
+
+<!-- Large -->
+<div class="border border-gray-200 rounded-lg overflow-hidden">
+  <button class="flex w-full items-center justify-between px-5 py-5 text-base font-medium ...">Large</button>
+  <div class="px-5 pb-5 text-base text-gray-500">...</div>
+</div>`}
+        />
       </section>
     </div>
   );

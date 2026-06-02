@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { ChevronRight, Check } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronRight } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function ContextMenuItem({ children, shortcut }: { children: React.ReactNode; shortcut?: string }) {
   return (
-    <div className="au-context-menu-item">
+    <div className="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-900 hover:bg-gray-100 cursor-pointer">
       <span>{children}</span>
-      {shortcut && <span className="au-context-menu-shortcut">{shortcut}</span>}
+      {shortcut && <span className="ml-auto text-xs tracking-widest text-gray-500">{shortcut}</span>}
     </div>
   );
 }
@@ -17,7 +16,6 @@ function ContextMenuItem({ children, shortcut }: { children: React.ReactNode; sh
 function InteractiveContextMenu() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isOpen, setIsOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -33,24 +31,24 @@ function InteractiveContextMenu() {
 
   return (
     <div
-      className="w-72 h-48 border border-au-border rounded-lg flex items-center justify-center cursor-context-menu"
+      className="w-72 h-48 border border-gray-200 rounded-lg flex items-center justify-center cursor-context-menu"
       onContextMenu={handleContextMenu}
     >
-      <span className="text-au-muted-foreground text-sm">Right-click here</span>
+      <span className="text-gray-500 text-sm">Right-click here</span>
 
       {isOpen && (
         <div
-          className="au-context-menu"
+          className="fixed z-50 min-w-48 rounded-md border border-gray-200 bg-white py-1 shadow-md"
           style={{ top: position.y, left: position.x }}
         >
           <ContextMenuItem shortcut="⌘C">Copy</ContextMenuItem>
           <ContextMenuItem shortcut="⌘V">Paste</ContextMenuItem>
-          <div className="au-context-menu-separator" />
-          <div className="au-context-menu-item">
+          <div className="h-px my-1 bg-gray-200" />
+          <div className="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-900 hover:bg-gray-100 cursor-pointer">
             <span>Share</span>
             <ChevronRight className="w-4 h-4" />
           </div>
-          <div className="au-context-menu-separator" />
+          <div className="h-px my-1 bg-gray-200" />
           <ContextMenuItem shortcut="⌘⌫">Delete</ContextMenuItem>
         </div>
       )}
@@ -61,57 +59,38 @@ function InteractiveContextMenu() {
 export default function ContextMenuPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Context Menu</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Context Menu</h1>
+      <p className="text-gray-500 mb-8">
         A menu that appears on right-click.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add contextmenu" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveContextMenu />}
-          code={`return (
-  <div onContextMenu={handleContextMenu}>
-    Right-click here
-    
-    {isOpen && (
-      <div class="au-context-menu" style={{ top: y, left: x }}>
-        <div class="au-context-menu-item">Copy</div>
-        <div class="au-context-menu-item">Paste</div>
-        <div class="au-context-menu-separator" />
-        <div class="au-context-menu-item">
-          Share
-          <ChevronRight class="w-4 h-4" />
-        </div>
-      </div>
-    )}
-  </div>
-);`}
-        />
-      </section>
+          code={`<div x-data="{ open: false, x: 0, y: 0 }"
+  @contextmenu.prevent="open = true; x = $event.clientX; y = $event.clientY"
+  @click.outside="open = false"
+  class="w-72 h-48 border border-gray-200 rounded-lg flex items-center justify-center cursor-context-menu"
+>
+  <span class="text-gray-500 text-sm">Right-click here</span>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-context-menu</td><td className="px-4 py-2">Menu container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-context-menu-item</td><td className="px-4 py-2">Menu item</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-context-menu-separator</td><td className="px-4 py-2">Separator</td></tr>
-            </tbody>
-          </table>
-        </div>
+  <div x-show="open"
+    :style="'top: ' + y + 'px; left: ' + x + 'px'"
+    class="fixed z-50 min-w-48 rounded-md border border-gray-200 bg-white py-1 shadow-md"
+  >
+    <div class="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-900 hover:bg-gray-100 cursor-pointer">Copy</div>
+    <div class="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-900 hover:bg-gray-100 cursor-pointer">Paste</div>
+    <div class="h-px my-1 bg-gray-200" />
+    <div class="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-900 hover:bg-gray-100 cursor-pointer">
+      Share
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </div>
+  </div>
+</div>`}
+        />
       </section>
     </div>
   );

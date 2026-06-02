@@ -47,9 +47,6 @@
   --au-shadow-lg: var(--color-au-shadow-lg);
 }
 
-/* Import Component Styles */
-@import "./components.css";
-
 /* Base Styles */
 html {
   scroll-behavior: smooth;
@@ -469,12 +466,4 @@ main {
   animation-delay: 2s;
 }
 
-/* Button Primary Override */
-.au-button-primary {
-  background-color: var(--color-au-primary);
-  color: var(--color-au-primary-foreground);
-}
 
-.au-button-primary:hover {
-  opacity: 0.9;
-}

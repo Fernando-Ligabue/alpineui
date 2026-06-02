@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function InteractiveInput() {
   const [name, setName] = useState("");
@@ -15,36 +14,46 @@ function InteractiveInput() {
 
   return (
     <div className="w-full max-w-sm space-y-4">
-      <div className="au-field">
-        <label className="au-label au-label-required">Name</label>
+      <div className="flex flex-col gap-1">
+        <label className="block text-sm font-medium text-gray-900 after:content-['_*'] after:text-red-500">Name</label>
         <input
           type="text"
-          className="au-input au-input-md"
+          className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <div className="au-field">
-        <label className="au-label au-label-required">Email</label>
+      <div className="flex flex-col gap-1">
+        <label className="block text-sm font-medium text-gray-900 after:content-['_*'] after:text-red-500">Email</label>
         <input
           type="email"
-          className={`au-input au-input-md ${emailError ? "au-input-error" : isValid ? "au-input-success" : ""}`}
+          className={`flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+            emailError
+              ? "border-red-500 focus-visible:outline-red-500"
+              : isValid
+              ? "border-green-500 focus-visible:outline-green-500"
+              : "border-gray-300 focus-visible:outline-black"
+          }`}
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => setEmailTouched(true)}
         />
-        {emailError && <span className="au-input-error-message">Invalid email</span>}
-        {!emailError && isValid && <span className="au-input-success-message">Email looks good!</span>}
+        {emailError && <span className="text-xs text-red-500">Invalid email</span>}
+        {!emailError && isValid && <span className="text-xs text-green-500">Email looks good!</span>}
       </div>
-      <div className="au-field">
-        <label className="au-label">Period</label>
-        <div className="au-input-group">
+      <div className="flex flex-col gap-1">
+        <label className="block text-sm font-medium text-gray-900">Period</label>
+        <div className="inline-flex border border-gray-200 rounded-md overflow-hidden">
           {["Day", "Week", "Month"].map((period) => (
             <button
               key={period}
-              className={`au-input-group-item ${selectedPeriod === period ? "au-input-group-item-active" : ""}`}
+              className={`flex items-center justify-center px-4 py-2 text-sm cursor-pointer transition-colors ${
+                selectedPeriod === period
+                  ? "bg-black text-white hover:bg-black"
+                  : "bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100 last:border-r-0"
+              }`}
               onClick={() => setSelectedPeriod(period)}
             >
               {period}
@@ -59,245 +68,201 @@ function InteractiveInput() {
 export default function InputPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Input</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Input</h1>
+      <p className="text-gray-500 mb-8">
         A form input component with validation, icons, and various states.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add input" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveInput />}
-          code={`function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [emailTouched, setEmailTouched] = useState(false);
-  const [selectedPeriod, setSelectedPeriod] = useState("Day");
-
-  const emailError = emailTouched && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
-  const isValid = name.length > 0 && !emailError;
-
-  return (
-    <div class="au-field">
-      <label class="au-label au-label-required">Name</label>
-      <input
-        type="text"
-        className="au-input au-input-md"
-        placeholder="Enter your name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <div class="au-field">
-        <label class="au-label au-label-required">Email</label>
-        <input
-          type="email"
-          className={\`au-input au-input-md \${emailError ? "au-input-error" : isValid ? "au-input-success" : ""}\`}
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onBlur={() => setEmailTouched(true)}
-        />
-        {emailError && <span class="au-input-error-message">Invalid email</span>}
-        {!emailError && isValid && <span class="au-input-success-message">Email looks good!</span>}
-      </div>
-      <div class="au-field">
-        <label class="au-label">Period</label>
-        <div class="au-input-group">
-          {["Day", "Week", "Month"].map((period) => (
-            <button
-              key={period}
-              className={\`au-input-group-item \${selectedPeriod === period ? "au-input-group-item-active" : ""}\`}
-              onClick={() => setSelectedPeriod(period)}
-            >
-              {period}
-            </button>
-          ))}
-        </div>
-      </div>
+          code={`<div x-data="{ name: '', email: '', emailTouched: false, selectedPeriod: 'Day' }" class="w-full max-w-sm space-y-4">
+  <div class="flex flex-col gap-1">
+    <label class="block text-sm font-medium text-gray-900">Name</label>
+    <input type="text" x-model="name"
+      class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+      placeholder="Enter your name" />
+  </div>
+  <div class="flex flex-col gap-1">
+    <label class="block text-sm font-medium text-gray-900">Email</label>
+    <input type="email" x-model="email" @blur="emailTouched = true"
+      :class="'flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ' + (
+        emailTouched && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) ? 'border-red-500 focus-visible:outline-red-500' :
+        name.length > 0 && emailTouched && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) ? 'border-green-500 focus-visible:outline-green-500' :
+        'border-gray-300 focus-visible:outline-black'
+      )"
+      placeholder="Enter your email" />
+    <template x-if="emailTouched && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)">
+      <span class="text-xs text-red-500">Invalid email</span>
+    </template>
+    <template x-if="emailTouched && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) && name.length > 0">
+      <span class="text-xs text-green-500">Email looks good!</span>
+    </template>
+  </div>
+  <div class="flex flex-col gap-1">
+    <label class="block text-sm font-medium text-gray-900">Period</label>
+    <div class="inline-flex border border-gray-200 rounded-md overflow-hidden">
+      <button @click="selectedPeriod = 'Day'"
+        :class="selectedPeriod === 'Day' ? 'bg-black text-white' : 'bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100'"
+        class="flex items-center justify-center px-4 py-2 text-sm cursor-pointer transition-colors">Day</button>
+      <button @click="selectedPeriod = 'Week'"
+        :class="selectedPeriod === 'Week' ? 'bg-black text-white' : 'bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100'"
+        class="flex items-center justify-center px-4 py-2 text-sm cursor-pointer transition-colors">Week</button>
+      <button @click="selectedPeriod = 'Month'"
+        :class="selectedPeriod === 'Month' ? 'bg-black text-white' : 'bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100'"
+        class="flex items-center justify-center px-4 py-2 text-sm cursor-pointer transition-colors">Month</button>
     </div>
-  );
-}`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic Input</h2>
-        <DemoBlock
-          preview={
-            <div className="w-full max-w-sm">
-              <div className="au-field">
-                <label className="au-label">Name</label>
-                <input type="text" className="au-input au-input-md" placeholder="Enter your name" />
-              </div>
-            </div>
-          }
-          code={`<div class="au-field">
-  <label class="au-label">Name</label>
-  <input type="text" class="au-input au-input-md" placeholder="Enter your name" />
-</div>`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
-        <DemoBlock
-          preview={
-            <div className="w-full max-w-sm space-y-3">
-              <div className="au-field">
-                <label className="au-label" style={{ fontSize: "0.75rem" }}>Small</label>
-                <input type="text" className="au-input au-input-sm" placeholder="Small input" />
-              </div>
-              <div className="au-field">
-                <label className="au-label" style={{ fontSize: "0.875rem" }}>Medium</label>
-                <input type="text" className="au-input au-input-md" placeholder="Medium input" />
-              </div>
-              <div className="au-field">
-                <label className="au-label" style={{ fontSize: "1rem" }}>Large</label>
-                <input type="text" className="au-input au-input-lg" placeholder="Large input" />
-              </div>
-            </div>
-          }
-          code={`<div class="au-field">
-  <label class="au-label">Small</label>
-  <input type="text" class="au-input au-input-sm" placeholder="Small input" />
-</div>
-
-<div class="au-field">
-  <label class="au-label">Medium</label>
-  <input type="text" class="au-input au-input-md" placeholder="Medium input" />
-</div>
-
-<div class="au-field">
-  <label class="au-label">Large</label>
-  <input type="text" class="au-input au-input-lg" placeholder="Large input" />
-</div>`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Validation States</h2>
-        <DemoBlock
-          preview={
-            <div className="w-full max-w-sm space-y-4">
-              <div className="au-field">
-                <label className="au-label au-label-required">Email</label>
-                <input type="email" className="au-input au-input-md au-input-error" defaultValue="invalid-email" />
-                <span className="au-input-error-message">Invalid email</span>
-              </div>
-              <div className="au-field">
-                <label className="au-label">Username</label>
-                <input type="text" className="au-input au-input-md au-input-success" defaultValue="johndoe" />
-                <span className="au-input-success-message">Name available</span>
-              </div>
-            </div>
-          }
-          code={`<div class="au-field">
-  <label class="au-label au-label-required">Email</label>
-  <input type="email" class="au-input au-input-md au-input-error" />
-  <span class="au-input-error-message">Invalid email</span>
-</div>
-
-<div class="au-field">
-  <label class="au-label">Username</label>
-  <input type="text" class="au-input au-input-md au-input-success" />
-  <span class="au-input-success-message">Name available</span>
-</div>`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Disabled</h2>
-        <DemoBlock
-          preview={
-            <div className="w-full max-w-sm">
-              <div className="au-field">
-                <label className="au-label">Disabled</label>
-                <input type="text" className="au-input au-input-md" defaultValue="Cannot edit" disabled />
-              </div>
-            </div>
-          }
-          code={`<div class="au-field">
-  <label class="au-label">Disabled</label>
-  <input type="text" class="au-input au-input-md" value="Cannot edit" disabled />
-</div>`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Textarea</h2>
-        <DemoBlock
-          preview={
-            <div className="w-full max-w-sm">
-              <div className="au-field">
-                <label className="au-label">Message</label>
-                <textarea className="au-textarea au-textarea-md" placeholder="Enter your message..." />
-              </div>
-            </div>
-          }
-          code={`<div class="au-field">
-  <label class="au-label">Message</label>
-  <textarea class="au-textarea au-textarea-md" placeholder="Enter your message..."></textarea>
-</div>`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Input Group</h2>
-        <DemoBlock
-          preview={
-            <div className="w-full max-w-sm">
-              <div className="au-field">
-                <label className="au-label">Period</label>
-                <div className="au-input-group">
-                  <button className="au-input-group-item au-input-group-item-active">Day</button>
-                  <button className="au-input-group-item">Week</button>
-                  <button className="au-input-group-item">Month</button>
-                </div>
-              </div>
-            </div>
-          }
-          code={`<div class="au-field">
-  <label class="au-label">Period</label>
-  <div class="au-input-group">
-    <button class="au-input-group-item au-input-group-item-active">Day</button>
-    <button class="au-input-group-item">Week</button>
-    <button class="au-input-group-item">Month</button>
   </div>
 </div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input</td><td className="px-4 py-2">Base input class</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input-sm</td><td className="px-4 py-2">Small input</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input-md</td><td className="px-4 py-2">Medium input</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input-lg</td><td className="px-4 py-2">Large input</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input-error</td><td className="px-4 py-2">Error state</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input-success</td><td className="px-4 py-2">Success state</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-textarea</td><td className="px-4 py-2">Textarea class</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-label</td><td className="px-4 py-2">Label class</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-label-required</td><td className="px-4 py-2">Required label</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input-group</td><td className="px-4 py-2">Input group container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input-group-item</td><td className="px-4 py-2">Group item</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-input-group-item-active</td><td className="px-4 py-2">Active group item</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Basic Input</h2>
+        <DemoBlock
+          preview={
+            <div className="w-full max-w-sm">
+              <div className="flex flex-col gap-1">
+                <label className="block text-sm font-medium text-gray-900">Name</label>
+                <input type="text" className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter your name" />
+              </div>
+            </div>
+          }
+          code={`<div class="flex flex-col gap-1">
+  <label class="block text-sm font-medium text-gray-900">Name</label>
+  <input type="text" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter your name" />
+</div>`}
+        />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <DemoBlock
+          preview={
+            <div className="w-full max-w-sm space-y-3">
+              <div className="flex flex-col gap-1">
+                <label className="block font-medium text-gray-900" style={{ fontSize: "0.75rem" }}>Small</label>
+                <input type="text" className="flex h-8 w-full rounded-md border border-gray-300 bg-white px-2 text-xs placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Small input" />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="block text-sm font-medium text-gray-900" style={{ fontSize: "0.875rem" }}>Medium</label>
+                <input type="text" className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Medium input" />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="block font-medium text-gray-900" style={{ fontSize: "1rem" }}>Large</label>
+                <input type="text" className="flex h-12 w-full rounded-md border border-gray-300 bg-white px-4 text-base placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Large input" />
+              </div>
+            </div>
+          }
+          code={`<div class="flex flex-col gap-1">
+  <label class="block font-medium text-gray-900">Small</label>
+  <input type="text" class="flex h-8 w-full rounded-md border border-gray-300 bg-white px-2 text-xs placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Small input" />
+</div>
+
+<div class="flex flex-col gap-1">
+  <label class="block text-sm font-medium text-gray-900">Medium</label>
+  <input type="text" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Medium input" />
+</div>
+
+<div class="flex flex-col gap-1">
+  <label class="block font-medium text-gray-900">Large</label>
+  <input type="text" class="flex h-12 w-full rounded-md border border-gray-300 bg-white px-4 text-base placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Large input" />
+</div>`}
+        />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Validation States</h2>
+        <DemoBlock
+          preview={
+            <div className="w-full max-w-sm space-y-4">
+              <div className="flex flex-col gap-1">
+                <label className="block text-sm font-medium text-gray-900 after:content-['_*'] after:text-red-500">Email</label>
+                <input type="email" className="flex h-10 w-full rounded-md border border-red-500 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 disabled:cursor-not-allowed disabled:opacity-50" defaultValue="invalid-email" />
+                <span className="text-xs text-red-500">Invalid email</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="block text-sm font-medium text-gray-900">Username</label>
+                <input type="text" className="flex h-10 w-full rounded-md border border-green-500 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 disabled:cursor-not-allowed disabled:opacity-50" defaultValue="johndoe" />
+                <span className="text-xs text-green-500">Name available</span>
+              </div>
+            </div>
+          }
+          code={`<div class="flex flex-col gap-1">
+  <label class="block text-sm font-medium text-gray-900 after:content-['_*'] after:text-red-500">Email</label>
+  <input type="email" class="flex h-10 w-full rounded-md border border-red-500 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 disabled:cursor-not-allowed disabled:opacity-50" />
+  <span class="text-xs text-red-500">Invalid email</span>
+</div>
+
+<div class="flex flex-col gap-1">
+  <label class="block text-sm font-medium text-gray-900">Username</label>
+  <input type="text" class="flex h-10 w-full rounded-md border border-green-500 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 disabled:cursor-not-allowed disabled:opacity-50" />
+  <span class="text-xs text-green-500">Name available</span>
+</div>`}
+        />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Disabled</h2>
+        <DemoBlock
+          preview={
+            <div className="w-full max-w-sm">
+              <div className="flex flex-col gap-1">
+                <label className="block text-sm font-medium text-gray-900">Disabled</label>
+                <input type="text" className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" defaultValue="Cannot edit" disabled />
+              </div>
+            </div>
+          }
+          code={`<div class="flex flex-col gap-1">
+  <label class="block text-sm font-medium text-gray-900">Disabled</label>
+  <input type="text" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" value="Cannot edit" disabled />
+</div>`}
+        />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Textarea</h2>
+        <DemoBlock
+          preview={
+            <div className="w-full max-w-sm">
+              <div className="flex flex-col gap-1">
+                <label className="block text-sm font-medium text-gray-900">Message</label>
+                <textarea className="flex min-h-20 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 resize-y" placeholder="Enter your message..." />
+              </div>
+            </div>
+          }
+          code={`<div class="flex flex-col gap-1">
+  <label class="block text-sm font-medium text-gray-900">Message</label>
+  <textarea class="flex min-h-20 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 resize-y" placeholder="Enter your message..."></textarea>
+</div>`}
+        />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Input Group</h2>
+        <DemoBlock
+          preview={
+            <div className="w-full max-w-sm">
+              <div className="flex flex-col gap-1">
+                <label className="block text-sm font-medium text-gray-900">Period</label>
+                <div className="inline-flex border border-gray-200 rounded-md overflow-hidden">
+                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-black text-white hover:bg-black cursor-pointer transition-colors">Day</button>
+                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100 cursor-pointer transition-colors">Week</button>
+                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100 last:border-r-0 cursor-pointer transition-colors">Month</button>
+                </div>
+              </div>
+            </div>
+          }
+          code={`<div class="flex flex-col gap-1">
+  <label class="block text-sm font-medium text-gray-900">Period</label>
+  <div class="inline-flex border border-gray-200 rounded-md overflow-hidden">
+    <button class="flex items-center justify-center px-4 py-2 text-sm bg-black text-white hover:bg-black cursor-pointer transition-colors">Day</button>
+    <button class="flex items-center justify-center px-4 py-2 text-sm bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100 cursor-pointer transition-colors">Week</button>
+    <button class="flex items-center justify-center px-4 py-2 text-sm bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100 last:border-r-0 cursor-pointer transition-colors">Month</button>
+  </div>
+</div>`}
+        />
       </section>
     </div>
   );

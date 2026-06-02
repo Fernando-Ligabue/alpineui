@@ -13,7 +13,7 @@ import {
   PanelLeftDashed,
   PanelTopDashed,
   Sheet,
-  PanelTopOpen,
+  PanelRight,
   ReceiptText,
   LayoutList,
   Cuboid,
@@ -36,7 +36,22 @@ import {
   CircleDot,
   Settings2,
   TextCursorInput,
-  PilcrowRight
+  PilcrowRight,
+  ToggleLeft,
+  AlertCircle,
+  AlertTriangle,
+  Minus,
+  Blocks,
+  ScrollText,
+  GripHorizontal,
+  Images,
+  Keyboard,
+  Maximize2,
+  PanelTopOpen,
+  Tag,
+  List,
+  Columns3,
+  ToggleRight
 } from "lucide-react";
 
 const navigation = {
@@ -47,34 +62,51 @@ const navigation = {
   ],
   components: [
     { name: "All Components", href: "/components", icon: LayoutList },
-    { name: "Button", href: "/components/button", icon: SquarePlus },
-    { name: "Input", href: "/components/input", icon: TextCursorInput },
-    { name: "Card", href: "/components/card", icon: IdCard },
-    { name: "Badge", href: "/components/badge", icon: Award },
-    { name: "Dialog", href: "/components/dialog", icon: MessageSquareWarning },
-    { name: "Dropdown", href: "/components/dropdown", icon: ChevronDown },
-    { name: "Tabs", href: "/components/tabs", icon: StretchVertical },
     { name: "Accordion", href: "/components/accordion", icon: ListCollapse },
-    { name: "Toast", href: "/components/toast", icon: CloudAlert },
-    { name: "Select", href: "/components/select", icon: Hand },
-    { name: "DatePicker", href: "/components/datepicker", icon: CalendarFold },
+    { name: "Alert", href: "/components/alert", icon: AlertCircle },
+    { name: "Alert Dialog", href: "/components/alert-dialog", icon: AlertTriangle },
     { name: "Avatar", href: "/components/avatar", icon: User },
-    { name: "Tooltip", href: "/components/tooltip", icon: Info },
-    { name: "Popover", href: "/components/popover", icon: PanelBottomClose },
+    { name: "Badge", href: "/components/badge", icon: Award },
+    { name: "Breadcrumb", href: "/components/breadcrumb", icon: PilcrowRight },
+    { name: "Button", href: "/components/button", icon: SquarePlus },
+    { name: "Card", href: "/components/card", icon: IdCard },
     { name: "Checkbox", href: "/components/checkbox", icon: SquareCheck },
+    { name: "ContextMenu", href: "/components/contextmenu", icon: PanelTopDashed },
+    { name: "DatePicker", href: "/components/datepicker", icon: CalendarFold },
+    { name: "Dialog", href: "/components/dialog", icon: MessageSquareWarning },
+    { name: "Drawer", href: "/components/drawer", icon: PanelRight },
+    { name: "Dropdown", href: "/components/dropdown", icon: ChevronDown },
+    { name: "Input", href: "/components/input", icon: TextCursorInput },
+    { name: "NavigationMenu", href: "/components/navigationmenu", icon: PanelTopOpen },
+    { name: "Pagination", href: "/components/pagination", icon: ChevronsLeftRightEllipsis },
+    { name: "Popover", href: "/components/popover", icon: PanelBottomClose },
     { name: "Progress", href: "/components/progress", icon: LoaderCircle },
     { name: "RadioGroup", href: "/components/radiogroup", icon: CircleDot },
+    { name: "Select", href: "/components/select", icon: Hand },
+    { name: "Sidebar", href: "/components/sidebar", icon: PanelLeftDashed },
     { name: "Slider", href: "/components/slider", icon: Settings2 },
-    { name: "Breadcrumb", href: "/components/breadcrumb", icon: PilcrowRight },
-    { name: "Pagination", href: "/components/pagination", icon: ChevronsLeftRightEllipsis },
-    { name: "Textarea", href: "/components/textarea", icon: ReceiptText },
-    { name: "ContextMenu", href: "/components/contextmenu", icon: PanelTopDashed },
-    { name: "NavigationMenu", href: "/components/navigationmenu", icon: PanelTopOpen },
+    { name: "Switch", href: "/components/switch", icon: ToggleLeft },
     { name: "Table", href: "/components/table", icon: Sheet },
+    { name: "Tabs", href: "/components/tabs", icon: StretchVertical },
+    { name: "Textarea", href: "/components/textarea", icon: ReceiptText },
+    { name: "Toast", href: "/components/toast", icon: CloudAlert },
+    { name: "Tooltip", href: "/components/tooltip", icon: Info },
+    { name: "Collapsible", href: "/components/collapsible", icon: ChevronDown },
+    { name: "Spinner", href: "/components/spinner", icon: LoaderCircle },
+    { name: "Skeleton", href: "/components/skeleton", icon: Blocks },
+    { name: "Scroll Area", href: "/components/scrollarea", icon: ScrollText },
+    { name: "Resizable", href: "/components/resizable", icon: GripHorizontal },
+    { name: "Carousel", href: "/components/carousel", icon: Images },
+    { name: "Toggle", href: "/components/toggle", icon: ToggleLeft },
+    { name: "Aspect Ratio", href: "/components/aspectratio", icon: Maximize2 },
+    { name: "Kbd", href: "/components/kbd", icon: Keyboard },
+    { name: "Separator", href: "/components/separator", icon: Minus },
+    { name: "Label", href: "/components/label", icon: Tag },
+    { name: "Native Select", href: "/components/nativeselect", icon: List },
+    { name: "Button Group", href: "/components/buttongroup", icon: Columns3 },
+    { name: "Toggle Group", href: "/components/toggle-group", icon: ToggleRight },
   ],
-  commingSoon: [
-    { name: "Sidebar", href: "", icon: PanelLeftDashed },
-  ],
+  commingSoon: [] as Array<{ name: string; icon: React.ElementType; href: string }>,
 };
 
 interface SidebarProps {
@@ -179,22 +211,24 @@ export default function Sidebar({ onClose }: SidebarProps) {
           </ul>
         </div>
 
-        <div className="mb-6">
-          <div className="flex items-center gap-2 px-3 mb-2 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider">
-            <Component className="w-3.5 h-3.5" />
-            Coming Soon
+        {navigation.commingSoon.length > 0 && (
+          <div className="mb-6">
+            <div className="flex items-center gap-2 px-3 mb-2 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider">
+              <Component className="w-3.5 h-3.5" />
+              Coming Soon
+            </div>
+            <ul className="space-y-1">
+              {navigation.commingSoon.map((item, index) => (
+                <li key={index}>
+                  <span className="flex items-center gap-2 px-3 py-2 text-sm text-au-muted-foreground">
+                    <item.icon className="w-3 h-3" />
+                    {item.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="space-y-1">
-            {navigation.commingSoon.map((item, index) => (
-              <li key={index}>
-                <span className="flex items-center gap-2 px-3 py-2 text-sm text-au-muted-foreground">
-                  <item.icon className="w-3 h-3" />
-                  {item.name}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        )}
       </nav>
 
       {/* Fixed Footer */}

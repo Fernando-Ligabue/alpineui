@@ -1,128 +1,86 @@
-import { InstallCommand } from "@/components/InstallCommand";
+import CodeBlock from "@/components/CodeBlock";
 
 export default function ThemingPage() {
   return (
     <div className="p-8 max-w-4xl">
       <h1 className="text-3xl font-bold text-au-foreground mb-2">Theming</h1>
       <p className="text-au-muted-foreground mb-8">
-        Customize AlpineUI components to match your design system.
+        AlpineUI components use Tailwind utility classes for all styling. Customize components by changing the classes directly.
       </p>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Variables</h2>
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">How it works</h2>
         <p className="text-au-foreground mb-4">
-          AlpineUI uses CSS custom properties (variables) for theming. Override these variables to customize the appearance:
+          Every component snippet uses standard Tailwind utility classes. To customize, just modify the classes in the copied HTML:
         </p>
-        <div className="bg-[#1e1e1e] rounded-md overflow-hidden">
-          <div className="px-4 py-2 bg-[#252526] border-b border-[#3c3c3c]">
-            <span className="text-xs text-[#858585]">CSS</span>
-          </div>
-          <pre className="p-4 text-sm text-[#d4d4d4] overflow-x-auto">
-            <code>{`:root {
-  /* Colors */
-  --au-background: #ffffff;
-  --au-foreground: #0a0a0a;
-  --au-primary: #0a0a0a;
-  --au-primary-foreground: #ffffff;
-  --au-secondary: #f5f5f5;
-  --au-secondary-foreground: #0a0a0a;
-  --au-muted: #f5f5f5;
-  --au-muted-foreground: #737373;
-  --au-accent: #f5f5f5;
-  --au-accent-foreground: #0a0a0a;
-  --au-destructive: #ef4444;
-  --au-destructive-foreground: #ffffff;
-  --au-border: #e5e5e5;
-  --au-ring: #0a0a0a;
-  
-  /* Border Radius */
-  --au-radius: 0.5rem;
-}`}</code>
-          </pre>
-        </div>
+        <CodeBlock code={`<!-- Original: black button -->
+<button class="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90">
+  Button
+</button>
+
+<!-- Customized: blue, pill, larger -->
+<button class="inline-flex items-center justify-center gap-2 h-12 px-6 py-3 rounded-full bg-blue-600 text-white text-base font-medium hover:bg-blue-700">
+  Button
+</button>`} />
       </section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Color Palette</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <ColorSwatch name="Primary" variable="--au-primary" />
-          <ColorSwatch name="Secondary" variable="--au-secondary" />
-          <ColorSwatch name="Muted" variable="--au-muted" />
-          <ColorSwatch name="Destructive" variable="--au-destructive" />
-        </div>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Dark Mode</h2>
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Using your own CSS classes</h2>
         <p className="text-au-foreground mb-4">
-          To enable dark mode, override the CSS variables in your dark mode selector:
+          If you prefer, wrap components in your own styles using Tailwind&apos;s <code className="text-sm bg-au-secondary px-1 py-0.5 rounded text-au-foreground">@apply</code>:
         </p>
-        <div className="bg-[#1e1e1e] rounded-md overflow-hidden">
-          <div className="px-4 py-2 bg-[#252526] border-b border-[#3c3c3c]">
-            <span className="text-xs text-[#858585]">CSS</span>
-          </div>
-          <pre className="p-4 text-sm text-[#d4d4d4] overflow-x-auto">
-            <code>{`@media (prefers-color-scheme: dark) {
-  :root {
-    --au-background: #0a0a0a;
-    --au-foreground: #ffffff;
-    --au-primary: #ffffff;
-    --au-primary-foreground: #0a0a0a;
-    --au-secondary: #1a1a1a;
-    --au-secondary-foreground: #ffffff;
-    --au-muted: #1a1a1a;
-    --au-muted-foreground: #a3a3a3;
-    --au-border: #262626;
-  }
-}`}</code>
-          </pre>
-        </div>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Custom Colors</h2>
-        <p className="text-au-foreground mb-4">
-          You can also create your own color scheme by modifying the CSS variables:
-        </p>
-        <div className="bg-[#1e1e1e] rounded-md overflow-hidden">
-          <div className="px-4 py-2 bg-[#252526] border-b border-[#3c3c3c]">
-            <span className="text-xs text-[#858585]">CSS</span>
-          </div>
-          <pre className="p-4 text-sm text-[#d4d4d4] overflow-x-auto">
-            <code>{`/* Blue theme */
-:root {
-  --au-primary: #2563eb;
-  --au-primary-foreground: #ffffff;
-  --au-ring: #2563eb;
+        <CodeBlock code={`/* your-styles.css */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90;
 }
 
-/* Purple theme */
-:root {
-  --au-primary: #7c3aed;
-  --au-primary-foreground: #ffffff;
-  --au-ring: #7c3aed;
-}`}</code>
-          </pre>
+/* Then in HTML: <button class="btn-primary">Button</button> */`} />
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Design System (Portal)</h2>
+        <p className="text-au-foreground mb-4">
+          This portal uses a set of CSS custom properties for its own theme. If you are building a design system with Tailwind, you can define your own theme tokens in your <code className="text-sm bg-au-secondary px-1 py-0.5 rounded text-au-foreground">tailwind.config</code> or <code className="text-sm bg-au-secondary px-1 py-0.5 rounded text-au-foreground">globals.css</code>:
+        </p>
+        <CodeBlock code={`@theme {
+  --color-primary: #0a0a0a;
+  --color-primary-foreground: #ffffff;
+  --color-background: #ffffff;
+  --color-border: #e5e5e5;
+}
+
+/* Use in HTML: class="bg-primary text-primary-foreground" */`} />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Color Palette Reference</h2>
+        <p className="text-au-foreground mb-4">
+          The most common Tailwind color classes used across components. You can swap these for any Tailwind color:
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <ColorSwatch name="gray-900 (text)" classValue="text-gray-900" color="#111827" />
+          <ColorSwatch name="gray-500 (muted)" classValue="text-gray-500" color="#6b7280" />
+          <ColorSwatch name="gray-100 (bg)" classValue="bg-gray-100" color="#f3f4f6" />
+          <ColorSwatch name="black (primary)" classValue="bg-black" color="#000000" />
+          <ColorSwatch name="white (bg)" classValue="bg-white" color="#ffffff" />
+          <ColorSwatch name="gray-200 (border)" classValue="border-gray-200" color="#e5e7eb" />
+          <ColorSwatch name="red-600 (error)" classValue="bg-red-600" color="#dc2626" />
+          <ColorSwatch name="green-500 (success)" classValue="bg-green-500" color="#22c55e" />
         </div>
       </section>
     </div>
   );
 }
 
-function ColorSwatch({ name, variable }: { name: string; variable: string }) {
+function ColorSwatch({ name, classValue, color }: { name: string; classValue: string; color: string }) {
   return (
     <div className="border border-au-border rounded-lg p-4">
-      <div 
-        className="w-full h-12 rounded-md mb-2"
-        style={{ 
-          backgroundColor: variable === '--au-primary' ? '#0a0a0a' : 
-                          variable === '--au-secondary' ? '#f5f5f5' : 
-                          variable === '--au-muted' ? '#f5f5f5' : 
-                          variable === '--au-destructive' ? '#ef4444' : '#ccc'
-        }}
+      <div
+        className="w-full h-12 rounded-md mb-2 border border-au-border"
+        style={{ backgroundColor: color }}
       />
       <p className="text-sm font-medium text-au-foreground">{name}</p>
-      <p className="text-xs text-au-muted-foreground font-mono">{variable}</p>
+      <p className="text-xs text-au-muted-foreground font-mono">{classValue}</p>
     </div>
   );
 }

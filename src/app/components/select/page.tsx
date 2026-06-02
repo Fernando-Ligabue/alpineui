@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Check } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 interface SelectOption {
   value: string;
@@ -34,9 +33,9 @@ function InteractiveSelect() {
   }, []);
 
   return (
-    <div className="au-select au-select-md w-full max-w-sm" ref={ref}>
+    <div className="relative w-full max-w-sm" ref={ref}>
       <button
-        className="au-select-trigger"
+        className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
         onClick={() => setIsOpen(!isOpen)}
         data-placeholder={!selected ? "true" : undefined}
       >
@@ -44,11 +43,11 @@ function InteractiveSelect() {
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
       {isOpen && (
-        <div className="au-select-dropdown" data-state="open">
+        <div className="absolute z-50 w-full mt-1 rounded-md border border-gray-200 bg-white shadow-md" data-state="open">
           {options.map((option) => (
             <div
               key={option.value}
-              className="au-select-option"
+              className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100 focus:bg-gray-100"
               onClick={() => {
                 setSelected(option.value);
                 setIsOpen(false);
@@ -95,9 +94,9 @@ function InteractiveSelectSearchable() {
   }, []);
 
   return (
-    <div className="au-select au-select-md w-full max-w-sm" ref={ref}>
+    <div className="relative w-full max-w-sm" ref={ref}>
       <button
-        className="au-select-trigger"
+        className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
         onClick={() => setIsOpen(!isOpen)}
         data-placeholder={!selected ? "true" : undefined}
       >
@@ -105,21 +104,20 @@ function InteractiveSelectSearchable() {
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
       {isOpen && (
-        <div className="au-select-dropdown" data-state="open">
-          <div className="au-select-search">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              autoFocus
-            />
-          </div>
+        <div className="absolute z-50 w-full mt-1 rounded-md border border-gray-200 bg-white shadow-md" data-state="open">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            autoFocus
+            className="flex h-10 w-full rounded-md border-0 bg-transparent px-3 py-2 text-sm outline-none placeholder:text-gray-400"
+          />
           {filteredOptions.length > 0 ? (
             filteredOptions.map((option) => (
               <div
                 key={option.value}
-                className="au-select-option"
+                className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100 focus:bg-gray-100"
                 onClick={() => {
                   setSelected(option.value);
                   setIsOpen(false);
@@ -132,7 +130,7 @@ function InteractiveSelectSearchable() {
               </div>
             ))
           ) : (
-            <div className="au-select-empty">No results found</div>
+            <div className="px-2 py-1.5 text-sm text-gray-500 text-center">No results found</div>
           )}
         </div>
       )}
@@ -142,6 +140,7 @@ function InteractiveSelectSearchable() {
 
 function InteractiveSelectVariants() {
   const [selected, setSelected] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const options = [
@@ -160,16 +159,14 @@ function InteractiveSelectVariants() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="space-y-6 w-full max-w-sm">
       <div>
-        <h4 className="text-sm font-medium mb-2 text-au-muted-foreground">Default</h4>
-        <div className="au-select au-select-default">
+        <h4 className="text-sm font-medium mb-2 text-gray-500">Default</h4>
+        <div className="w-full">
           <div ref={ref}>
             <button
-              className="au-select-trigger"
+              className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
               onClick={() => setIsOpen(!isOpen)}
               data-placeholder={!selected ? "true" : undefined}
             >
@@ -177,11 +174,11 @@ function InteractiveSelectVariants() {
               <ChevronDown className={`w-4 h-4 ${isOpen ? "rotate-180" : ""}`} />
             </button>
             {isOpen && (
-              <div className="au-select-dropdown">
+              <div className="absolute z-50 w-full mt-1 rounded-md border border-gray-200 bg-white shadow-md">
                 {options.map((option) => (
                   <div
                     key={option.value}
-                    className="au-select-option"
+                    className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100 focus:bg-gray-100"
                     onClick={() => { setSelected(option.value); setIsOpen(false); }}
                     data-selected={selected === option.value ? "true" : undefined}
                   >
@@ -200,126 +197,104 @@ function InteractiveSelectVariants() {
 export default function SelectPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Select</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Select</h1>
+      <p className="text-gray-500 mb-8">
         A dropdown select component with search functionality.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add select" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveSelect />}
-          code={`function App() {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(null);
-  const options = [
-    { value: "react", label: "React" },
-    { value: "vue", label: "Vue" },
-    { value: "angular", label: "Angular" },
-  ];
-
-  return (
-    <div class="au-select au-select-md">
-      <button
-        class="au-select-trigger"
-        onClick={() => setOpen(!open)}
-      >
-        {selected ? options.find(o => o.value === selected)?.label : "Select..."}
-        <ChevronDown className={\`w-4 h-4 \${open ? "rotate-180" : ""}\`} />
-      </button>
-      {open && (
-        <div class="au-select-dropdown" data-state="open">
-          {options.map(option => (
-            <div
-              key={option.value}
-              class="au-select-option"
-              onClick={() => { setSelected(option.value); setOpen(false); }}
-            >
-              {option.label}
-            </div>
-          ))}
-        </div>
-      )}
+          code={`<div x-data="{ open: false, selected: null }" @click.outside="open = false" class="relative w-full max-w-sm">
+  <button @click="open = !open"
+    class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+    <span x-text="selected ? selected : 'Select a framework...'">Select a framework...</span>
+    <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+  <div x-show="open" class="absolute z-50 w-full mt-1 rounded-md border border-gray-200 bg-white shadow-md">
+    <div @click="selected = 'react'; open = false"
+      :data-selected="selected === 'react'"
+      class="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100">
+      <span>React</span>
+      <template x-if="selected === 'react'">
+        <svg class="w-4 h-4 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </template>
     </div>
-  );
-}`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Searchable</h2>
-        <DemoBlock
-          preview={<InteractiveSelectSearchable />}
-          code={`<div class="au-select au-select-md">
-  <button class="au-select-trigger">Search...</button>
-  <div class="au-select-dropdown">
-    <div class="au-select-search">
-      <input type="text" placeholder="Search..." />
+    <div @click="selected = 'vue'; open = false"
+      :data-selected="selected === 'vue'"
+      class="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100">
+      <span>Vue</span>
+      <template x-if="selected === 'vue'">
+        <svg class="w-4 h-4 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </template>
     </div>
-    <div class="au-select-option">Option 1</div>
-    <div class="au-select-option">Option 2</div>
+    <div @click="selected = 'angular'; open = false"
+      :data-selected="selected === 'angular'"
+      class="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100">
+      <span>Angular</span>
+      <template x-if="selected === 'angular'">
+        <svg class="w-4 h-4 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </template>
+    </div>
   </div>
 </div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Searchable</h2>
         <DemoBlock
-          preview={
-            <div className="space-y-4 w-full max-w-sm">
-              <div className="au-select au-select-sm">
-                <button className="au-select-trigger" data-placeholder="true">
-                  Small
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="au-select au-select-md">
-                <button className="au-select-trigger" data-placeholder="true">
-                  Medium
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="au-select au-select-lg">
-                <button className="au-select-trigger" data-placeholder="true">
-                  Large
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          }
-          code={`<div class="au-select au-select-sm">...</div>
-<div class="au-select au-select-md">...</div>
-<div class="au-select au-select-lg">...</div>`}
+          preview={<InteractiveSelectSearchable />}
+          code={`<div class="relative w-full max-w-sm">
+  <button class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+    Search...
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+  <div class="absolute z-50 w-full mt-1 rounded-md border border-gray-200 bg-white shadow-md">
+    <input type="text" placeholder="Search..."
+      class="flex h-10 w-full rounded-md border-0 bg-transparent px-3 py-2 text-sm outline-none placeholder:text-gray-400" />
+    <div class="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100">
+      Option 1
+    </div>
+  </div>
+</div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-select</td><td className="px-4 py-2">Container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-select-trigger</td><td className="px-4 py-2">Dropdown button</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-select-dropdown</td><td className="px-4 py-2">Options container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-select-option</td><td className="px-4 py-2">Option item</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-select-search</td><td className="px-4 py-2">Search input wrapper</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-select-empty</td><td className="px-4 py-2">No results message</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-select-sm|md|lg</td><td className="px-4 py-2">Sizes</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <DemoBlock
+          preview={
+            <div className="space-y-4 w-full max-w-sm">
+              <button className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
+                Small
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              <button className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
+                Medium
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              <button className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
+                Large
+                <ChevronDown className="w-4 h-4" />
+              </button>
+            </div>
+          }
+          code={`<button class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm">Small</button>
+<button class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm">Medium</button>
+<button class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm">Large</button>`}
+        />
       </section>
     </div>
   );

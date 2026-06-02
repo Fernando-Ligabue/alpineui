@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function InteractiveCheckbox() {
   const [checked, setChecked] = useState(true);
@@ -12,7 +11,7 @@ function InteractiveCheckbox() {
       <label className="flex items-center gap-2 cursor-pointer">
         <input
           type="checkbox"
-          className="au-checkbox"
+          className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white"
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
         />
@@ -28,13 +27,13 @@ function InteractiveSwitch() {
   return (
     <div className="flex items-center gap-3">
       <div
-        className="au-switch"
+        className="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 bg-gray-200 data-[checked=true]:bg-black"
         data-checked={enabled ? "true" : undefined}
         onClick={() => setEnabled(!enabled)}
         role="switch"
         aria-checked={enabled}
       >
-        <div className="au-switch-thumb" />
+        <div className="pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform translate-x-0 data-[checked=true]:translate-x-5" />
       </div>
       <span>{enabled ? "Enabled" : "Disabled"}</span>
     </div>
@@ -44,94 +43,76 @@ function InteractiveSwitch() {
 export default function CheckboxPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Checkbox</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Checkbox</h1>
+      <p className="text-gray-500 mb-8">
         A control that allows the user to toggle between checked and not checked.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add checkbox" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveCheckbox />}
-          code={`<label class="flex items-center gap-2">
-  <input 
-    type="checkbox" 
-    class="au-checkbox" 
-    checked={checked}
-    onChange={(e) => setChecked(e.target.checked)}
-  />
-  <span>Accept terms</span>
-</label>`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
-        <DemoBlock
-          preview={
-            <div className="flex flex-wrap gap-4">
-              <label className="flex items-center gap-2">
-                <input type="checkbox" className="au-checkbox" defaultChecked />
-                <span>Checked</span>
-              </label>
-              <label className="flex items-center gap-2">
-                <input type="checkbox" className="au-checkbox" />
-                <span>Unchecked</span>
-              </label>
-              <label className="flex items-center gap-2">
-                <input type="checkbox" className="au-checkbox" disabled />
-                <span>Disabled</span>
-              </label>
-              <label className="flex items-center gap-2">
-                <input type="checkbox" className="au-checkbox" disabled defaultChecked />
-                <span>Checked Disabled</span>
-              </label>
-            </div>
-          }
-          code={`<input type="checkbox" class="au-checkbox" />
-<input type="checkbox" class="au-checkbox" defaultChecked />
-<input type="checkbox" class="au-checkbox" disabled />
-<input type="checkbox" class="au-checkbox" disabled defaultChecked />`}
-        />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Switch (Toggle)</h2>
-        <DemoBlock
-          preview={<InteractiveSwitch />}
-          code={`<div 
-  class="au-switch" 
-  data-checked={enabled ? "true" : undefined}
-  onClick={() => setEnabled(!enabled)}
->
-  <div class="au-switch-thumb" />
+          code={`<div x-data="{ checked: true }">
+  <label class="flex items-center gap-2 cursor-pointer">
+    <input type="checkbox"
+      class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white"
+      x-model="checked"
+    />
+    <span x-text="checked ? 'Checked' : 'Unchecked'">Accept terms</span>
+  </label>
 </div>`}
         />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-checkbox</td><td className="px-4 py-2">Checkbox input</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-checkbox-sm|lg</td><td className="px-4 py-2">Sizes</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-switch</td><td className="px-4 py-2">Switch container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-switch-thumb</td><td className="px-4 py-2">Switch thumb</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">States</h2>
+        <DemoBlock
+          preview={
+            <div className="flex flex-wrap gap-4">
+              <label className="flex items-center gap-2">
+                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" defaultChecked />
+                <span>Checked</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" />
+                <span>Unchecked</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" disabled />
+                <span>Disabled</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" disabled defaultChecked />
+                <span>Checked Disabled</span>
+              </label>
+            </div>
+          }
+          code={`<input type="checkbox" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" checked />
+<input type="checkbox" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" />
+<input type="checkbox" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" disabled />
+<input type="checkbox" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" disabled checked />`}
+        />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Switch (Toggle)</h2>
+        <DemoBlock
+          preview={<InteractiveSwitch />}
+          code={`<div x-data="{ enabled: false }">
+  <div
+    class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
+    :class="enabled ? 'bg-black' : 'bg-gray-200'"
+    @click="enabled = !enabled"
+    role="switch"
+    :aria-checked="enabled"
+  >
+    <div class="pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform"
+      :class="enabled ? 'translate-x-5' : 'translate-x-0'"
+    ></div>
+  </div>
+  <span x-text="enabled ? 'Enabled' : 'Disabled'"></span>
+</div>`}
+        />
       </section>
     </div>
   );

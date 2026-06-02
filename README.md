@@ -1,179 +1,50 @@
 # AlpineUI
 
-<p align="center">
-  <img src="https://img.shields.io/npm/v/@Fernando-Ligabue/button?style=for-the-badge" alt="npm version">
-  <img src="https://img.shields.io/npm/dt/@Fernando-Ligabue/button?style=for-the-badge" alt="npm downloads">
-  <img src="https://img.shields.io/github/stars/Fernando-Ligabue/alpineui?style=for-the-badge" alt="GitHub stars">
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License">
-</p>
+> **Beautiful, copy-paste components for Alpine.js**
 
-> **Beautiful, accessible components for Alpine.js**
+AlpineUI is a collection of beautifully designed, copy-paste UI components built for [Alpine.js](https://alpinejs.dev/) and [Tailwind CSS](https://tailwindcss.com/). Inspired by [shadcn/ui](https://ui.shadcn.com).
 
-AlpineUI is a collection of beautifully designed, copy-paste UI components built for [Alpine.js](https://alpinejs.dev/). Inspired by [shadcn/ui](https://ui.shadcn.com), we bring the same philosophy to the Alpine.js ecosystem.
-
----
-
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---------|-------------|
 | 🎯 **Copy-Paste First** | No black box components. You own the code. |
 | ⚡ **Lightweight** | Only import what you use. Zero bloat. |
 | 🎨 **Tailwind CSS** | Utility-first styling with full customization. |
-| ♿ **Accessible** | WAI-ARIA compliant out of the box. |
-| 📦 **TypeScript Ready** | Full TypeScript support for better DX. |
-| 🤖 **CLI Tool** | Easy installation with `alpineui add`. |
+| ♿ **Accessible** | WAI-ARIA compliant components. |
+| 🔌 **Zero Dependencies** | Just HTML, Tailwind, and Alpine.js. |
 
----
+## Quick Start
 
-## 🚀 Quick Start
+1. Go to any [component page](https://alpineui.dev/components)
+2. Click the "Code" tab
+3. Copy the HTML
+4. Paste it into your project
 
-### Using CLI (Recommended)
+That's it. No CLI, no npm install, no CSS files.
 
-```bash
-# Install AlpineUI CLI
-npm install -g @Fernando-Ligabue/cli
-
-# Initialize in your project
-alpineui init
-
-# Add components
-alpineui add button
-alpineui add dialog tabs accordion
-```
-
-### Using NPM
-
-```bash
-# Install individual components
-npm install @Fernando-Ligabue/button
-npm install @Fernando-Ligabue/input
-npm install @Fernando-Ligabue/card
-
-# Or install all components
-npm install @Fernando-Ligabue/ui
-```
-
-### Using CDN
+## Example
 
 ```html
-<!-- Alpine.js -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-<!-- AlpineUI Components -->
-<script defer src="https://npm.pkg.github.com/@Fernando-Ligabue/button"></script>
-<link rel="stylesheet" href="https://npm.pkg.github.com/@Fernando-Ligabue/button/styles.css">
+<div x-data="{ count: 0 }" class="text-center">
+  <p class="text-lg mb-4">Count: <span x-text="count">0</span></p>
+  <button @click="count++"
+    class="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90">
+    Increment
+  </button>
+</div>
 ```
 
----
+## 27 Components Available
 
-## 📦 Available Components
+**Forms:** Button, Input, Textarea, Checkbox, Switch, Radio Group, Select, Slider, Date Picker
+**Layout:** Card, Accordion, Tabs, Table
+**Navigation:** Breadcrumb, Pagination, Dropdown, Context Menu, Navigation Menu, Sidebar
+**Overlay:** Dialog, Toast, Tooltip, Popover, Alert Dialog, Drawer
+**Data Display:** Badge, Avatar, Progress
 
-### Forms (9)
-| Component | Status |
-|-----------|--------|
-| Button | ✅ |
-| Input | ✅ |
-| Textarea | ✅ |
-| Checkbox | ✅ |
-| Switch | ✅ |
-| Radio Group | ✅ |
-| Select | ✅ |
-| Slider | ✅ |
-| Date Picker | ✅ |
+## Tech Stack
 
-### Layout (4)
-| Component | Status |
-|-----------|--------|
-| Card | ✅ |
-| Accordion | ✅ |
-| Tabs | ✅ |
-| Table | ✅ |
-
-### Navigation (6)
-| Component | Status |
-|-----------|--------|
-| Breadcrumb | ✅ |
-| Pagination | ✅ |
-| Dropdown | ✅ |
-| Context Menu | ✅ |
-| Navigation Menu | ✅ |
-
-### Overlay (4)
-| Component | Status |
-|-----------|--------|
-| Dialog | ✅ |
-| Toast | ✅ |
-| Tooltip | ✅ |
-| Popover | ✅ |
-
-### Data Display (3)
-| Component | Status |
-|-----------|--------|
-| Badge | ✅ |
-| Avatar | ✅ |
-| Progress | ✅ |
-
----
-
-## 🎨 Design System
-
-AlpineUI uses CSS custom properties for easy customization:
-
-```css
-:root {
-  --au-background: #ffffff;
-  --au-foreground: #0a0a0a;
-  --au-primary: #0a0a0a;
-  --au-primary-foreground: #ffffff;
-  --au-secondary: #f5f5f5;
-  --au-muted: #f5f5f5;
-  --au-muted-foreground: #737373;
-  --au-accent: #f5f5f5;
-  --au-destructive: #ef4444;
-  --au-border: #e5e5e5;
-  --au-radius: 0.5rem;
-}
-```
-
----
-
-## 💻 CLI Reference
-
-```bash
-alpineui init          # Initialize AlpineUI
-alpineui add <comp>    # Add components
-alpineui add --all     # Add all components
-alpineui list          # List components
-alpineui upgrade       # Upgrade components
-```
-
----
-
-## 📖 Documentation
-
-- **Live Demo**: [alpineui.dev](https://alpineui.dev)
-- **GitHub**: [github.com/Fernando-Ligabue/alpineui](https://github.com/Fernando-Ligabue/alpineui)
-- **Packages**: [github.com/Fernando-Ligabue/alpineui/packages](https://github.com/Fernando-Ligabue/alpineui/packages)
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your branch: `git checkout -b feature/amazing-component`
-3. Commit your changes: `git commit -m 'Add amazing component'`
-4. Push to the branch: `git push origin feature/amazing-component`
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-MIT © [AlpineUI Contributors](https://github.com/Fernando-Ligabue/alpineui/graphs/contributors)
-
----
-
-<p align="center">
-  Made with ❤️ for the Alpine.js community
-</p>
+- **Alpine.js** — Interactivity
+- **Tailwind CSS** — Styling
+- **Heroicons** — Icons

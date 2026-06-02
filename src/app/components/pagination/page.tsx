@@ -3,41 +3,42 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
 
 function InteractivePagination() {
   const [page, setPage] = useState(3);
   const totalPages = 10;
 
   return (
-    <div className="flex items-center gap-1">
-      <button 
-        className="au-button au-button-sm au-button-outline"
-        onClick={() => setPage(Math.max(1, page - 1))}
-        disabled={page === 1}
-      >
-        <ChevronLeft className="w-4 h-4" />
-      </button>
-      
-      {[1, 2, 3, 4, 5].map((p) => (
+    <div className="mx-auto flex w-full justify-center">
+      <div className="flex items-center gap-1">
         <button
-          key={p}
-          className={`au-button au-button-sm ${page === p ? "au-button-default" : "au-button-outline"}`}
-          onClick={() => setPage(p)}
+          className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-gray-100 ${page === 1 ? "opacity-50 pointer-events-none" : ""}`}
+          onClick={() => setPage(Math.max(1, page - 1))}
+          disabled={page === 1}
         >
-          {p}
+          <ChevronLeft className="w-4 h-4" />
         </button>
-      ))}
-      
-      <span className="px-2 text-au-muted-foreground">...</span>
-      
-      <button 
-        className="au-button au-button-sm au-button-outline"
-        onClick={() => setPage(Math.min(totalPages, page + 1))}
-        disabled={page === totalPages}
-      >
-        <ChevronRight className="w-4 h-4" />
-      </button>
+
+        {[1, 2, 3, 4, 5].map((p) => (
+          <button
+            key={p}
+            className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 ${page === p ? "bg-black text-white hover:bg-black" : "hover:bg-gray-100"}`}
+            onClick={() => setPage(p)}
+          >
+            {p}
+          </button>
+        ))}
+
+        <span className="flex h-9 w-9 items-center justify-center text-sm text-gray-500">...</span>
+
+        <button
+          className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-gray-100 ${page === totalPages ? "opacity-50 pointer-events-none" : ""}`}
+          onClick={() => setPage(Math.min(totalPages, page + 1))}
+          disabled={page === totalPages}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -45,71 +46,46 @@ function InteractivePagination() {
 export default function PaginationPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Pagination</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Pagination</h1>
+      <p className="text-gray-500 mb-8">
         A component for navigating between pages of content.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add pagination" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractivePagination />}
-          code={`const [page, setPage] = useState(1);
-const totalPages = 10;
-
-return (
+          code={`<div x-data="{ page: 3, totalPages: 10 }" class="mx-auto flex w-full justify-center">
   <div class="flex items-center gap-1">
-    <button 
-      class="au-button au-button-sm au-button-outline"
-      onClick={() => setPage(Math.max(1, page - 1))}
-    >
-      <ChevronLeft class="w-4 h-4" />
+    <button @click="page = Math.max(1, page - 1)"
+      :disabled="page === 1"
+      :class="page === 1 ? 'opacity-50 pointer-events-none' : ''"
+      class="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-gray-100">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
     </button>
-    
-    {[1, 2, 3, 4, 5].map((p) => (
-      <button
-        key={p}
-        className={\`au-button au-button-sm \${page === p ? "au-button-default" : "au-button-outline"}\`}
-        onClick={() => setPage(p)}
-      >
-        {p}
-      </button>
-    ))}
-    
-    <span>...</span>
-    
-    <button 
-      class="au-button au-button-sm au-button-outline"
-      onClick={() => setPage(Math.min(totalPages, page + 1))}
-    >
-      <ChevronRight class="w-4 h-4" />
+
+    <template x-for="p in [1,2,3,4,5]" :key="p">
+      <button @click="page = p"
+        :class="page === p ? 'bg-black text-white hover:bg-black' : 'hover:bg-gray-100'"
+        class="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9"
+        x-text="p"></button>
+    </template>
+
+    <span class="flex h-9 w-9 items-center justify-center text-sm text-gray-500">...</span>
+
+    <button @click="page = Math.min(totalPages, page + 1)"
+      :disabled="page === totalPages"
+      :class="page === totalPages ? 'opacity-50 pointer-events-none' : ''"
+      class="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-gray-100">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
     </button>
   </div>
-);`}
+</div>`}
         />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-pagination</td><td className="px-4 py-2">Pagination container</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-pagination-item</td><td className="px-4 py-2">Page number button</td></tr>
-            </tbody>
-          </table>
-        </div>
       </section>
     </div>
   );

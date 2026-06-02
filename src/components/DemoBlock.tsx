@@ -44,24 +44,22 @@ export default function DemoBlock({ preview, code, title }: DemoBlockProps) {
         >
           Code
         </button>
-        {activeTab === "code" && (
-          <button
-            onClick={handleCopy}
-            className="ml-auto mr-3 flex items-center gap-1.5 px-2.5 py-1 text-xs border border-au-border rounded hover:bg-au-accent transition-colors"
-          >
-            {copied ? (
-              <>
-                <Check className="w-3.5 h-3.5 text-green-600" />
-                <span className="text-green-600">Copied!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-3.5 h-3.5" />
-                <span>Copy</span>
-              </>
-            )}
-          </button>
-        )}
+        <button
+          onClick={handleCopy}
+          className="ml-auto mr-3 flex items-center gap-1.5 px-2.5 py-1 text-xs text-au-muted-foreground hover:text-au-foreground hover:bg-au-accent rounded transition-colors"
+        >
+          {copied ? (
+            <>
+              <Check className="w-3.5 h-3.5 text-green-600" />
+              <span className="text-green-600">Copied!</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-3.5 h-3.5" />
+              <span>Copy</span>
+            </>
+          )}
+        </button>
       </div>
       
       {activeTab === "preview" ? (

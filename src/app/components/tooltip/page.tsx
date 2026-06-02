@@ -1,28 +1,21 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import DemoBlock from "@/components/DemoBlock";
-import { InstallCommand } from "@/components/InstallCommand";
+
+const positionClasses: Record<string, string> = {
+  top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
+  bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
+  left: "right-full top-1/2 -translate-y-1/2 mr-2",
+  right: "left-full top-1/2 -translate-y-1/2 ml-2",
+};
 
 function TooltipWrapper({ children, content, position = "top" }: { children: React.ReactNode; content: string; position?: string }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const triggerRef = useRef<HTMLDivElement>(null);
-
   return (
-    <div className={`au-tooltip-trigger au-tooltip-${position}`} ref={triggerRef}>
-      <div
-        onMouseEnter={() => setIsVisible(true)}
-        onMouseLeave={() => setIsVisible(false)}
-      >
+    <div className="relative inline-flex group">
+      <div className="inline-flex items-center">
         {children}
       </div>
-      <div
-        className="au-tooltip-content"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          visibility: isVisible ? "visible" : "hidden",
-        }}
-      >
+      <div className={`absolute z-50 px-3 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md shadow-sm pointer-events-none whitespace-nowrap invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-150 ${positionClasses[position] || positionClasses.top}`}>
         {content}
       </div>
     </div>
@@ -33,16 +26,16 @@ function InteractiveTooltip() {
   return (
     <div className="flex flex-wrap gap-6 justify-center py-4">
       <TooltipWrapper content="Tooltip on top" position="top">
-        <button className="au-button au-button-md au-button-default">Top</button>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Top</button>
       </TooltipWrapper>
       <TooltipWrapper content="Tooltip on bottom" position="bottom">
-        <button className="au-button au-button-md au-button-default">Bottom</button>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Bottom</button>
       </TooltipWrapper>
       <TooltipWrapper content="Tooltip on left" position="left">
-        <button className="au-button au-button-md au-button-default">Left</button>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Left</button>
       </TooltipWrapper>
       <TooltipWrapper content="Tooltip on right" position="right">
-        <button className="au-button au-button-md au-button-default">Right</button>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Right</button>
       </TooltipWrapper>
     </div>
   );
@@ -51,37 +44,24 @@ function InteractiveTooltip() {
 export default function TooltipPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Tooltip</h1>
-      <p className="text-au-muted-foreground mb-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Tooltip</h1>
+      <p className="text-gray-500 mb-8">
         A contextual tooltip for displaying additional information on hover.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Installation</h2>
-        <InstallCommand command="npx alpineui add tooltip" />
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={
             <div className="py-4">
               <TooltipWrapper content="This is a tooltip!" position="top">
-                <button className="au-button au-button-md au-button-default">Hover me</button>
+                <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Hover me</button>
               </TooltipWrapper>
             </div>
           }
-          code={`<div class="au-tooltip-trigger au-tooltip-top">
-  <button 
-    onMouseEnter={() => setVisible(true)}
-    onMouseLeave={() => setVisible(false)}
-  >
-    Hover me
-  </button>
-  <div 
-    class="au-tooltip-content"
-    style={{ opacity: visible ? 1 : 0 }}
-  >
+          code={`<div class="relative inline-flex group">
+  <button class="...">Hover me</button>
+  <div class="absolute z-50 px-3 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md shadow-sm pointer-events-none whitespace-nowrap invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-150 bottom-full left-1/2 -translate-x-1/2 mb-2">
     This is a tooltip!
   </div>
 </div>`}
@@ -89,30 +69,37 @@ export default function TooltipPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Positions</h2>
-        <DemoBlock preview={<InteractiveTooltip />} code={`.au-tooltip-top .au-tooltip-content { bottom: 100%; left: 50%; }
-.au-tooltip-bottom .au-tooltip-content { top: 100%; left: 50%; }
-.au-tooltip-left .au-tooltip-content { right: 100%; top: 50%; }
-.au-tooltip-right .au-tooltip-content { left: 100%; top: 50%; }`} />
-      </section>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Positions</h2>
+        <DemoBlock
+          preview={<InteractiveTooltip />}
+          code={`<!-- Top -->
+<div class="relative inline-flex group">
+  <div class="absolute z-50 px-3 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md shadow-sm ... bottom-full left-1/2 -translate-x-1/2 mb-2">
+    Tooltip on top
+  </div>
+</div>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">CSS Classes Reference</h2>
-        <div className="border border-au-border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-au-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Class</th>
-                <th className="text-left px-4 py-3 font-medium">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-au-border">
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tooltip-trigger</td><td className="px-4 py-2">Container wrapper</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tooltip-content</td><td className="px-4 py-2">Tooltip content</td></tr>
-              <tr><td className="px-4 py-2 font-mono text-xs">au-tooltip-top|bottom|left|right</td><td className="px-4 py-2">Position</td></tr>
-            </tbody>
-          </table>
-        </div>
+<!-- Bottom -->
+<div class="relative inline-flex group">
+  <div class="absolute ... top-full left-1/2 -translate-x-1/2 mt-2">
+    Tooltip on bottom
+  </div>
+</div>
+
+<!-- Left -->
+<div class="relative inline-flex group">
+  <div class="absolute ... right-full top-1/2 -translate-y-1/2 mr-2">
+    Tooltip on left
+  </div>
+</div>
+
+<!-- Right -->
+<div class="relative inline-flex group">
+  <div class="absolute ... left-full top-1/2 -translate-y-1/2 ml-2">
+    Tooltip on right
+  </div>
+</div>`}
+        />
       </section>
     </div>
   );
