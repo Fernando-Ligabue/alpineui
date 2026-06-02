@@ -11,7 +11,7 @@ function InteractiveCheckbox() {
       <label className="flex items-center gap-2 cursor-pointer">
         <input
           type="checkbox"
-          className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white"
+          className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground"
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
         />
@@ -27,13 +27,13 @@ function InteractiveSwitch() {
   return (
     <div className="flex items-center gap-3">
       <div
-        className="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 bg-gray-200 data-[checked=true]:bg-black"
+        className="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 bg-au-secondary data-[checked=true]:bg-au-primary"
         data-checked={enabled ? "true" : undefined}
         onClick={() => setEnabled(!enabled)}
         role="switch"
         aria-checked={enabled}
       >
-        <div className="pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform translate-x-0 data-[checked=true]:translate-x-5" />
+        <div className="pointer-events-none block h-5 w-5 rounded-full bg-au-background shadow-lg ring-0 transition-transform translate-x-0 data-[checked=true]:translate-x-5" />
       </div>
       <span>{enabled ? "Enabled" : "Disabled"}</span>
     </div>
@@ -43,13 +43,13 @@ function InteractiveSwitch() {
 export default function CheckboxPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Checkbox</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Checkbox</h1>
+      <p className="text-au-muted-foreground mb-8">
         A control that allows the user to toggle between checked and not checked.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveCheckbox />}
           code={`<div x-data="{ checked: true }">
@@ -65,24 +65,24 @@ export default function CheckboxPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">States</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap gap-4">
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" defaultChecked />
+                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground" defaultChecked />
                 <span>Checked</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" />
+                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground" />
                 <span>Unchecked</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" disabled />
+                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground" disabled />
                 <span>Disabled</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 checked:bg-black checked:border-black checked:text-white" disabled defaultChecked />
+                <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground" disabled defaultChecked />
                 <span>Checked Disabled</span>
               </label>
             </div>
@@ -95,7 +95,7 @@ export default function CheckboxPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Switch (Toggle)</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Switch (Toggle)</h2>
         <DemoBlock
           preview={<InteractiveSwitch />}
           code={`<div x-data="{ enabled: false }">

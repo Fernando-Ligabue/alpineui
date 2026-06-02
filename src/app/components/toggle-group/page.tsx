@@ -13,16 +13,16 @@ function InteractiveToggleGroup() {
   ];
 
   return (
-    <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
+    <div className="inline-flex rounded-md border border-au-border overflow-hidden">
       {options.map((opt) => (
         <button
           key={opt.value}
           onClick={() => setSelected(opt.value)}
           className={`px-4 py-2 text-sm font-medium transition-colors ${
             selected === opt.value
-              ? "bg-gray-900 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50"
-          } ${opt !== options[options.length - 1] ? "border-r border-gray-300" : ""}`}
+              ? "bg-au-primary text-au-primary-foreground"
+              : "bg-au-background text-au-foreground hover:bg-au-accent"
+          } ${opt !== options[options.length - 1] ? "border-r border-au-border" : ""}`}
         >
           {opt.label}
         </button>
@@ -48,16 +48,16 @@ function InteractiveMultiple() {
   ];
 
   return (
-    <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
+    <div className="inline-flex rounded-md border border-au-border overflow-hidden">
       {options.map((opt) => (
         <button
           key={opt.value}
           onClick={() => toggle(opt.value)}
           className={`w-9 h-9 text-sm font-medium transition-colors ${
             selected.includes(opt.value)
-              ? "bg-gray-900 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50"
-          } ${opt !== options[options.length - 1] ? "border-r border-gray-300" : ""}`}
+              ? "bg-au-primary text-au-primary-foreground"
+              : "bg-au-background text-au-foreground hover:bg-au-accent"
+          } ${opt !== options[options.length - 1] ? "border-r border-au-border" : ""}`}
         >
           {opt.label}
         </button>
@@ -69,11 +69,11 @@ function InteractiveMultiple() {
 export default function ToggleGroupPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Toggle Group</h1>
-      <p className="text-gray-500 mb-8">A group of toggle buttons for selecting one or multiple options.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Toggle Group</h1>
+      <p className="text-au-muted-foreground mb-8">A group of toggle buttons for selecting one or multiple options.</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Single Select</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Single Select</h2>
         <DemoBlock
           preview={<InteractiveToggleGroup />}
           code={`<div x-data="{ selected: 'bold' }" class="inline-flex rounded-md border border-gray-300 overflow-hidden">
@@ -88,7 +88,7 @@ export default function ToggleGroupPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Multiple Select</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Multiple Select</h2>
         <DemoBlock
           preview={<InteractiveMultiple />}
           code={`<div x-data="{ selected: ['bold', 'italic'] }" class="inline-flex rounded-md border border-gray-300 overflow-hidden">
@@ -104,25 +104,25 @@ export default function ToggleGroupPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap items-center gap-6">
-              <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
-                <button className="px-2 py-1 text-xs font-medium bg-gray-900 text-white border-r border-gray-700">XS</button>
-                <button className="px-2 py-1 text-xs font-medium bg-white text-gray-700 hover:bg-gray-50">S</button>
+              <div className="inline-flex rounded-md border border-au-border overflow-hidden">
+                <button className="px-2 py-1 text-xs font-medium bg-au-primary text-au-primary-foreground border-r border-au-border">XS</button>
+                <button className="px-2 py-1 text-xs font-medium bg-au-background text-au-foreground hover:bg-au-accent">S</button>
               </div>
-              <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
-                <button className="px-3 py-1.5 text-sm font-medium bg-gray-900 text-white border-r border-gray-700">S</button>
-                <button className="px-3 py-1.5 text-sm font-medium bg-white text-gray-700 hover:bg-gray-50">M</button>
+              <div className="inline-flex rounded-md border border-au-border overflow-hidden">
+                <button className="px-3 py-1.5 text-sm font-medium bg-au-primary text-au-primary-foreground border-r border-au-border">S</button>
+                <button className="px-3 py-1.5 text-sm font-medium bg-au-background text-au-foreground hover:bg-au-accent">M</button>
               </div>
-              <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
-                <button className="px-4 py-2 text-sm font-medium bg-gray-900 text-white border-r border-gray-700">M</button>
-                <button className="px-4 py-2 text-sm font-medium bg-white text-gray-700 hover:bg-gray-50">L</button>
+              <div className="inline-flex rounded-md border border-au-border overflow-hidden">
+                <button className="px-4 py-2 text-sm font-medium bg-au-primary text-au-primary-foreground border-r border-au-border">M</button>
+                <button className="px-4 py-2 text-sm font-medium bg-au-background text-au-foreground hover:bg-au-accent">L</button>
               </div>
-              <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
-                <button className="px-5 py-2.5 text-base font-medium bg-gray-900 text-white border-r border-gray-700">L</button>
-                <button className="px-5 py-2.5 text-base font-medium bg-white text-gray-700 hover:bg-gray-50">XL</button>
+              <div className="inline-flex rounded-md border border-au-border overflow-hidden">
+                <button className="px-5 py-2.5 text-base font-medium bg-au-primary text-au-primary-foreground border-r border-au-border">L</button>
+                <button className="px-5 py-2.5 text-base font-medium bg-au-background text-au-foreground hover:bg-au-accent">XL</button>
               </div>
             </div>
           }

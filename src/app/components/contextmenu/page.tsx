@@ -6,9 +6,9 @@ import DemoBlock from "@/components/DemoBlock";
 
 function ContextMenuItem({ children, shortcut }: { children: React.ReactNode; shortcut?: string }) {
   return (
-    <div className="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-900 hover:bg-gray-100 cursor-pointer">
+    <div className="flex items-center gap-2 w-full px-3 py-2 text-sm text-au-foreground hover:bg-au-accent cursor-pointer">
       <span>{children}</span>
-      {shortcut && <span className="ml-auto text-xs tracking-widest text-gray-500">{shortcut}</span>}
+      {shortcut && <span className="ml-auto text-xs tracking-widest text-au-muted-foreground">{shortcut}</span>}
     </div>
   );
 }
@@ -31,24 +31,24 @@ function InteractiveContextMenu() {
 
   return (
     <div
-      className="w-72 h-48 border border-gray-200 rounded-lg flex items-center justify-center cursor-context-menu"
+      className="w-72 h-48 border border-au-border rounded-lg flex items-center justify-center cursor-context-menu"
       onContextMenu={handleContextMenu}
     >
-      <span className="text-gray-500 text-sm">Right-click here</span>
+      <span className="text-au-muted-foreground text-sm">Right-click here</span>
 
       {isOpen && (
         <div
-          className="fixed z-50 min-w-48 rounded-md border border-gray-200 bg-white py-1 shadow-md"
+          className="fixed z-50 min-w-48 rounded-md border border-au-border bg-au-background py-1 shadow-md"
           style={{ top: position.y, left: position.x }}
         >
           <ContextMenuItem shortcut="⌘C">Copy</ContextMenuItem>
           <ContextMenuItem shortcut="⌘V">Paste</ContextMenuItem>
-          <div className="h-px my-1 bg-gray-200" />
-          <div className="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-900 hover:bg-gray-100 cursor-pointer">
+          <div className="h-px my-1 bg-au-border" />
+          <div className="flex items-center gap-2 w-full px-3 py-2 text-sm text-au-foreground hover:bg-au-accent cursor-pointer">
             <span>Share</span>
             <ChevronRight className="w-4 h-4" />
           </div>
-          <div className="h-px my-1 bg-gray-200" />
+          <div className="h-px my-1 bg-au-border" />
           <ContextMenuItem shortcut="⌘⌫">Delete</ContextMenuItem>
         </div>
       )}
@@ -59,13 +59,13 @@ function InteractiveContextMenu() {
 export default function ContextMenuPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Context Menu</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Context Menu</h1>
+      <p className="text-au-muted-foreground mb-8">
         A menu that appears on right-click.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveContextMenu />}
           code={`<div x-data="{ open: false, x: 0, y: 0 }"

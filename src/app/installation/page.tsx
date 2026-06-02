@@ -1,42 +1,46 @@
+"use client";
+
 import CodeBlock from "@/components/CodeBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function InstallationPage() {
+  const { t } = useI18n();
+
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Installation</h1>
-      <p className="text-gray-500 mb-8">
-        AlpineUI is a copy-paste component library. No CLI, no npm install &mdash; just copy the HTML and use it.
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("installation.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">
+        {t("installation.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Prerequisites</h2>
-        <p className="text-gray-900 mb-4">
-          Before using AlpineUI, make sure you have:
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("installation.prerequisites")}</h2>
+        <p className="text-au-foreground mb-4">
+          {t("installation.prerequisitesDesc")}
         </p>
-        <ul className="list-disc list-inside space-y-2 text-gray-500">
-          <li>Alpine.js 3.x included in your project</li>
-          <li>Tailwind CSS configured</li>
+        <ul className="list-disc list-inside space-y-2 text-au-muted-foreground">
+          <li>{t("installation.prereq1")}</li>
+          <li>{t("installation.prereq2")}</li>
         </ul>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Usage</h2>
-        <p className="text-gray-900 mb-4">
-          Browse any component page, copy the HTML code shown in the &ldquo;Code&rdquo; tab, and paste it directly into your project.
-          Each component uses Tailwind utility classes for styling and Alpine.js directives for interactivity &mdash; no additional CSS required.
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("installation.usage")}</h2>
+        <p className="text-au-foreground mb-4">
+          {t("installation.usageDesc")}
         </p>
-        <ol className="list-decimal list-inside space-y-2 text-gray-500">
-          <li>Navigate to the component page you want to use</li>
-          <li>Click the &ldquo;Code&rdquo; tab to see the HTML</li>
-          <li>Copy the complete HTML snippet</li>
-          <li>Paste it into your project file</li>
+        <ol className="list-decimal list-inside space-y-2 text-au-muted-foreground">
+          <li>{t("installation.step1")}</li>
+          <li>{t("installation.step2")}</li>
+          <li>{t("installation.step3")}</li>
+          <li>{t("installation.step4")}</li>
         </ol>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Example</h2>
-        <p className="text-gray-900 mb-4">
-          Here is a complete example using Alpine.js + Tailwind CSS. No extra files needed:
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("installation.example")}</h2>
+        <p className="text-au-foreground mb-4">
+          {t("installation.exampleDesc")}
         </p>
         <CodeBlock code={`<!DOCTYPE html>
 <html lang="en">
@@ -60,9 +64,9 @@ export default function InstallationPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Using with a Build Tool</h2>
-        <p className="text-gray-900 mb-4">
-          If you use Vite, Next.js, or another build tool, just install Alpine.js and Tailwind CSS normally, then copy any component HTML directly into your templates.
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("installation.buildTool")}</h2>
+        <p className="text-au-foreground mb-4">
+          {t("installation.buildToolDesc")}
         </p>
       </section>
     </div>

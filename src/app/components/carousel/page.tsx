@@ -40,10 +40,10 @@ function InteractiveCarousel() {
         ))}
       </div>
       <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors">
-        <ChevronLeft className="w-5 h-5 text-gray-900" />
+        <ChevronLeft className="w-5 h-5 text-au-foreground" />
       </button>
       <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors">
-        <ChevronRight className="w-5 h-5 text-gray-900" />
+        <ChevronRight className="w-5 h-5 text-au-foreground" />
       </button>
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
@@ -96,17 +96,17 @@ function MultiItemCarousel() {
         })}
       </div>
       <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-20">
-        <ChevronLeft className="w-4 h-4 text-gray-900" />
+        <ChevronLeft className="w-4 h-4 text-au-foreground" />
       </button>
       <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-20">
-        <ChevronRight className="w-4 h-4 text-gray-900" />
+        <ChevronRight className="w-4 h-4 text-au-foreground" />
       </button>
       <div className="flex justify-center gap-2 pb-3 pt-2">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`w-2 h-2 rounded-full transition-colors ${i === current ? "bg-gray-800" : "bg-gray-300"}`}
+            className={`w-2 h-2 rounded-full transition-colors ${i === current ? "bg-au-primary" : "bg-au-border"}`}
           />
         ))}
       </div>
@@ -146,10 +146,10 @@ function AutoplayCarousel() {
         ))}
       </div>
       <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors">
-        <ChevronLeft className="w-5 h-5 text-gray-900" />
+        <ChevronLeft className="w-5 h-5 text-au-foreground" />
       </button>
       <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors">
-        <ChevronRight className="w-5 h-5 text-gray-900" />
+        <ChevronRight className="w-5 h-5 text-au-foreground" />
       </button>
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3">
         {slides.map((_, i) => (
@@ -161,7 +161,7 @@ function AutoplayCarousel() {
         ))}
         <button
           onClick={() => setPaused(!paused)}
-          className={`ml-2 px-2 py-1 text-xs rounded transition-colors ${paused ? "bg-red-500 text-white" : "bg-white/20 text-white"}`}
+          className={`ml-2 px-2 py-1 text-xs rounded transition-colors ${paused ? "bg-au-destructive text-au-primary-foreground" : "bg-white/20 text-white"}`}
         >
           {paused ? "Resume" : "Pause"}
         </button>
@@ -191,10 +191,10 @@ function ThumbnailCarousel() {
           ))}
         </div>
         <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors">
-          <ChevronLeft className="w-5 h-5 text-gray-900" />
+          <ChevronLeft className="w-5 h-5 text-au-foreground" />
         </button>
         <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors">
-          <ChevronRight className="w-5 h-5 text-gray-900" />
+          <ChevronRight className="w-5 h-5 text-au-foreground" />
         </button>
       </div>
       <div className="flex gap-2 overflow-x-auto pb-1">
@@ -202,7 +202,7 @@ function ThumbnailCarousel() {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`flex-shrink-0 w-16 h-12 rounded-md overflow-hidden border-2 transition-all ${i === current ? "border-gray-900 opacity-100" : "border-transparent opacity-60 hover:opacity-80"}`}
+            className={`flex-shrink-0 w-16 h-12 rounded-md overflow-hidden border-2 transition-all ${i === current ? "border-au-primary opacity-100" : "border-transparent opacity-60 hover:opacity-80"}`}
           >
             <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
           </button>
@@ -215,11 +215,11 @@ function ThumbnailCarousel() {
 export default function CarouselPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Carousel</h1>
-      <p className="text-gray-500 mb-8">An image or content slider with navigation controls. Multiple variants for different use cases.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Carousel</h1>
+      <p className="text-au-muted-foreground mb-8">An image or content slider with navigation controls. Multiple variants for different use cases.</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Basic</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic</h2>
         <DemoBlock
           preview={<InteractiveCarousel />}
           code={`<div x-data="{ current: 0 }" class="relative w-full max-w-lg overflow-hidden rounded-lg">
@@ -265,8 +265,8 @@ export default function CarouselPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Multi-Item</h2>
-        <p className="text-gray-500 mb-4">Shows three slides at once — previous, current (highlighted), and next.</p>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Multi-Item</h2>
+        <p className="text-au-muted-foreground mb-4">Shows three slides at once — previous, current (highlighted), and next.</p>
         <DemoBlock
           preview={<MultiItemCarousel />}
           code={`<div x-data="{ current: 0, prev() { this.current = this.current === 0 ? 4 : this.current - 1 }, next() { this.current = this.current === 4 ? 0 : this.current + 1 } }" class="relative w-full max-w-2xl overflow-hidden rounded-lg">
@@ -314,8 +314,8 @@ export default function CarouselPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Autoplay</h2>
-        <p className="text-gray-500 mb-4">Automatically advances through slides with optional pause control.</p>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Autoplay</h2>
+        <p className="text-au-muted-foreground mb-4">Automatically advances through slides with optional pause control.</p>
         <DemoBlock
           preview={<AutoplayCarousel />}
           code={`<div x-data="{
@@ -385,8 +385,8 @@ export default function CarouselPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Thumbnails</h2>
-        <p className="text-gray-500 mb-4">Image carousel with clickable thumbnail navigation.</p>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Thumbnails</h2>
+        <p className="text-au-muted-foreground mb-4">Image carousel with clickable thumbnail navigation.</p>
         <DemoBlock
           preview={<ThumbnailCarousel />}
           code={`<div x-data="{ current: 0 }" class="w-full max-w-lg">

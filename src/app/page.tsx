@@ -8,58 +8,58 @@ import {
   Palette,
   Box,
   Github,
-  Star,
   Play,
   CheckCircle2,
   Sparkles,
   Layers,
   Type,
   MousePointerClick,
-  Users,
   Rocket,
   Check
 } from "lucide-react";
 import { useState } from "react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function Home() {
+  const { t } = useI18n();
   return (
     <div className="relative">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-linear-to-br from-au-background via-au-background to-au-primary/5" />
-          <div className="absolute top-0 left-1/4 w-125 h-125 bg-au-primary/10 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-100 h-100 bg-au-primary/5 rounded-full blur-[100px] animate-pulse delay-1000" />
+          <div className="absolute inset-0 bg-linear-to-br from-au-background via-au-background to-au-primary/5 dark:to-au-primary/15" />
+          <div className="absolute top-0 left-1/4 w-125 h-125 bg-au-primary/10 dark:bg-white/10 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-0 right-1/4 w-100 h-100 bg-au-primary/5 dark:bg-white/10 rounded-full blur-[100px] animate-pulse delay-1000" />
 
           {/* Grid Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-size[64px_64px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-size[64px_64px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] dark:bg-[linear-gradient(rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.06)_1px,transparent_1px)]" />
 
           {/* Floating Elements */}
-          <div className="absolute top-32 left-[15%] w-3 h-3 bg-au-primary/40 rounded-full animate-float" />
-          <div className="absolute top-40 right-[20%] w-2 h-2 bg-au-primary/30 rounded-full animate-float-delayed" />
-          <div className="absolute bottom-40 left-[25%] w-4 h-4 bg-au-primary/20 rounded-full animate-float-slow" />
-          <div className="absolute top-1/2 right-[15%] w-2 h-2 bg-au-primary/50 rounded-full animate-float-delay-2000" />
+          <div className="absolute top-32 left-[15%] w-3 h-3 bg-au-primary/40 dark:bg-white/40 rounded-full animate-float" />
+          <div className="absolute top-40 right-[20%] w-2 h-2 bg-au-primary/30 dark:bg-white/30 rounded-full animate-float-delayed" />
+          <div className="absolute bottom-40 left-[25%] w-4 h-4 bg-au-primary/20 dark:bg-white/20 rounded-full animate-float-slow" />
+          <div className="absolute top-1/2 right-[15%] w-2 h-2 bg-au-primary/50 dark:bg-white/50 rounded-full animate-float-delay-2000" />
         </div>
 
         <div className="container px-6 py-20 mx-auto text-center max-w-5xl">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-au-border bg-au-background/80 backdrop-blur-sm animate-fade-in">
             <Sparkles className="w-4 h-4 text-au-primary" />
-            <span className="text-sm font-medium text-au-foreground">v0.1.0 Released</span>
-            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-sm font-medium text-au-foreground">{t("home.hero.badge")}</span>
+            <span className="w-1.5 h-1.5 bg-green-400/80 rounded-full animate-pulse" />
           </div>
 
           {/* Main Title */}
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 animate-fade-in-up">
-            <span className="text-au-foreground">Beautiful </span>
+            <span className="text-au-foreground">{t("home.hero.title1")} </span>
             <span className="relative">
               <span className="bg-linear-to-r from-au-primary via-au-primary/80 to-au-primary/60 bg-clip-text text-transparent">
-                Components
+                {t("home.hero.title2")}
               </span>
             </span>
             <br />
-            <span className="text-au-foreground">for </span>
+            <span className="text-au-foreground">{t("home.hero.title3")} </span>
             <span className="relative inline-block">
               <span className="bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Alpine.js</span>
               <svg className="absolute -bottom-1 left-0 w-full h-3" viewBox="0 0 200 12" fill="none">
@@ -77,8 +77,7 @@ export default function Home() {
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-au-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-200">
-            A collection of beautifully designed, copy-and-paste components for Alpine.js.
-            Styled with CSS variables - customize with utility classes or override variables to match your brand.
+            {t("home.hero.subtitle")}
           </p>
 
           {/* CTA Buttons */}
@@ -87,26 +86,22 @@ export default function Home() {
               href="/installation"
               className="group relative inline-flex items-center gap-2 px-8 py-4 bg-au-primary text-au-primary-foreground rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-au-primary/20"
             >
-              Get Started
+              {t("home.hero.cta")}
               <Rocket className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              <div className="absolute inset-0 rounded-xl bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </Link>
 
             <Link
               href="/components"
               className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-au-border rounded-xl font-semibold text-lg text-au-foreground transition-all duration-300 hover:bg-au-secondary hover:border-au-primary/50"
             >
-              Browse Components
+              {t("home.hero.browse")}
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 animate-fade-in-up delay-500">
-            <Stat icon={<Box className="w-5 h-5" />} value="38+" label="Components" />
-            <Stat icon={<Download className="w-5 h-5" />} value="2.5k" label="Weekly Downloads" />
-            <Stat icon={<Star className="w-5 h-5" />} value="200+" label="GitHub Stars" />
-            <Stat icon={<Users className="w-5 h-5" />} value="500+" label="Users" />
+          {/* Component Showcase */}
+          <div className="animate-fade-in-up delay-500">
+            <ComponentShowcase t={t} />
           </div>
         </div>
 
@@ -123,10 +118,10 @@ export default function Home() {
         <div className="container px-6 mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-au-foreground mb-4">
-              Components that shine
+              {t("home.preview.title")}
             </h2>
             <p className="text-lg text-au-muted-foreground max-w-2xl mx-auto">
-              Hand-crafted components with attention to every detail. From buttons to dialogs, every component is designed to perfection.
+              {t("home.preview.subtitle")}
             </p>
           </div>
 
@@ -137,27 +132,27 @@ export default function Home() {
               <div className="w-3 h-3 rounded-full bg-red-500" />
               <div className="w-3 h-3 rounded-full bg-yellow-500" />
               <div className="w-3 h-3 rounded-full bg-green-500" />
-              <span className="ml-4 text-xs text-au-muted-foreground">Alpine.js Component Preview</span>
+              <span className="ml-4 text-xs text-au-muted-foreground">{t("home.preview.label")}</span>
             </div>
 
             {/* Preview Content */}
             <div className="p-12">
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {/* Button Variants */}
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Default</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-gray-100 text-gray-900 text-sm font-medium hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Secondary</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md border border-gray-300 bg-transparent text-gray-900 text-sm font-medium hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Outline</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-transparent text-gray-900 text-sm font-medium hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Ghost</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-red-600 text-white text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Destructive</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 w-10 px-0 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">Default</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-secondary text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">Secondary</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md border border-au-border bg-transparent text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">Outline</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-transparent text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">Ghost</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-destructive text-au-destructive-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Destructive</button>
+                <button aria-label="Icon button" className="inline-flex items-center justify-center gap-2 h-10 w-10 px-0 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">
                   <Zap className="w-4 h-4" />
                 </button>
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
-                <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-black text-white text-xs font-medium hover:opacity-90">Small</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90">Medium</button>
-                <button className="inline-flex items-center justify-center gap-2 h-12 px-6 py-3 rounded-md bg-black text-white text-base font-medium hover:opacity-90">Large</button>
+                <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-au-primary text-au-primary-foreground text-xs font-medium hover:opacity-90">Small</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90">Medium</button>
+                <button className="inline-flex items-center justify-center gap-2 h-12 px-6 py-3 rounded-md bg-au-primary text-au-primary-foreground text-base font-medium hover:opacity-90">Large</button>
               </div>
             </div>
           </div>
@@ -166,7 +161,7 @@ export default function Home() {
           <div className="mt-8 bg-[#1e1e1e] rounded-xl overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 bg-[#252526] border-b border-[#3c3c3c]">
               <div className="flex items-center gap-2">
-                <span className="text-xs text-[#858585]">HTML</span>
+                <span className="text-xs text-[#a0a0a0]">HTML</span>
               </div>
               <CopyButton code={`<div x-data="{ count: 0 }" class="text-center">
   <p class="text-lg mb-4">Count: <span x-text="count">0</span></p>
@@ -174,7 +169,7 @@ export default function Home() {
     class="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:opacity-90">
     Increment
   </button>
-</div>`} />
+</div>`} copyLabel={t("home.preview.copy")} copiedLabel={t("home.preview.copied")} />
             </div>
             <pre className="p-6 text-sm overflow-x-auto">
               <code className="text-[#d4d4d4]">
@@ -194,48 +189,48 @@ export default function Home() {
         <div className="container px-6 mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-au-foreground mb-4">
-              Why choose AlpineUI?
+              {t("home.features.title")}
             </h2>
             <p className="text-lg text-au-muted-foreground max-w-2xl mx-auto">
-              Built for developers who value simplicity, performance, and beautiful design.
+              {t("home.features.subtitle")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard
               icon={<Copy className="w-6 h-6" />}
-              title="Copy & Paste"
-              description="Just copy the component code and paste it into your project. Full control, no black-box components."
+              title={t("home.features.copyPaste")}
+              description={t("home.features.copyPasteDesc")}
               color="blue"
             />
             <FeatureCard
               icon={<Zap className="w-6 h-6" />}
-              title="Lightning Fast"
-              description="Built on Alpine.js, the 15kB JavaScript framework. Your projects stay fast and lightweight."
+              title={t("home.features.fast")}
+              description={t("home.features.fastDesc")}
               color="yellow"
             />
             <FeatureCard
               icon={<Palette className="w-6 h-6" />}
-              title="Fully Customizable"
-              description="Customize with Tailwind utility classes or override CSS variables to match your brand."
+              title={t("home.features.customizable")}
+              description={t("home.features.customizableDesc")}
               color="purple"
             />
             <FeatureCard
               icon={<Layers className="w-6 h-6" />}
-              title="Composable"
-              description="Mix and match components to create complex UIs. Each piece works seamlessly with others."
+              title={t("home.features.composable")}
+              description={t("home.features.composableDesc")}
               color="green"
             />
             <FeatureCard
               icon={<Type className="w-6 h-6" />}
-              title="Accessible"
-              description="WCAG 2.1 compliant components with proper ARIA attributes and keyboard navigation."
+              title={t("home.features.accessible")}
+              description={t("home.features.accessibleDesc")}
               color="pink"
             />
             <FeatureCard
               icon={<Sparkles className="w-6 h-6" />}
-              title="Zero Dependencies"
-              description="No runtime dependencies. Just HTML, CSS, and JavaScript. Fewer bugs, smaller bundles."
+              title={t("home.features.zeroDeps")}
+              description={t("home.features.zeroDepsDesc")}
               color="orange"
             />
           </div>
@@ -248,22 +243,22 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-au-foreground mb-6">
-                Everything you need to build stunning interfaces
+                {t("home.showcase.title")}
               </h2>
               <p className="text-lg text-au-muted-foreground mb-8">
-                From basic building blocks to complex interactive components, AlpineUI has everything you need to create beautiful web applications.
+                {t("home.showcase.desc")}
               </p>
 
               <ul className="space-y-4">
                 {[
-                  "38 production-ready components",
-                  "Dark mode support out of the box",
-                  "Responsive across all devices",
-                  "TypeScript type definitions included",
-                  "Comprehensive documentation"
+                  t("home.showcase.item1"),
+                  t("home.showcase.item2"),
+                  t("home.showcase.item3"),
+                  t("home.showcase.item4"),
+                  t("home.showcase.item5")
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-au-foreground">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-au-primary shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -273,7 +268,7 @@ export default function Home() {
                 href="/components"
                 className="inline-flex items-center gap-2 mt-8 text-au-primary font-semibold hover:gap-3 transition-all"
               >
-                View all components
+                {t("home.showcase.viewAll")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -284,11 +279,11 @@ export default function Home() {
                   {/* Card Preview */}
                   <div className="p-6 border border-au-border rounded-xl bg-au-background">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                      <div className="w-12 h-12 rounded-full bg-linear-to-br from-au-primary to-au-accent flex items-center justify-center text-au-primary-foreground font-bold">
                         A
                       </div>
                       <div>
-                        <h4 className="font-semibold text-au-foreground">AlpineUI Components</h4>
+                        <h3 className="font-semibold text-au-foreground">AlpineUI Components</h3>
                         <p className="text-sm text-au-muted-foreground">Beautiful by default</p>
                       </div>
                     </div>
@@ -296,8 +291,8 @@ export default function Home() {
                       A collection of reusable components that help you build beautiful interfaces faster.
                     </p>
                     <div className="flex gap-2">
-              <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-black text-white text-xs font-medium hover:opacity-90">Get Started</button>
-              <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-transparent text-gray-900 text-xs font-medium hover:bg-gray-100">Learn More</button>
+                      <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-au-primary text-au-primary-foreground text-xs font-medium hover:opacity-90">Get Started</button>
+                      <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-transparent text-au-foreground text-xs font-medium hover:bg-au-accent">Learn More</button>
                     </div>
                   </div>
 
@@ -313,18 +308,18 @@ export default function Home() {
 
                   {/* Badge Preview */}
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">Button</span>
-                    <span className="px-3 py-1 text-xs font-medium bg-purple-100 text-purple-700 rounded-full">Card</span>
-                    <span className="px-3 py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full">Input</span>
-                    <span className="px-3 py-1 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">Dialog</span>
-                    <span className="px-3 py-1 text-xs font-medium bg-pink-100 text-pink-700 rounded-full">+10 more</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/10 text-au-primary rounded-full">Button</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/15 text-au-primary rounded-full">Card</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/10 text-au-primary rounded-full">Input</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/15 text-au-primary rounded-full">Dialog</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-accent text-au-accent-foreground rounded-full">+10 more</span>
                   </div>
                 </div>
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-linear-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-2xl" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-linear-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl" />
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-linear-to-br from-au-primary/20 to-au-accent/20 rounded-full blur-2xl" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-linear-to-br from-au-accent/20 to-au-destructive/20 rounded-full blur-2xl" />
             </div>
           </div>
         </div>
@@ -334,23 +329,23 @@ export default function Home() {
       <section className="py-24">
         <div className="container px-6 mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-au-foreground mb-4">
-            Get started in seconds
+            {t("home.quickstart.title")}
           </h2>
           <p className="text-lg text-au-muted-foreground mb-12 max-w-2xl mx-auto">
-            AlpineUI is a copy-paste component library. No CLI, no npm install — just copy the HTML.
+            {t("home.quickstart.subtitle")}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             <InstallCard
-              title="Copy &amp; Paste"
-              description="Browse components, copy the HTML, and paste into your project."
-              command="See installation guide"
+              title={t("home.quickstart.copyPaste")}
+              description={t("home.quickstart.copyPasteDesc")}
+              command={t("home.quickstart.guide")}
               icon={<Terminal className="w-6 h-6" />}
             />
             <InstallCard
-              title="What you need"
-              description="Alpine.js 3.x + Tailwind CSS (already using them? Just paste!)"
-              command="No dependencies — just HTML"
+              title={t("home.quickstart.requirements")}
+              description={t("home.quickstart.requirementsDesc")}
+              command={t("home.quickstart.noDeps")}
               icon={<Box className="w-6 h-6" />}
             />
           </div>
@@ -361,28 +356,28 @@ export default function Home() {
       <section className="py-24 bg-linear-to-br from-au-primary via-au-primary to-au-primary/90">
         <div className="container px-6 mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-au-primary-foreground mb-6">
-            Ready to build something beautiful?
+            {t("home.cta.title")}
           </h2>
           <p className="text-xl text-au-primary-foreground/80 mb-10 max-w-2xl mx-auto">
-            Join hundreds of developers using AlpineUI to create stunning interfaces.
+            {t("home.cta.subtitle")}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/installation"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-au-primary rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-au-background text-au-primary rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
             >
               <Play className="w-5 h-5" />
-              Start Building
+              {t("home.cta.start")}
             </Link>
             <a
               href="https://github.com/Fernando-Ligabue/alpineui"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-white/10"
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-au-primary-foreground/30 text-au-primary-foreground rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-au-primary-foreground/10"
             >
               <Github className="w-5 h-5" />
-              Star on GitHub
+              {t("home.cta.star")}
             </a>
           </div>
         </div>
@@ -391,14 +386,62 @@ export default function Home() {
   );
 }
 
-function Stat({ icon, value, label }: { icon: React.ReactNode; value: string; label: string }) {
+function ComponentShowcase({ t }: { t: (key: string) => string }) {
+  const COMPONENTS = [
+    "accordion", "alert", "alert-dialog", "aspectratio", "avatar",
+    "badge", "breadcrumb", "button", "buttongroup", "card",
+    "carousel", "checkbox", "collapsible", "contextmenu", "datepicker",
+    "dialog", "drawer", "dropdown", "input", "kbd",
+    "label", "nativeselect", "navigationmenu", "pagination", "popover",
+    "progress", "radiogroup", "resizable", "scrollarea", "select",
+    "separator", "sidebar", "skeleton", "slider", "spinner",
+    "switch", "table", "tabs", "textarea", "toast",
+    "toggle", "toggle-group", "tooltip",
+  ];
+
+  const DISPLAY_COUNT = 35;
+  const extra = COMPONENTS.length - DISPLAY_COUNT;
+
   return (
-    <div className="flex items-center gap-3">
-      <div className="text-au-muted-foreground">{icon}</div>
-      <div>
-        <div className="text-2xl font-bold text-au-foreground">{value}</div>
-        <div className="text-sm text-au-muted-foreground">{label}</div>
+    <div className="flex flex-col items-center gap-6 pb-8">
+      <div className="flex items-baseline gap-3">
+        <span className="text-5xl font-extrabold bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          {COMPONENTS.length}
+        </span>
+        <div>
+          <p className="text-lg font-bold text-au-foreground">{t("home.hero.componentCount")}</p>
+          <p className="text-sm text-au-muted-foreground">{t("home.hero.componentTagline")}</p>
+        </div>
       </div>
+
+      <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
+        {COMPONENTS.slice(0, DISPLAY_COUNT).map((name, i) => (
+          <Link
+            key={name}
+            href={`/components/${name}`}
+            className="group relative px-3 py-1.5 text-xs font-medium rounded-full border border-au-border bg-au-background text-au-muted-foreground hover:text-au-primary hover:border-au-primary/40 hover:bg-au-primary/5 transition-all duration-200"
+            style={{ animationDelay: `${(i % 10) * 40}ms` }}
+          >
+            {name}
+          </Link>
+        ))}
+        {extra > 0 && (
+          <Link
+            href="/components"
+            className="px-3 py-1.5 text-xs font-medium rounded-full bg-linear-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 text-au-primary border border-au-primary/30 hover:border-au-primary transition-all duration-200"
+          >
+            +{extra} {t("home.hero.more")}
+          </Link>
+        )}
+      </div>
+
+      <Link
+        href="/components"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-au-primary hover:gap-2 transition-all"
+      >
+        {t("home.hero.browseAll")}
+        <ArrowRight className="w-4 h-4" />
+      </Link>
     </div>
   );
 }
@@ -439,7 +482,7 @@ function InstallCard({ title, description, command, icon }: { title: string; des
   );
 }
 
-function CopyButton({ code }: { code: string }) {
+function CopyButton({ code, copyLabel, copiedLabel }: { code: string; copyLabel: string; copiedLabel: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -453,19 +496,9 @@ function CopyButton({ code }: { code: string }) {
   };
 
   return (
-    <button onClick={handleCopy} className="flex items-center gap-2 px-3 py-1 text-xs text-[#858585] hover:text-white hover:bg-[#3c3c3c] rounded transition-colors">
-      {copied ? <><Check className="w-3.5 h-3.5 text-green-500" /> Copied!</> : <><Copy className="w-3.5 h-3.5" /> Copy</>}
+    <button onClick={handleCopy} className="flex items-center gap-2 px-3 py-1 text-xs text-au-muted-foreground hover:text-au-foreground hover:bg-au-accent rounded transition-colors">
+      {copied ? <><Check className="w-3.5 h-3.5 text-au-primary" /> {copiedLabel}</> : <><Copy className="w-3.5 h-3.5" /> {copyLabel}</>}
     </button>
-  );
-}
-
-function Download(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" x2="12" y1="15" y2="3" />
-    </svg>
   );
 }
 

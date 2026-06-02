@@ -13,6 +13,14 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   return (
     <div className="layout-wrapper">
+      {/* Skip to content link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-au-primary focus:text-au-primary-foreground focus:rounded-md focus:text-sm focus:font-medium"
+      >
+        Skip to content
+      </a>
+
       {/* Mobile Header */}
       <MobileHeader onMenuToggle={toggleSidebar} isOpen={sidebarOpen} />
 
@@ -36,7 +44,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       )}
 
       {/* Main Content */}
-      <main className="main-content pb-12">
+      <main id="main-content" className="main-content pb-12" tabIndex={-1}>
         {children}
       </main>
 

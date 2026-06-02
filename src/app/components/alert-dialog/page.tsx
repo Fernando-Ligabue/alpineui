@@ -9,7 +9,7 @@ function AlertDialog({ open, onOpenChange, children }: { open: boolean; onOpenCh
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="fixed inset-0 bg-black/50" onClick={() => onOpenChange(false)} />
-      <div className="relative z-50 w-full max-w-md rounded-lg border border-gray-200 bg-white p-6 shadow-lg">
+      <div className="relative z-50 w-full max-w-md rounded-lg border border-au-border bg-au-background p-6 shadow-lg">
         {children}
       </div>
     </div>
@@ -20,17 +20,17 @@ function AlertDialogDemo() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:opacity-90">
+      <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg bg-au-primary px-4 py-2 text-sm font-medium text-au-primary-foreground hover:opacity-90">
         Show Dialog
       </button>
       <AlertDialog open={open} onOpenChange={setOpen}>
         <div className="flex flex-col gap-1.5 text-center sm:text-left mb-4">
           <h3 className="text-lg font-semibold">Are you absolutely sure?</h3>
-          <p className="text-sm text-gray-500">This action cannot be undone. This will permanently delete your account from our servers.</p>
+          <p className="text-sm text-au-muted-foreground">This action cannot be undone. This will permanently delete your account from our servers.</p>
         </div>
         <div className="flex flex-col-reverse sm:flex-row justify-end gap-2 mt-6">
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-gray-900 text-white hover:bg-gray-800">Continue</button>
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50">Cancel</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-au-primary text-au-primary-foreground hover:opacity-90">Continue</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Cancel</button>
         </div>
       </AlertDialog>
     </>
@@ -41,18 +41,18 @@ function AlertDialogWithMediaDemo() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700">
+      <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-au-destructive text-au-primary-foreground hover:bg-au-destructive">
         Delete Chat
       </button>
       <AlertDialog open={open} onOpenChange={setOpen}>
         <div className="flex flex-col gap-1.5 text-center sm:text-left mb-4">
-          <AlertTriangle className="h-8 w-8 text-red-600 mx-auto sm:mx-0" />
+          <AlertTriangle className="h-8 w-8 text-au-destructive mx-auto sm:mx-0" />
           <h3 className="text-lg font-semibold">Delete Chat</h3>
-          <p className="text-sm text-gray-500">Are you sure you want to delete this conversation? This action cannot be undone.</p>
+          <p className="text-sm text-au-muted-foreground">Are you sure you want to delete this conversation? This action cannot be undone.</p>
         </div>
         <div className="flex flex-col-reverse sm:flex-row justify-end gap-2 mt-6">
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700">Delete</button>
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50">Cancel</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-au-destructive text-au-primary-foreground hover:bg-au-destructive">Delete</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Cancel</button>
         </div>
       </AlertDialog>
     </>
@@ -62,13 +62,13 @@ function AlertDialogWithMediaDemo() {
 export default function AlertDialogPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Alert Dialog</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Alert Dialog</h1>
+      <p className="text-au-muted-foreground mb-8">
         A modal dialog that interrupts the user with important content and expects a response.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Basic Example</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic Example</h2>
         <DemoBlock
           preview={<AlertDialogDemo />}
           code={`<div x-data="{ open: false }">
@@ -101,7 +101,7 @@ export default function AlertDialogPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">With Media Icon</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Media Icon</h2>
         <DemoBlock
           preview={<AlertDialogWithMediaDemo />}
           code={`<div x-data="{ open: false }">

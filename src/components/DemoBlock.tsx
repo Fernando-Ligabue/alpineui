@@ -50,8 +50,8 @@ export default function DemoBlock({ preview, code, title }: DemoBlockProps) {
         >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-green-600" />
-              <span className="text-green-600">Copied!</span>
+              <Check className="w-3.5 h-3.5 text-au-primary" />
+              <span className="text-au-primary">Copied!</span>
             </>
           ) : (
             <>

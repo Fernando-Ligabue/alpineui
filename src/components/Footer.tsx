@@ -1,6 +1,11 @@
+"use client";
+
 import { Github } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function Footer() {
+  const { t } = useI18n();
+
   return (
     <footer className="footer-desktop border-t border-au-border bg-au-secondary py-6 px-8">
       <div className="max-w-4xl flex items-center justify-between">
@@ -15,10 +20,10 @@ export default function Footer() {
             GitHub
           </a>
           <span className="text-au-border">|</span>
-          <span>MIT License</span>
+          <span>{t("footer.license")}</span>
         </div>
         <div className="flex items-center gap-1.5 text-sm text-au-muted-foreground">
-          <span>Made by <a href="https://fernandodornelles.netlify.app" target="_blank" >FDWeb Developer</a></span>
+          <span>{t("footer.madeBy")} <a href="https://fernandodornelles.netlify.app" target="_blank" className="hover:text-au-foreground transition-colors">FDWeb Developer</a></span>
         </div>
       </div>
     </footer>

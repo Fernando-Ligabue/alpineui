@@ -14,19 +14,19 @@ function InteractiveAccordionDefault() {
   ];
 
   return (
-    <div className="divide-y divide-gray-200 border border-gray-200 rounded-lg w-full max-w-md">
+    <div className="divide-y divide-au-border border border-au-border rounded-lg w-full max-w-md">
       {items.map((item) => (
         <div key={item.id} className="[&:first-child>div]:rounded-t-lg [&:last-child>div]:rounded-b-lg">
           <button
-            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-au-foreground hover:bg-au-accent transition-colors"
             onClick={() => setOpenItem(openItem === item.id ? null : item.id)}
             data-state={openItem === item.id ? "open" : undefined}
           >
             {item.title}
-            <ChevronDown className={`w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200 ${openItem === item.id ? "rotate-180" : ""}`} />
+            <ChevronDown className={`w-4 h-4 shrink-0 text-au-muted-foreground transition-transform duration-200 ${openItem === item.id ? "rotate-180" : ""}`} />
           </button>
           {openItem === item.id && (
-            <div className="px-4 pb-4 text-sm text-gray-500">
+            <div className="px-4 pb-4 text-sm text-au-muted-foreground">
               {item.content}
             </div>
           )}
@@ -50,15 +50,15 @@ function InteractiveAccordionGhost() {
       {items.map((item) => (
         <div key={item.id}>
           <button
-            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors rounded-lg"
+            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-au-foreground hover:bg-au-accent transition-colors rounded-lg"
             onClick={() => setOpenItem(openItem === item.id ? null : item.id)}
             data-state={openItem === item.id ? "open" : undefined}
           >
             {item.title}
-            <ChevronDown className={`w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200 ${openItem === item.id ? "rotate-180" : ""}`} />
+            <ChevronDown className={`w-4 h-4 shrink-0 text-au-muted-foreground transition-transform duration-200 ${openItem === item.id ? "rotate-180" : ""}`} />
           </button>
           {openItem === item.id && (
-            <div className="px-4 pb-4 text-sm text-gray-500">
+            <div className="px-4 pb-4 text-sm text-au-muted-foreground">
               {item.content}
             </div>
           )}
@@ -86,17 +86,17 @@ function InteractiveAccordionMultiple() {
   return (
     <div className="w-full max-w-md space-y-2">
       {items.map((item) => (
-        <div key={item.id} className="border border-gray-200 rounded-lg overflow-hidden">
+        <div key={item.id} className="border border-au-border rounded-lg overflow-hidden">
           <button
-            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-au-foreground hover:bg-au-accent transition-colors"
             onClick={() => toggleItem(item.id)}
             data-state={openItems.includes(item.id) ? "open" : undefined}
           >
             {item.title}
-            <ChevronDown className={`w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200 ${openItems.includes(item.id) ? "rotate-180" : ""}`} />
+            <ChevronDown className={`w-4 h-4 shrink-0 text-au-muted-foreground transition-transform duration-200 ${openItems.includes(item.id) ? "rotate-180" : ""}`} />
           </button>
           {openItems.includes(item.id) && (
-            <div className="px-4 pb-4 text-sm text-gray-500 border-t border-gray-200">
+            <div className="px-4 pb-4 text-sm text-au-muted-foreground border-t border-au-border">
               {item.content}
             </div>
           )}
@@ -109,13 +109,13 @@ function InteractiveAccordionMultiple() {
 export default function AccordionPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Accordion</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Accordion</h1>
+      <p className="text-au-muted-foreground mb-8">
         An expandable content component for showing and hiding sections.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveAccordionDefault />}
           code={`<div x-data="{ open: 'faq-1' }" class="divide-y divide-gray-200 border border-gray-200 rounded-lg">
@@ -160,20 +160,20 @@ export default function AccordionPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
         <DemoBlock
           preview={
             <div className="space-y-8 w-full max-w-md">
               <div>
-                <h4 className="text-sm font-medium mb-2 text-gray-500">Default</h4>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Default</h3>
                 <InteractiveAccordionDefault />
               </div>
               <div>
-                <h4 className="text-sm font-medium mb-2 text-gray-500">Ghost</h4>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Ghost</h3>
                 <InteractiveAccordionGhost />
               </div>
               <div>
-                <h4 className="text-sm font-medium mb-2 text-gray-500">Bordered (Multi-select)</h4>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Bordered (Multi-select)</h3>
                 <InteractiveAccordionMultiple />
               </div>
             </div>
@@ -196,39 +196,39 @@ export default function AccordionPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="space-y-6 w-full max-w-md">
-              <div className="border border-gray-200 rounded-lg overflow-hidden">
+              <div className="border border-au-border rounded-lg overflow-hidden">
                 <div>
-                  <button className="flex w-full items-center justify-between px-3 py-2 text-xs font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors" data-state="open">
+                  <button className="flex w-full items-center justify-between px-3 py-2 text-xs font-medium text-left text-au-foreground hover:bg-au-accent transition-colors" data-state="open">
                     Small
-                    <ChevronDown className="w-3 h-3 shrink-0 text-gray-500 transition-transform duration-200" />
+                    <ChevronDown className="w-3 h-3 shrink-0 text-au-muted-foreground transition-transform duration-200" />
                   </button>
-                  <div className="px-3 pb-2 text-xs text-gray-500">
+                  <div className="px-3 pb-2 text-xs text-au-muted-foreground">
                     Small accordion item.
                   </div>
                 </div>
               </div>
-              <div className="border border-gray-200 rounded-lg overflow-hidden">
+              <div className="border border-au-border rounded-lg overflow-hidden">
                 <div>
-                  <button className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors" data-state="open">
+                  <button className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-au-foreground hover:bg-au-accent transition-colors" data-state="open">
                     Medium
-                    <ChevronDown className="w-4 h-4 shrink-0 text-gray-500 transition-transform duration-200" />
+                    <ChevronDown className="w-4 h-4 shrink-0 text-au-muted-foreground transition-transform duration-200" />
                   </button>
-                  <div className="px-4 pb-4 text-sm text-gray-500">
+                  <div className="px-4 pb-4 text-sm text-au-muted-foreground">
                     Medium accordion item.
                   </div>
                 </div>
               </div>
-              <div className="border border-gray-200 rounded-lg overflow-hidden">
+              <div className="border border-au-border rounded-lg overflow-hidden">
                 <div>
-                  <button className="flex w-full items-center justify-between px-5 py-5 text-base font-medium text-left text-gray-900 hover:bg-gray-50 transition-colors" data-state="open">
+                  <button className="flex w-full items-center justify-between px-5 py-5 text-base font-medium text-left text-au-foreground hover:bg-au-accent transition-colors" data-state="open">
                     Large
-                    <ChevronDown className="w-5 h-5 shrink-0 text-gray-500 transition-transform duration-200" />
+                    <ChevronDown className="w-5 h-5 shrink-0 text-au-muted-foreground transition-transform duration-200" />
                   </button>
-                  <div className="px-5 pb-5 text-base text-gray-500">
+                  <div className="px-5 pb-5 text-base text-au-muted-foreground">
                     Large accordion item.
                   </div>
                 </div>
@@ -238,7 +238,7 @@ export default function AccordionPage() {
           code={`<!-- Small -->
 <div class="border border-gray-200 rounded-lg overflow-hidden">
   <button class="flex w-full items-center justify-between px-3 py-2 text-xs font-medium ...">Small</button>
-  <div class="px-3 pb-2 text-xs text-gray-500">...</div>
+  <div class="px-3 pb-2 text-xs text-au-muted-foreground">...</div>
 </div>
 
 <!-- Medium -->

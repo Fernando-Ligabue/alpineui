@@ -15,7 +15,7 @@ function TooltipWrapper({ children, content, position = "top" }: { children: Rea
       <div className="inline-flex items-center">
         {children}
       </div>
-      <div className={`absolute z-50 px-3 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md shadow-sm pointer-events-none whitespace-nowrap invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-150 ${positionClasses[position] || positionClasses.top}`}>
+      <div className={`absolute z-50 px-3 py-1.5 text-xs font-medium text-au-primary-foreground bg-au-primary rounded-md shadow-sm pointer-events-none whitespace-nowrap invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-150 ${positionClasses[position] || positionClasses.top}`}>
         {content}
       </div>
     </div>
@@ -26,16 +26,16 @@ function InteractiveTooltip() {
   return (
     <div className="flex flex-wrap gap-6 justify-center py-4">
       <TooltipWrapper content="Tooltip on top" position="top">
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Top</button>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-au-primary text-au-primary-foreground hover:bg-au-primary">Top</button>
       </TooltipWrapper>
       <TooltipWrapper content="Tooltip on bottom" position="bottom">
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Bottom</button>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-au-primary text-au-primary-foreground hover:bg-au-primary">Bottom</button>
       </TooltipWrapper>
       <TooltipWrapper content="Tooltip on left" position="left">
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Left</button>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-au-primary text-au-primary-foreground hover:bg-au-primary">Left</button>
       </TooltipWrapper>
       <TooltipWrapper content="Tooltip on right" position="right">
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Right</button>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-au-primary text-au-primary-foreground hover:bg-au-primary">Right</button>
       </TooltipWrapper>
     </div>
   );
@@ -44,18 +44,18 @@ function InteractiveTooltip() {
 export default function TooltipPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Tooltip</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Tooltip</h1>
+      <p className="text-au-muted-foreground mb-8">
         A contextual tooltip for displaying additional information on hover.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={
             <div className="py-4">
               <TooltipWrapper content="This is a tooltip!" position="top">
-                <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800">Hover me</button>
+                <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-au-primary text-au-primary-foreground hover:bg-au-primary">Hover me</button>
               </TooltipWrapper>
             </div>
           }
@@ -69,7 +69,7 @@ export default function TooltipPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Positions</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Positions</h2>
         <DemoBlock
           preview={<InteractiveTooltip />}
           code={`<!-- Top -->

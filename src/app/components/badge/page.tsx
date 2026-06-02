@@ -3,22 +3,22 @@ import DemoBlock from "@/components/DemoBlock";
 export default function BadgePage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Badge</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Badge</h1>
+      <p className="text-au-muted-foreground mb-8">
         A small status indicator or label component.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap gap-3 items-center justify-center">
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-900">Default</span>
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-600">Secondary</span>
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-au-secondary text-au-foreground">Default</span>
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-au-secondary text-au-muted-foreground">Secondary</span>
               <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-700">Destructive</span>
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-gray-300 text-gray-900">Outline</span>
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-gray-900">Ghost</span>
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-gray-900 underline">Link</span>
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-au-border text-au-foreground">Outline</span>
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-au-foreground">Ghost</span>
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-au-foreground underline">Link</span>
             </div>
           }
           code={`<span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-900">Default</span>
@@ -31,13 +31,13 @@ export default function BadgePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap gap-3 items-center justify-center">
-              <span className="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-900">Small</span>
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-900">Default</span>
-              <span className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-gray-100 text-gray-900">Large</span>
+              <span className="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium bg-au-secondary text-au-foreground">Small</span>
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-au-secondary text-au-foreground">Default</span>
+              <span className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-au-secondary text-au-foreground">Large</span>
             </div>
           }
           code={`<span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-900">Small</span>
@@ -47,12 +47,12 @@ export default function BadgePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">With Status Dot</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Status Dot</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap gap-3 items-center justify-center">
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-900"><span className="w-1.5 h-1.5 rounded-full bg-current mr-1" />Online</span>
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-600"><span className="w-1.5 h-1.5 rounded-full bg-current mr-1" />Away</span>
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-au-secondary text-au-foreground"><span className="w-1.5 h-1.5 rounded-full bg-current mr-1" />Online</span>
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-au-secondary text-au-muted-foreground"><span className="w-1.5 h-1.5 rounded-full bg-current mr-1" />Away</span>
               <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-700"><span className="w-1.5 h-1.5 rounded-full bg-current mr-1" />Offline</span>
             </div>
           }
@@ -63,7 +63,7 @@ export default function BadgePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Usage Examples</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Usage Examples</h2>
         <DemoBlock
           preview={
             <div className="flex flex-col gap-4 w-full max-w-sm">
@@ -71,17 +71,17 @@ export default function BadgePage() {
                 <img src="https://i.pravatar.cc/40?img=1" alt="User" className="w-10 h-10 rounded-full" />
                 <div className="flex-1">
                   <p className="font-medium">John Smith</p>
-                  <p className="text-sm text-gray-500">john@example.com</p>
+                  <p className="text-sm text-au-muted-foreground">john@example.com</p>
                 </div>
-                <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-600">Pro</span>
+                <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-au-secondary text-au-muted-foreground">Pro</span>
               </div>
               <div className="flex items-center gap-3">
                 <img src="https://i.pravatar.cc/40?img=2" alt="User" className="w-10 h-10 rounded-full" />
                 <div className="flex-1">
                   <p className="font-medium">Jane Doe</p>
-                  <p className="text-sm text-gray-500">jane@example.com</p>
+                  <p className="text-sm text-au-muted-foreground">jane@example.com</p>
                 </div>
-                <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-gray-300 text-gray-900">Free</span>
+                <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-au-border text-au-foreground">Free</span>
               </div>
             </div>
           }

@@ -40,3 +40,7 @@ coverage/
 # Turbopack
 .turbopack/
 .turbo/
+
+.playwright-mcp/
+/docs/
+AGENTS.md

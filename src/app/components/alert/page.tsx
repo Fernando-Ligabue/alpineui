@@ -6,7 +6,7 @@ import DemoBlock from "@/components/DemoBlock";
 
 function InteractiveAlertDefault() {
   return (
-    <div className="flex items-start gap-3 p-4 rounded-lg border bg-gray-100 border-gray-200 text-gray-900">
+    <div className="flex items-start gap-3 p-4 rounded-lg border bg-au-secondary border-au-border text-au-foreground">
       <Info className="w-5 h-5 shrink-0 mt-0.5" />
       <div className="flex-1 min-w-0">
         <p className="font-semibold text-sm mb-1">Default Alert</p>
@@ -114,13 +114,13 @@ function InteractiveAlertSizes() {
 export default function AlertPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Alert</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Alert</h1>
+      <p className="text-au-muted-foreground mb-8">
         A component to display important messages or notifications to users.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
         <DemoBlock
           preview={
             <div className="space-y-4">
@@ -147,7 +147,7 @@ export default function AlertPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Dismissible</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Dismissible</h2>
         <DemoBlock
           preview={<InteractiveAlertDismissible />}
           code={`<div x-data="{ visible: true }" x-show="visible"
@@ -170,7 +170,7 @@ export default function AlertPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
         <DemoBlock
           preview={<InteractiveAlertSizes />}
           code={`<div class="flex items-start gap-2 p-2 rounded-lg border bg-blue-50 border-blue-500 text-blue-800">...</div>

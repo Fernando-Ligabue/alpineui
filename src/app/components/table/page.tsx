@@ -77,29 +77,29 @@ function InteractiveTable() {
   const getSortIcon = (column: string) => {
     if (sortColumn !== column) return <ArrowUpDown className="w-4 h-4 opacity-30" />;
     return sortDirection === "asc"
-      ? <ArrowUp className="w-4 h-4 text-gray-900" />
-      : <ArrowDown className="w-4 h-4 text-gray-900" />;
+      ? <ArrowUp className="w-4 h-4 text-au-foreground" />
+      : <ArrowDown className="w-4 h-4 text-au-foreground" />;
   };
 
   const getStatusClass = (status: string) => {
     switch (status) {
-      case "Active": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-900 text-white";
-      case "Inactive": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-gray-300 text-gray-700";
-      case "Pending": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700";
-      default: return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-gray-300 text-gray-700";
+      case "Active": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-au-primary text-au-primary-foreground";
+      case "Inactive": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-au-border text-au-foreground";
+      case "Pending": return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-au-secondary text-au-foreground";
+      default: return "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border border-au-border text-au-foreground";
     }
   };
 
   return (
     <div className="space-y-4 w-full">
-      <div className="overflow-x-auto border border-gray-200 rounded-lg bg-white">
+      <div className="overflow-x-auto border border-au-border rounded-lg bg-au-background">
         <table className="w-full caption-bottom text-sm">
-          <thead className="border-b border-gray-200 bg-gray-50">
+          <thead className="border-b border-au-border bg-au-accent">
             <tr>
-              <th className="h-12 px-4 text-left align-middle font-medium text-gray-500 w-10">
+              <th className="h-12 px-4 text-left align-middle font-medium text-au-muted-foreground w-10">
                 <input
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                  className="h-4 w-4 rounded border-au-border text-au-foreground focus:ring-au-ring"
                   checked={selectedRows.size === paginatedData.length && paginatedData.length > 0}
                   ref={(el) => {
                     if (el) el.indeterminate = selectedRows.size > 0 && selectedRows.size < paginatedData.length;
@@ -108,7 +108,7 @@ function InteractiveTable() {
                 />
               </th>
               <th
-                className="h-12 px-4 text-left align-middle font-medium text-gray-500 cursor-pointer hover:bg-gray-100 transition-colors"
+                className="h-12 px-4 text-left align-middle font-medium text-au-muted-foreground cursor-pointer hover:bg-au-accent transition-colors"
                 onClick={() => handleSort("name")}
               >
                 <div className="flex items-center gap-1">
@@ -116,7 +116,7 @@ function InteractiveTable() {
                 </div>
               </th>
               <th
-                className="h-12 px-4 text-left align-middle font-medium text-gray-500 cursor-pointer hover:bg-gray-100 transition-colors"
+                className="h-12 px-4 text-left align-middle font-medium text-au-muted-foreground cursor-pointer hover:bg-au-accent transition-colors"
                 onClick={() => handleSort("email")}
               >
                 <div className="flex items-center gap-1">
@@ -124,7 +124,7 @@ function InteractiveTable() {
                 </div>
               </th>
               <th
-                className="h-12 px-4 text-left align-middle font-medium text-gray-500 cursor-pointer hover:bg-gray-100 transition-colors"
+                className="h-12 px-4 text-left align-middle font-medium text-au-muted-foreground cursor-pointer hover:bg-au-accent transition-colors"
                 onClick={() => handleSort("role")}
               >
                 <div className="flex items-center gap-1">
@@ -132,7 +132,7 @@ function InteractiveTable() {
                 </div>
               </th>
               <th
-                className="h-12 px-4 text-left align-middle font-medium text-gray-500 cursor-pointer hover:bg-gray-100 transition-colors"
+                className="h-12 px-4 text-left align-middle font-medium text-au-muted-foreground cursor-pointer hover:bg-au-accent transition-colors"
                 onClick={() => handleSort("status")}
               >
                 <div className="flex items-center gap-1">
@@ -145,12 +145,12 @@ function InteractiveTable() {
             {paginatedData.map((user) => (
               <tr
                 key={user.id}
-                className={`border-b border-gray-200 transition-colors hover:bg-gray-50 ${selectedRows.has(user.id) ? "bg-gray-100" : ""}`}
+                className={`border-b border-au-border transition-colors hover:bg-au-accent ${selectedRows.has(user.id) ? "bg-au-secondary" : ""}`}
               >
                 <td className="p-4 align-middle w-10">
                   <input
                     type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                    className="h-4 w-4 rounded border-au-border text-au-foreground focus:ring-au-ring"
                     checked={selectedRows.has(user.id)}
                     onChange={() => toggleRowSelection(user.id)}
                   />
@@ -169,14 +169,14 @@ function InteractiveTable() {
         </table>
       </div>
 
-      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-gray-50">
+      <div className="flex items-center justify-between p-3 border border-au-border rounded-lg bg-au-accent">
         <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-au-muted-foreground">
             {selectedRows.size} of {data.length} selected
           </span>
           {selectedRows.size > 0 && (
             <button
-              className="text-sm text-gray-900 hover:underline"
+              className="text-sm text-au-foreground hover:underline"
               onClick={() => setSelectedRows(new Set())}
             >
               Clear selection
@@ -184,33 +184,33 @@ function InteractiveTable() {
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-au-muted-foreground">
             Page {currentPage} of {totalPages}
           </span>
           <div className="flex gap-1">
             <button
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-au-border bg-au-background text-au-foreground hover:bg-au-accent h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
             >
               <ChevronsLeftRight className="w-4 h-4 rotate-180" />
             </button>
             <button
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-au-border bg-au-background text-au-foreground hover:bg-au-accent h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-au-border bg-au-background text-au-foreground hover:bg-au-accent h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
             >
               <ChevronRight className="w-4 h-4" />
             </button>
             <button
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-au-border bg-au-background text-au-foreground hover:bg-au-accent h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}
             >
@@ -226,13 +226,13 @@ function InteractiveTable() {
 export default function TablePage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Table</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Table</h1>
+      <p className="text-au-muted-foreground mb-8">
         A data table component with sorting, pagination, and row selection.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock preview={<InteractiveTable />} code={`<div class="overflow-x-auto border border-gray-200 rounded-lg bg-white">
   <table class="w-full caption-bottom text-sm">
     <thead class="border-b border-gray-200 bg-gray-50">
@@ -254,8 +254,8 @@ export default function TablePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Features</h2>
-        <ul className="list-disc list-inside space-y-2 text-gray-500">
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Features</h2>
+        <ul className="list-disc list-inside space-y-2 text-au-muted-foreground">
           <li>Column sorting (click headers to sort)</li>
           <li>Pagination with page navigation</li>
           <li>Row selection with checkboxes</li>

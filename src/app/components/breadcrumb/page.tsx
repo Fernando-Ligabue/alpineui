@@ -7,12 +7,12 @@ import DemoBlock from "@/components/DemoBlock";
 function BreadcrumbItem({ href, children, active = false }: { href?: string; children: React.ReactNode; active?: boolean }) {
   if (href) {
     return (
-      <Link href={href} className={`flex items-center gap-1 text-sm ${active ? "text-gray-900 font-medium" : "text-gray-500 hover:text-gray-900 transition-colors"}`}>
+      <Link href={href} className={`flex items-center gap-1 text-sm ${active ? "text-au-foreground font-medium" : "text-au-muted-foreground hover:text-au-foreground transition-colors"}`}>
         {children}
       </Link>
     );
   }
-  return <span className="flex items-center gap-1 text-sm text-gray-500">{children}</span>;
+  return <span className="flex items-center gap-1 text-sm text-au-muted-foreground">{children}</span>;
 }
 
 function InteractiveBreadcrumb() {
@@ -24,11 +24,11 @@ function InteractiveBreadcrumb() {
             <Home className="w-4 h-4" />
           </BreadcrumbItem>
         </li>
-        <li className="text-gray-400 mx-1"><ChevronRight className="w-4 h-4" /></li>
+        <li className="text-au-muted-foreground mx-1"><ChevronRight className="w-4 h-4" /></li>
         <li>
           <BreadcrumbItem href="/components">Components</BreadcrumbItem>
         </li>
-        <li className="text-gray-400 mx-1"><ChevronRight className="w-4 h-4" /></li>
+        <li className="text-au-muted-foreground mx-1"><ChevronRight className="w-4 h-4" /></li>
         <li>
           <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
         </li>
@@ -40,13 +40,13 @@ function InteractiveBreadcrumb() {
 export default function BreadcrumbPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Breadcrumb</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Breadcrumb</h1>
+      <p className="text-au-muted-foreground mb-8">
         A navigation component that shows the user&rsquo;s location in the application.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveBreadcrumb />}
           code={`<nav aria-label="Breadcrumb">

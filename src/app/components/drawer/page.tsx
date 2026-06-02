@@ -17,10 +17,10 @@ function DrawerContent({ open, onClose, direction, children }: { open: boolean; 
   if (!open) return null;
 
   const positionClasses: Record<string, string> = {
-    bottom: "bottom-0 left-0 right-0 mt-24 rounded-t-lg border border-gray-200 bg-white max-h-[80vh]",
-    top: "top-0 left-0 right-0 mb-24 rounded-b-lg border border-gray-200 bg-white max-h-[80vh]",
-    left: "left-0 top-0 bottom-0 border-r border-gray-200 bg-white w-[75%] sm:max-w-96",
-    right: "right-0 top-0 bottom-0 border-l border-gray-200 bg-white w-[75%] sm:max-w-96",
+    bottom: "bottom-0 left-0 right-0 mt-24 rounded-t-lg border border-au-border bg-au-background max-h-[80vh]",
+    top: "top-0 left-0 right-0 mb-24 rounded-b-lg border border-au-border bg-au-background max-h-[80vh]",
+    left: "left-0 top-0 bottom-0 border-r border-au-border bg-au-background w-[75%] sm:max-w-96",
+    right: "right-0 top-0 bottom-0 border-l border-au-border bg-au-background w-[75%] sm:max-w-96",
   };
 
   return (
@@ -28,8 +28,8 @@ function DrawerContent({ open, onClose, direction, children }: { open: boolean; 
       <div className="fixed inset-0 z-40 bg-black/50" onClick={onClose} />
       <div className={`fixed z-50 flex flex-col ${positionClasses[direction]}`}>
         <div className="flex justify-end p-2">
-          <button onClick={onClose}>
-            <X className="h-4 w-4 text-gray-500" />
+          <button aria-label="Close" onClick={onClose}>
+            <X className="h-4 w-4 text-au-muted-foreground" />
           </button>
         </div>
         {children}
@@ -42,20 +42,20 @@ function DrawerDemo() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:opacity-90">
+      <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg bg-au-primary px-4 py-2 text-sm font-medium text-au-primary-foreground hover:opacity-90">
         Open Drawer
       </button>
       <DrawerContent open={open} onClose={() => setOpen(false)} direction="bottom">
         <div className="flex flex-col gap-1.5 p-4 text-center sm:text-left">
           <h3 className="text-lg font-semibold leading-none tracking-tight">Are you absolutely sure?</h3>
-          <p className="text-sm text-gray-500">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
+          <p className="text-sm text-au-muted-foreground">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
         </div>
         <div className="px-4 py-2">
-          <p className="text-sm text-gray-900">Are you sure you want to continue? Once you delete your account, there will be no way to recover it.</p>
+          <p className="text-sm text-au-foreground">Are you sure you want to continue? Once you delete your account, there will be no way to recover it.</p>
         </div>
         <div className="flex flex-col gap-2 p-4 mt-auto">
           <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-gray-900 text-white hover:bg-gray-800">Continue</button>
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50">Cancel</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Cancel</button>
         </div>
       </DrawerContent>
     </>
@@ -68,22 +68,22 @@ function DrawerDirectionsDemo() {
 
   return (
     <div className="flex flex-wrap gap-4 justify-center">
-      <button onClick={() => { setDirection("top"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50">Top</button>
-      <button onClick={() => { setDirection("bottom"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50">Bottom</button>
-      <button onClick={() => { setDirection("left"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50">Left</button>
-      <button onClick={() => { setDirection("right"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50">Right</button>
+      <button onClick={() => { setDirection("top"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Top</button>
+      <button onClick={() => { setDirection("bottom"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Bottom</button>
+      <button onClick={() => { setDirection("left"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Left</button>
+      <button onClick={() => { setDirection("right"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Right</button>
 
       <DrawerContent open={open} onClose={() => setOpen(false)} direction={direction}>
         <div className="flex flex-col gap-1.5 p-4 text-center sm:text-left">
           <h3 className="text-lg font-semibold leading-none tracking-tight capitalize">{direction} Drawer</h3>
-          <p className="text-sm text-gray-500">Drawer sliding from {direction}</p>
+          <p className="text-sm text-au-muted-foreground">Drawer sliding from {direction}</p>
         </div>
         <div className="px-4">
-          <p className="text-sm text-gray-900">This is a drawer that slides from the {direction} side of the screen.</p>
+          <p className="text-sm text-au-foreground">This is a drawer that slides from the {direction} side of the screen.</p>
         </div>
         <div className="flex flex-col gap-2 p-4 mt-auto">
           <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-gray-900 text-white hover:bg-gray-800">Confirm</button>
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50">Cancel</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Cancel</button>
         </div>
       </DrawerContent>
     </div>
@@ -93,13 +93,13 @@ function DrawerDirectionsDemo() {
 export default function DrawerPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Drawer</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Drawer</h1>
+      <p className="text-au-muted-foreground mb-8">
         A drawer component for mobile-friendly slide-out panels.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Basic Example</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic Example</h2>
         <DemoBlock
           preview={<DrawerDemo />}
           code={`<div x-data="{ open: false }">
@@ -138,7 +138,7 @@ export default function DrawerPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Directions</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Directions</h2>
         <DemoBlock
           preview={<DrawerDirectionsDemo />}
           code={`<!-- Bottom -->
@@ -178,7 +178,7 @@ export default function DrawerPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Direction API</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Direction API</h2>
         <div className="border border-gray-200 rounded-lg overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-gray-100">

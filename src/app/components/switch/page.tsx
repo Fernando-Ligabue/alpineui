@@ -14,15 +14,15 @@ function InteractiveSwitchBasic() {
   return (
     <div className="flex items-center gap-4">
       <button
-        className="relative inline-flex items-center w-11 h-6 bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+        className="relative inline-flex items-center w-11 h-6 bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
         role="switch"
         aria-checked={ariaChecked}
         onClick={() => setChecked(!checked)}
         data-checked={checked ? "true" : "false"}
       >
-        <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
+        <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
       </button>
-      <span className="text-gray-900">{checked ? "On" : "Off"}</span>
+      <span className="text-au-foreground">{checked ? "On" : "Off"}</span>
     </div>
   );
 }
@@ -36,39 +36,39 @@ function InteractiveSwitchSizes() {
     <div className="flex items-center gap-8">
       <div className="flex flex-col items-center gap-3">
         <button
-          className="relative inline-flex items-center w-8 h-[18px] bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+          className="relative inline-flex items-center w-8 h-[18px] bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
           role="switch"
           aria-checked={checkedSm ? "true" : "false"}
           onClick={() => setCheckedSm(!checkedSm)}
           data-checked={checkedSm ? "true" : "false"}
         >
-          <div className="absolute top-0.5 left-0.5 w-[14px] h-[14px] bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-[14px] pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-[14px] h-[14px] bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-[14px] pointer-events-none" />
         </button>
-        <span className="text-xs text-gray-500">Small</span>
+        <span className="text-xs text-au-muted-foreground">Small</span>
       </div>
       <div className="flex flex-col items-center gap-3">
         <button
-          className="relative inline-flex items-center w-11 h-6 bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+          className="relative inline-flex items-center w-11 h-6 bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
           role="switch"
           aria-checked={checkedMd ? "true" : "false"}
           onClick={() => setCheckedMd(!checkedMd)}
           data-checked={checkedMd ? "true" : "false"}
         >
-          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
         </button>
-        <span className="text-xs text-gray-500">Medium (Default)</span>
+        <span className="text-xs text-au-muted-foreground">Medium (Default)</span>
       </div>
       <div className="flex flex-col items-center gap-3">
         <button
-          className="relative inline-flex items-center w-14 h-8 bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+          className="relative inline-flex items-center w-14 h-8 bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
           role="switch"
           aria-checked={checkedLg ? "true" : "false"}
           onClick={() => setCheckedLg(!checkedLg)}
           data-checked={checkedLg ? "true" : "false"}
         >
-          <div className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-6 pointer-events-none" />
+          <div className="absolute top-1 left-1 w-6 h-6 bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-6 pointer-events-none" />
         </button>
-        <span className="text-xs text-gray-500">Large</span>
+        <span className="text-xs text-au-muted-foreground">Large</span>
       </div>
     </div>
   );
@@ -81,49 +81,49 @@ function InteractiveSwitchStates() {
 
   return (
     <div className="w-full max-w-sm space-y-3">
-      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+      <div className="flex items-center justify-between p-3 border border-au-border rounded-lg">
         <div>
-          <p className="font-medium text-gray-900">Dark Mode</p>
-          <p className="text-sm text-gray-500">Enable dark theme</p>
+          <p className="font-medium text-au-foreground">Dark Mode</p>
+          <p className="text-sm text-au-muted-foreground">Enable dark theme</p>
         </div>
         <button
-          className="relative inline-flex items-center w-11 h-6 bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+          className="relative inline-flex items-center w-11 h-6 bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
           role="switch"
           aria-checked={darkMode ? "true" : "false"}
           onClick={() => setDarkMode(!darkMode)}
           data-checked={darkMode ? "true" : "false"}
         >
-          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
         </button>
       </div>
-      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+      <div className="flex items-center justify-between p-3 border border-au-border rounded-lg">
         <div>
-          <p className="font-medium text-gray-900">Push Notifications</p>
-          <p className="text-sm text-gray-500">Receive push alerts</p>
+          <p className="font-medium text-au-foreground">Push Notifications</p>
+          <p className="text-sm text-au-muted-foreground">Receive push alerts</p>
         </div>
         <button
-          className="relative inline-flex items-center w-11 h-6 bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+          className="relative inline-flex items-center w-11 h-6 bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
           role="switch"
           aria-checked={notifications ? "true" : "false"}
           onClick={() => setNotifications(!notifications)}
           data-checked={notifications ? "true" : "false"}
         >
-          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
         </button>
       </div>
-      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+      <div className="flex items-center justify-between p-3 border border-au-border rounded-lg">
         <div>
-          <p className="font-medium text-gray-900">Newsletter</p>
-          <p className="text-sm text-gray-500">Weekly email digest</p>
+          <p className="font-medium text-au-foreground">Newsletter</p>
+          <p className="text-sm text-au-muted-foreground">Weekly email digest</p>
         </div>
         <button
-          className="relative inline-flex items-center w-11 h-6 bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+          className="relative inline-flex items-center w-11 h-6 bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
           role="switch"
           aria-checked={newsletter ? "true" : "false"}
           onClick={() => setNewsletter(!newsletter)}
           data-checked={newsletter ? "true" : "false"}
         >
-          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
         </button>
       </div>
     </div>
@@ -138,49 +138,49 @@ function InteractiveSwitchDisabled() {
     <div className="flex items-center gap-8">
       <div className="flex flex-col items-center gap-3">
         <button
-          className="relative inline-flex items-center w-11 h-6 bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+          className="relative inline-flex items-center w-11 h-6 bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
           role="switch"
           aria-checked={enabled ? "true" : "false"}
           onClick={() => setEnabled(!enabled)}
           data-checked={enabled ? "true" : "false"}
         >
-          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
         </button>
-        <span className="text-xs text-gray-500">Enabled Off</span>
+        <span className="text-xs text-au-muted-foreground">Enabled Off</span>
       </div>
       <div className="flex flex-col items-center gap-3">
         <button
-          className="relative inline-flex items-center w-11 h-6 bg-gray-200 border border-gray-300 rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-black data-[checked=true]:border-black"
+          className="relative inline-flex items-center w-11 h-6 bg-au-secondary border border-au-border rounded-full cursor-pointer transition-colors duration-200 data-[checked=true]:bg-au-primary data-[checked=true]:border-au-primary"
           role="switch"
           aria-checked={enabledOn ? "true" : "false"}
           onClick={() => setEnabledOn(!enabledOn)}
           data-checked={enabledOn ? "true" : "false"}
         >
-          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-au-background rounded-full shadow-sm transition-transform duration-200 data-[checked=true]:translate-x-5 pointer-events-none" />
         </button>
-        <span className="text-xs text-gray-500">Enabled On</span>
+        <span className="text-xs text-au-muted-foreground">Enabled On</span>
       </div>
       <div className="flex flex-col items-center gap-3">
         <button
-          className="relative inline-flex items-center w-11 h-6 bg-gray-200 border border-gray-300 rounded-full opacity-50 cursor-not-allowed"
+          className="relative inline-flex items-center w-11 h-6 bg-au-secondary border border-au-border rounded-full opacity-50 cursor-not-allowed"
           role="switch"
           aria-checked="false"
           disabled
         >
-          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-au-background rounded-full shadow-sm pointer-events-none" />
         </button>
-        <span className="text-xs text-gray-500">Disabled Off</span>
+        <span className="text-xs text-au-muted-foreground">Disabled Off</span>
       </div>
       <div className="flex flex-col items-center gap-3">
         <button
-          className="relative inline-flex items-center w-11 h-6 bg-black border border-black rounded-full opacity-50 cursor-not-allowed"
+          className="relative inline-flex items-center w-11 h-6 bg-au-primary border border-au-primary rounded-full opacity-50 cursor-not-allowed"
           role="switch"
           aria-checked="true"
           disabled
         >
-          <div className="absolute top-0.5 left-0.5 w-5 h-5 translate-x-5 bg-white rounded-full shadow-sm pointer-events-none" />
+          <div className="absolute top-0.5 left-0.5 w-5 h-5 translate-x-5 bg-au-background rounded-full shadow-sm pointer-events-none" />
         </button>
-        <span className="text-xs text-gray-500">Disabled On</span>
+        <span className="text-xs text-au-muted-foreground">Disabled On</span>
       </div>
     </div>
   );
@@ -189,13 +189,13 @@ function InteractiveSwitchDisabled() {
 export default function SwitchPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Switch</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Switch</h1>
+      <p className="text-au-muted-foreground mb-8">
         A toggle switch component for binary on/off states. Unlike checkboxes, switches represent an immediate action or state change.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveSwitchBasic />}
           code={`<div x-data="{ checked: false }" class="flex items-center gap-4">
@@ -214,14 +214,14 @@ export default function SwitchPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
-        <p className="text-gray-500 mb-4">
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <p className="text-au-muted-foreground mb-4">
           Three sizes for different contexts:
         </p>
-        <ul className="text-sm text-gray-500 mb-4 space-y-1">
-          <li><strong className="text-gray-900">Small</strong> - Compact UI, tables, dense forms</li>
-          <li><strong className="text-gray-900">Medium (default)</strong> - General use, most common</li>
-          <li><strong className="text-gray-900">Large</strong> - Mobile/touch targets, emphasis</li>
+        <ul className="text-sm text-au-muted-foreground mb-4 space-y-1">
+          <li><strong className="text-au-foreground">Small</strong> - Compact UI, tables, dense forms</li>
+          <li><strong className="text-au-foreground">Medium (default)</strong> - General use, most common</li>
+          <li><strong className="text-au-foreground">Large</strong> - Mobile/touch targets, emphasis</li>
         </ul>
         <DemoBlock
           preview={<InteractiveSwitchSizes />}
@@ -246,8 +246,8 @@ export default function SwitchPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Settings</h2>
-        <p className="text-gray-500 mb-4">
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Settings</h2>
+        <p className="text-au-muted-foreground mb-4">
           Common use case: settings panels with immediate state feedback.
         </p>
         <DemoBlock
@@ -284,7 +284,7 @@ export default function SwitchPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">States</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
         <DemoBlock
           preview={<InteractiveSwitchDisabled />}
           code={`<!-- Enabled Off -->

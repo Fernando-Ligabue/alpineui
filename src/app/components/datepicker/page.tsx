@@ -58,7 +58,7 @@ function InteractiveDatepicker() {
   return (
     <div className="relative inline-block w-full max-w-sm" ref={ref}>
       <button
-        className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring"
         onClick={() => setIsOpen(!isOpen)}
         data-placeholder={!selectedDate ? "true" : undefined}
       >
@@ -66,10 +66,10 @@ function InteractiveDatepicker() {
         <CalendarIcon className="w-4 h-4" />
       </button>
       {isOpen && (
-        <div className="absolute z-50 mt-1 w-72 rounded-md border border-gray-200 bg-white p-3 shadow-md" data-state="open">
+        <div className="absolute z-50 mt-1 w-72 rounded-md border border-au-border bg-au-background p-3 shadow-md" data-state="open">
           <div className="flex items-center justify-between mb-2">
             <button
-              className="inline-flex items-center justify-center rounded-md p-1 hover:bg-gray-100"
+              className="inline-flex items-center justify-center rounded-md p-1 hover:bg-au-accent"
               onClick={() => setCurrentDate(new Date(year, month - 1, 1))}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -78,7 +78,7 @@ function InteractiveDatepicker() {
               {MONTHS[month]} {year}
             </span>
             <button
-              className="inline-flex items-center justify-center rounded-md p-1 hover:bg-gray-100"
+              className="inline-flex items-center justify-center rounded-md p-1 hover:bg-au-accent"
               onClick={() => setCurrentDate(new Date(year, month + 1, 1))}
             >
               <ChevronRight className="w-4 h-4" />
@@ -86,7 +86,7 @@ function InteractiveDatepicker() {
           </div>
           <div className="grid grid-cols-7 gap-1 mb-1">
             {WEEKDAYS.map((day) => (
-              <div key={day} className="inline-flex items-center justify-center w-8 h-8 text-xs text-gray-500">{day}</div>
+              <div key={day} className="inline-flex items-center justify-center w-8 h-8 text-xs text-au-muted-foreground">{day}</div>
             ))}
           </div>
           <div className="grid grid-cols-7 gap-1">
@@ -97,12 +97,12 @@ function InteractiveDatepicker() {
               return (
                 <button
                   key={i}
-                  className={`inline-flex items-center justify-center rounded-md w-8 h-8 text-sm hover:bg-gray-100 ${
-                    isSelected ? "bg-black text-white hover:bg-black" : ""
+                  className={`inline-flex items-center justify-center rounded-md w-8 h-8 text-sm hover:bg-au-accent ${
+                    isSelected ? "bg-au-primary text-au-primary-foreground hover:bg-au-primary" : ""
                   } ${
-                    isToday ? "border border-gray-300" : ""
+                    isToday ? "border border-au-border" : ""
                   } ${
-                    d.otherMonth ? "text-gray-400" : ""
+                    d.otherMonth ? "text-au-muted-foreground" : ""
                   }`}
                   onClick={() => {
                     setSelectedDate(date);
@@ -124,13 +124,13 @@ function InteractiveDatepicker() {
 export default function DatepickerPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">DatePicker</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">DatePicker</h1>
+      <p className="text-au-muted-foreground mb-8">
         A date selection component with calendar view.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveDatepicker />}
           code={`<div x-data="{ open: false, selected: null, month: new Date().getMonth(), year: new Date().getFullYear() }"
@@ -160,7 +160,7 @@ export default function DatepickerPage() {
     </div>
     <div class="grid grid-cols-7 gap-1 mb-1">
       <template x-for="day in ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']" :key="day">
-        <div class="inline-flex items-center justify-center w-8 h-8 text-xs text-gray-500" x-text="day"></div>
+        <div class="inline-flex items-center justify-center w-8 h-8 text-xs text-au-muted-foreground" x-text="day"></div>
       </template>
     </div>
     <div class="grid grid-cols-7 gap-1">

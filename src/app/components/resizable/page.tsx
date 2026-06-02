@@ -34,19 +34,19 @@ function InteractiveResizable() {
 
   return (
     <div className="w-full max-w-lg">
-      <div ref={containerRef} className="flex border border-gray-200 rounded-lg overflow-hidden h-48 select-none">
-        <div className="flex items-center justify-center bg-gray-50 text-sm text-gray-600" style={{ width: `${leftWidth}%` }}>
+      <div ref={containerRef} className="flex border border-au-border rounded-lg overflow-hidden h-48 select-none">
+        <div className="flex items-center justify-center bg-au-accent text-sm text-au-muted-foreground" style={{ width: `${leftWidth}%` }}>
           Left Panel
         </div>
         <div
           onMouseDown={handleMouseDown}
-          className="w-1 bg-gray-200 hover:bg-gray-400 cursor-col-resize shrink-0 transition-colors"
+          className="w-1 bg-au-border hover:bg-au-muted-foreground cursor-col-resize shrink-0 transition-colors"
         />
-        <div className="flex-1 flex items-center justify-center bg-white text-sm text-gray-600">
+        <div className="flex-1 flex items-center justify-center bg-au-background text-sm text-au-muted-foreground">
           Right Panel
         </div>
       </div>
-      <p className="text-xs text-gray-400 mt-2 text-center">Drag the divider to resize</p>
+      <p className="text-xs text-au-muted-foreground mt-2 text-center">Drag the divider to resize</p>
     </div>
   );
 }
@@ -54,11 +54,11 @@ function InteractiveResizable() {
 export default function ResizablePage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Resizable</h1>
-      <p className="text-gray-500 mb-8">A container with draggable divider for resizing panels.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Resizable</h1>
+      <p className="text-au-muted-foreground mb-8">A container with draggable divider for resizing panels.</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveResizable />}
           code={`<div x-data="{ leftWidth: 50, dragging: false, startX: 0, startWidth: 0 }"
@@ -88,16 +88,16 @@ export default function ResizablePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Vertical Resizable</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Vertical Resizable</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-lg">
-              <div className="flex flex-col border border-gray-200 rounded-lg overflow-hidden h-48 select-none">
-                <div className="flex items-center justify-center bg-gray-50 text-sm text-gray-600" style={{ height: "50%" }}>
+              <div className="flex flex-col border border-au-border rounded-lg overflow-hidden h-48 select-none">
+                <div className="flex items-center justify-center bg-au-accent text-sm text-au-muted-foreground" style={{ height: "50%" }}>
                   Top Panel
                 </div>
-                <div className="h-1 bg-gray-200 hover:bg-gray-400 cursor-row-resize shrink-0 transition-colors" />
-                <div className="flex-1 flex items-center justify-center bg-white text-sm text-gray-600">
+                <div className="h-1 bg-au-border hover:bg-au-muted-foreground cursor-row-resize shrink-0 transition-colors" />
+                <div className="flex-1 flex items-center justify-center bg-au-background text-sm text-au-muted-foreground">
                   Bottom Panel
                 </div>
               </div>

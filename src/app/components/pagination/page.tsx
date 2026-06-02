@@ -12,7 +12,8 @@ function InteractivePagination() {
     <div className="mx-auto flex w-full justify-center">
       <div className="flex items-center gap-1">
         <button
-          className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-gray-100 ${page === 1 ? "opacity-50 pointer-events-none" : ""}`}
+          aria-label="Previous page"
+          className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-au-accent ${page === 1 ? "opacity-50 pointer-events-none" : ""}`}
           onClick={() => setPage(Math.max(1, page - 1))}
           disabled={page === 1}
         >
@@ -22,17 +23,18 @@ function InteractivePagination() {
         {[1, 2, 3, 4, 5].map((p) => (
           <button
             key={p}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 ${page === p ? "bg-black text-white hover:bg-black" : "hover:bg-gray-100"}`}
+            className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 ${page === p ? "bg-au-primary text-au-primary-foreground hover:bg-au-primary" : "hover:bg-au-accent"}`}
             onClick={() => setPage(p)}
           >
             {p}
           </button>
         ))}
 
-        <span className="flex h-9 w-9 items-center justify-center text-sm text-gray-500">...</span>
+        <span className="flex h-9 w-9 items-center justify-center text-sm text-au-muted-foreground">...</span>
 
         <button
-          className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-gray-100 ${page === totalPages ? "opacity-50 pointer-events-none" : ""}`}
+          aria-label="Next page"
+          className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-au-accent ${page === totalPages ? "opacity-50 pointer-events-none" : ""}`}
           onClick={() => setPage(Math.min(totalPages, page + 1))}
           disabled={page === totalPages}
         >
@@ -46,13 +48,13 @@ function InteractivePagination() {
 export default function PaginationPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Pagination</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Pagination</h1>
+      <p className="text-au-muted-foreground mb-8">
         A component for navigating between pages of content.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractivePagination />}
           code={`<div x-data="{ page: 3, totalPages: 10 }" class="mx-auto flex w-full justify-center">

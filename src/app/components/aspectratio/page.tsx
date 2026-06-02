@@ -5,11 +5,11 @@ import DemoBlock from "@/components/DemoBlock";
 export default function AspectRatioPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Aspect Ratio</h1>
-      <p className="text-gray-500 mb-8">A container that maintains a specific aspect ratio for its content.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Aspect Ratio</h1>
+      <p className="text-au-muted-foreground mb-8">A container that maintains a specific aspect ratio for its content.</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={
             <div className="space-y-8 w-full max-w-md">
@@ -56,7 +56,7 @@ export default function AspectRatioPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">With Image</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Image</h2>
         <DemoBlock
           preview={
             <div className="grid grid-cols-2 gap-6 w-full max-w-md">

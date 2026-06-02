@@ -27,7 +27,7 @@ function AvatarWithFallback({ size }: { size: string }) {
   return (
     <div className={`relative flex shrink-0 overflow-hidden rounded-full ${sizeClasses[size] || ""}`}>
       {hasError ? (
-        <div className={`flex h-full w-full items-center justify-center rounded-full bg-gray-100 text-gray-600 font-medium ${fallbackTextClasses[size] || ""}`}>
+        <div className={`flex h-full w-full items-center justify-center rounded-full bg-au-secondary text-au-muted-foreground font-medium ${fallbackTextClasses[size] || ""}`}>
           {fallback}
         </div>
       ) : (
@@ -48,7 +48,7 @@ function InteractiveAvatars() {
       {["xs", "sm", "md", "lg", "xl"].map((size) => (
         <div key={size} className="flex flex-col items-center gap-2">
           <AvatarWithFallback size={size} />
-          <span className="text-xs text-gray-500">{size}</span>
+          <span className="text-xs text-au-muted-foreground">{size}</span>
         </div>
       ))}
     </div>
@@ -62,19 +62,19 @@ function InteractiveAvatarShapes() {
         <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
           <img src="https://i.pravatar.cc/150?img=2" alt="Circle" className="aspect-square h-full w-full object-cover" />
         </div>
-        <span className="text-xs text-gray-500">circle</span>
+        <span className="text-xs text-au-muted-foreground">circle</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <div className="relative flex shrink-0 overflow-hidden rounded-none w-10 h-10">
           <img src="https://i.pravatar.cc/150?img=3" alt="Square" className="aspect-square h-full w-full object-cover" />
         </div>
-        <span className="text-xs text-gray-500">square</span>
+        <span className="text-xs text-au-muted-foreground">square</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <div className="relative flex shrink-0 overflow-hidden rounded-md w-10 h-10">
           <img src="https://i.pravatar.cc/150?img=4" alt="Rounded" className="aspect-square h-full w-full object-cover" />
         </div>
-        <span className="text-xs text-gray-500">rounded</span>
+        <span className="text-xs text-au-muted-foreground">rounded</span>
       </div>
     </div>
   );
@@ -87,25 +87,25 @@ function InteractiveAvatarStatus() {
         <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
           <img src="https://i.pravatar.cc/150?img=5" alt="Online" className="aspect-square h-full w-full object-cover" />
         </div>
-        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-green-500" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-au-background bg-green-500" />
       </div>
       <div className="relative">
         <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
           <img src="https://i.pravatar.cc/150?img=6" alt="Busy" className="aspect-square h-full w-full object-cover" />
         </div>
-        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-red-500" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-au-background bg-red-500" />
       </div>
       <div className="relative">
         <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
           <img src="https://i.pravatar.cc/150?img=7" alt="Away" className="aspect-square h-full w-full object-cover" />
         </div>
-        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-yellow-500" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-au-background bg-yellow-500" />
       </div>
       <div className="relative">
         <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
           <img src="https://i.pravatar.cc/150?img=8" alt="Offline" className="aspect-square h-full w-full object-cover" />
         </div>
-        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-gray-400" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-au-background bg-gray-400" />
       </div>
     </div>
   );
@@ -123,11 +123,11 @@ function InteractiveAvatarGroup() {
   return (
     <div className="flex -space-x-2">
       {users.slice(0, 3).map((user, i) => (
-        <div key={i} className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white">
+        <div key={i} className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-au-background">
           <img src={user.src} alt={user.fallback} className="aspect-square h-full w-full object-cover" />
         </div>
       ))}
-      <div className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white flex items-center justify-center bg-gray-100 text-xs font-medium text-gray-600">
+      <div className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-au-background flex items-center justify-center bg-au-secondary text-xs font-medium text-au-muted-foreground">
         +{extra}
       </div>
     </div>
@@ -137,13 +137,13 @@ function InteractiveAvatarGroup() {
 export default function AvatarPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Avatar</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Avatar</h1>
+      <p className="text-au-muted-foreground mb-8">
         A user avatar component with fallback support.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={
             <div className="flex gap-4">
@@ -151,10 +151,10 @@ export default function AvatarPage() {
                 <img src="https://i.pravatar.cc/150?img=20" alt="User" className="aspect-square h-full w-full object-cover" />
               </div>
               <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
-                <div className="flex h-full w-full items-center justify-center rounded-full bg-gray-100 text-gray-600 font-medium text-sm">JD</div>
+                <div className="flex h-full w-full items-center justify-center rounded-full bg-au-secondary text-au-muted-foreground font-medium text-sm">JD</div>
               </div>
               <div className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
-                <User className="w-6 h-6 text-gray-500" />
+                <User className="w-6 h-6 text-au-muted-foreground" />
               </div>
             </div>
           }
@@ -176,7 +176,7 @@ export default function AvatarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
         <DemoBlock preview={<InteractiveAvatars />} code={`<div class="relative flex shrink-0 overflow-hidden rounded-full w-6 h-6">...</div>
 <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">...</div>
 <div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
@@ -185,14 +185,14 @@ export default function AvatarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Shapes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Shapes</h2>
         <DemoBlock preview={<InteractiveAvatarShapes />} code={`<div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
 <div class="relative flex shrink-0 overflow-hidden rounded-none w-10 h-10">...</div>
 <div class="relative flex shrink-0 overflow-hidden rounded-md w-10 h-10">...</div>`} />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Status</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Status</h2>
         <DemoBlock preview={<InteractiveAvatarStatus />} code={`<div class="relative">
   <div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
   <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-green-500"></div>
@@ -200,7 +200,7 @@ export default function AvatarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Avatar Group</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Avatar Group</h2>
         <DemoBlock preview={<InteractiveAvatarGroup />} code={`<div class="flex -space-x-2">
   <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white">...</div>
   <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white">...</div>

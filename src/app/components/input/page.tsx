@@ -15,25 +15,25 @@ function InteractiveInput() {
   return (
     <div className="w-full max-w-sm space-y-4">
       <div className="flex flex-col gap-1">
-        <label className="block text-sm font-medium text-gray-900 after:content-['_*'] after:text-red-500">Name</label>
+        <label className="block text-sm font-medium text-au-foreground after:content-['_*'] after:text-red-500">Name</label>
         <input
           type="text"
-          className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex h-10 w-full rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50"
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="flex flex-col gap-1">
-        <label className="block text-sm font-medium text-gray-900 after:content-['_*'] after:text-red-500">Email</label>
+        <label className="block text-sm font-medium text-au-foreground after:content-['_*'] after:text-red-500">Email</label>
         <input
           type="email"
-          className={`flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+          className={`flex h-10 w-full rounded-md border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
             emailError
               ? "border-red-500 focus-visible:outline-red-500"
               : isValid
               ? "border-green-500 focus-visible:outline-green-500"
-              : "border-gray-300 focus-visible:outline-black"
+              : "border-au-border focus-visible:outline-au-ring"
           }`}
           placeholder="Enter your email"
           value={email}
@@ -44,15 +44,15 @@ function InteractiveInput() {
         {!emailError && isValid && <span className="text-xs text-green-500">Email looks good!</span>}
       </div>
       <div className="flex flex-col gap-1">
-        <label className="block text-sm font-medium text-gray-900">Period</label>
-        <div className="inline-flex border border-gray-200 rounded-md overflow-hidden">
+        <label className="block text-sm font-medium text-au-foreground">Period</label>
+        <div className="inline-flex border border-au-border rounded-md overflow-hidden">
           {["Day", "Week", "Month"].map((period) => (
             <button
               key={period}
               className={`flex items-center justify-center px-4 py-2 text-sm cursor-pointer transition-colors ${
                 selectedPeriod === period
-                  ? "bg-black text-white hover:bg-black"
-                  : "bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100 last:border-r-0"
+                  ? "bg-au-primary text-au-primary-foreground hover:bg-au-primary"
+                  : "bg-au-background text-au-foreground border-r border-au-border hover:bg-au-accent last:border-r-0"
               }`}
               onClick={() => setSelectedPeriod(period)}
             >
@@ -68,13 +68,13 @@ function InteractiveInput() {
 export default function InputPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Input</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Input</h1>
+      <p className="text-au-muted-foreground mb-8">
         A form input component with validation, icons, and various states.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveInput />}
           code={`<div x-data="{ name: '', email: '', emailTouched: false, selectedPeriod: 'Day' }" class="w-full max-w-sm space-y-4">
@@ -119,13 +119,13 @@ export default function InputPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Basic Input</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic Input</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-sm">
               <div className="flex flex-col gap-1">
-                <label className="block text-sm font-medium text-gray-900">Name</label>
-                <input type="text" className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter your name" />
+                <label className="block text-sm font-medium text-au-foreground">Name</label>
+                <input type="text" className="flex h-10 w-full rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter your name" />
               </div>
             </div>
           }
@@ -137,21 +137,21 @@ export default function InputPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-sm space-y-3">
               <div className="flex flex-col gap-1">
-                <label className="block font-medium text-gray-900" style={{ fontSize: "0.75rem" }}>Small</label>
-                <input type="text" className="flex h-8 w-full rounded-md border border-gray-300 bg-white px-2 text-xs placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Small input" />
+                <label className="block font-medium text-au-foreground" style={{ fontSize: "0.75rem" }}>Small</label>
+                <input type="text" className="flex h-8 w-full rounded-md border border-au-border bg-au-background px-2 text-xs placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" placeholder="Small input" />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="block text-sm font-medium text-gray-900" style={{ fontSize: "0.875rem" }}>Medium</label>
-                <input type="text" className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Medium input" />
+                <label className="block text-sm font-medium text-au-foreground" style={{ fontSize: "0.875rem" }}>Medium</label>
+                <input type="text" className="flex h-10 w-full rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" placeholder="Medium input" />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="block font-medium text-gray-900" style={{ fontSize: "1rem" }}>Large</label>
-                <input type="text" className="flex h-12 w-full rounded-md border border-gray-300 bg-white px-4 text-base placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" placeholder="Large input" />
+                <label className="block font-medium text-au-foreground" style={{ fontSize: "1rem" }}>Large</label>
+                <input type="text" className="flex h-12 w-full rounded-md border border-au-border bg-au-background px-4 text-base placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" placeholder="Large input" />
               </div>
             </div>
           }
@@ -173,18 +173,18 @@ export default function InputPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Validation States</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Validation States</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-sm space-y-4">
               <div className="flex flex-col gap-1">
-                <label className="block text-sm font-medium text-gray-900 after:content-['_*'] after:text-red-500">Email</label>
-                <input type="email" className="flex h-10 w-full rounded-md border border-red-500 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 disabled:cursor-not-allowed disabled:opacity-50" defaultValue="invalid-email" />
+                <label className="block text-sm font-medium text-au-foreground after:content-['_*'] after:text-red-500">Email</label>
+                <input type="email" className="flex h-10 w-full rounded-md border border-red-500 bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 disabled:cursor-not-allowed disabled:opacity-50" defaultValue="invalid-email" />
                 <span className="text-xs text-red-500">Invalid email</span>
               </div>
               <div className="flex flex-col gap-1">
-                <label className="block text-sm font-medium text-gray-900">Username</label>
-                <input type="text" className="flex h-10 w-full rounded-md border border-green-500 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 disabled:cursor-not-allowed disabled:opacity-50" defaultValue="johndoe" />
+                <label className="block text-sm font-medium text-au-foreground">Username</label>
+                <input type="text" className="flex h-10 w-full rounded-md border border-green-500 bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 disabled:cursor-not-allowed disabled:opacity-50" defaultValue="johndoe" />
                 <span className="text-xs text-green-500">Name available</span>
               </div>
             </div>
@@ -204,13 +204,13 @@ export default function InputPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Disabled</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Disabled</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-sm">
               <div className="flex flex-col gap-1">
-                <label className="block text-sm font-medium text-gray-900">Disabled</label>
-                <input type="text" className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" defaultValue="Cannot edit" disabled />
+                <label className="block text-sm font-medium text-au-foreground">Disabled</label>
+                <input type="text" className="flex h-10 w-full rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" defaultValue="Cannot edit" disabled />
               </div>
             </div>
           }
@@ -222,13 +222,13 @@ export default function InputPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Textarea</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Textarea</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-sm">
               <div className="flex flex-col gap-1">
-                <label className="block text-sm font-medium text-gray-900">Message</label>
-                <textarea className="flex min-h-20 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50 resize-y" placeholder="Enter your message..." />
+                <label className="block text-sm font-medium text-au-foreground">Message</label>
+                <textarea className="flex min-h-20 w-full rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 resize-y" placeholder="Enter your message..." />
               </div>
             </div>
           }
@@ -240,16 +240,16 @@ export default function InputPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Input Group</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Input Group</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-sm">
               <div className="flex flex-col gap-1">
-                <label className="block text-sm font-medium text-gray-900">Period</label>
-                <div className="inline-flex border border-gray-200 rounded-md overflow-hidden">
-                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-black text-white hover:bg-black cursor-pointer transition-colors">Day</button>
-                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100 cursor-pointer transition-colors">Week</button>
-                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-white text-gray-900 border-r border-gray-200 hover:bg-gray-100 last:border-r-0 cursor-pointer transition-colors">Month</button>
+                <label className="block text-sm font-medium text-au-foreground">Period</label>
+                <div className="inline-flex border border-au-border rounded-md overflow-hidden">
+                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-au-primary text-au-primary-foreground hover:bg-au-primary cursor-pointer transition-colors">Day</button>
+                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-au-background text-au-foreground border-r border-au-border hover:bg-au-accent cursor-pointer transition-colors">Week</button>
+                  <button className="flex items-center justify-center px-4 py-2 text-sm bg-au-background text-au-foreground border-r border-au-border hover:bg-au-accent last:border-r-0 cursor-pointer transition-colors">Month</button>
                 </div>
               </div>
             </div>

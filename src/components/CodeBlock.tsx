@@ -28,12 +28,12 @@ export default function CodeBlock({ code, className = "" }: CodeBlockProps) {
       </pre>
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 flex items-center gap-1.5 px-2.5 py-1 text-xs text-[#858585] hover:text-white hover:bg-[#3c3c3c] rounded transition-all opacity-0 group-hover:opacity-100"
+        className="absolute top-2 right-2 flex items-center gap-1.5 px-2.5 py-1 text-xs text-au-muted-foreground hover:text-au-foreground hover:bg-au-accent rounded transition-all opacity-0 group-hover:opacity-100"
       >
         {copied ? (
           <>
-            <Check className="w-3.5 h-3.5 text-green-500" />
-            <span className="text-green-500">Copied!</span>
+            <Check className="w-3.5 h-3.5 text-au-primary" />
+            <span className="text-au-primary">Copied!</span>
           </>
         ) : (
           <>

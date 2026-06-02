@@ -45,7 +45,7 @@ function InteractiveDropdown({
       <button 
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-between gap-2 px-4 py-2 bg-black text-white text-sm font-medium rounded-md border-none cursor-pointer"
+        className="inline-flex items-center justify-between gap-2 px-4 py-2 bg-au-primary text-au-primary-foreground text-sm font-medium rounded-md border-none cursor-pointer"
       >
         {label}
         <svg className={`w-4 h-4 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,17 +59,17 @@ function InteractiveDropdown({
             onClick={() => setIsOpen(false)}
             className="fixed inset-0 z-40"
           />
-          <ul className={`absolute top-full left-0 mt-1 min-w-[12rem] bg-white border border-gray-200 rounded-lg shadow-md z-50 overflow-hidden py-1 list-none m-0 transition-all duration-150 ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+          <ul className={`absolute top-full left-0 mt-1 min-w-[12rem] bg-au-background border border-au-border rounded-lg shadow-md z-50 overflow-hidden py-1 list-none m-0 transition-all duration-150 ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
             {defaultItems.map((item, i) => (
               item.type === "divider" ? (
-                <li key={i} className="h-px my-1 bg-gray-200" />
+                <li key={i} className="h-px my-1 bg-au-border" />
               ) : (
                 <li key={i}>
                   <button 
                     type="button"
                     disabled={item.disabled}
                     onClick={() => !item.disabled && setIsOpen(false)}
-                    className={`flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-900 bg-transparent border-none cursor-pointer text-left transition-colors ${item.disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'hover:bg-gray-100'}`}
+                    className={`flex items-center gap-2 w-full px-3 py-2 text-sm text-au-foreground bg-transparent border-none cursor-pointer text-left transition-colors ${item.disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'hover:bg-au-accent'}`}
                   >
                     {item.icon && renderIcon(item.icon)}
                     {item.label}
@@ -87,13 +87,13 @@ function InteractiveDropdown({
 export default function DropdownPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Dropdown</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Dropdown</h1>
+      <p className="text-au-muted-foreground mb-8">
         A collapsible menu for navigation, actions, and more.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Basic Dropdown</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic Dropdown</h2>
         <DemoBlock
           preview={
             <InteractiveDropdown />
@@ -118,7 +118,7 @@ export default function DropdownPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">With Dividers</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Dividers</h2>
         <DemoBlock
           preview={
             <InteractiveDropdown 
@@ -143,7 +143,7 @@ export default function DropdownPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">With Icons</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Icons</h2>
         <DemoBlock
           preview={
             <InteractiveDropdown 
@@ -167,7 +167,7 @@ export default function DropdownPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Disabled Items</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Disabled Items</h2>
         <DemoBlock
           preview={
             <InteractiveDropdown 

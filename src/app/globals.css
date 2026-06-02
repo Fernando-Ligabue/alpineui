@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  /* AlpineUI Design System Variables */
+  /* AlpineUI Design System Variables - Light Theme (default) */
   --color-au-background: #ffffff;
   --color-au-foreground: #0a0a0a;
   --color-au-primary: #0a0a0a;
@@ -12,7 +14,7 @@
   --color-au-muted-foreground: #737373;
   --color-au-accent: #f5f5f5;
   --color-au-accent-foreground: #0a0a0a;
-  --color-au-destructive: #ef4444;
+  --color-au-destructive: #dc2626;
   --color-au-destructive-foreground: #ffffff;
   --color-au-border: #e5e5e5;
   --color-au-ring: #0a0a0a;
@@ -26,6 +28,52 @@
     0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
   /* Legacy Variable Aliases for Components */
+  --au-background: var(--color-au-background);
+  --au-foreground: var(--color-au-foreground);
+  --au-primary: var(--color-au-primary);
+  --au-primary-foreground: var(--color-au-primary-foreground);
+  --au-secondary: var(--color-au-secondary);
+  --au-secondary-foreground: var(--color-au-secondary-foreground);
+  --au-muted: var(--color-au-muted);
+  --au-muted-foreground: var(--color-au-muted-foreground);
+  --au-accent: var(--color-au-accent);
+  --au-accent-foreground: var(--color-au-accent-foreground);
+  --au-destructive: var(--color-au-destructive);
+  --au-destructive-foreground: var(--color-au-destructive-foreground);
+  --au-border: var(--color-au-border);
+  --au-ring: var(--color-au-ring);
+  --au-radius: var(--color-au-radius);
+  --au-shadow: var(--color-au-shadow);
+  --au-shadow-sm: var(--color-au-shadow-sm);
+  --au-shadow-md: var(--color-au-shadow-md);
+  --au-shadow-lg: var(--color-au-shadow-lg);
+}
+
+/* Dark Theme Overrides */
+.dark {
+  --color-au-background: #0a0a0a;
+  --color-au-foreground: #fafafa;
+  --color-au-primary: #fafafa;
+  --color-au-primary-foreground: #0a0a0a;
+  --color-au-secondary: #1a1a1a;
+  --color-au-secondary-foreground: #fafafa;
+  --color-au-muted: #1a1a1a;
+  --color-au-muted-foreground: #a3a3a3;
+  --color-au-accent: #1a1a1a;
+  --color-au-accent-foreground: #fafafa;
+  --color-au-destructive: #dc2626;
+  --color-au-destructive-foreground: #ffffff;
+  --color-au-border: #262626;
+  --color-au-ring: #fafafa;
+  --color-au-shadow:
+    0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --color-au-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --color-au-shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --color-au-shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+
+  /* Re-assign legacy aliases for dark */
   --au-background: var(--color-au-background);
   --au-foreground: var(--color-au-foreground);
   --au-primary: var(--color-au-primary);

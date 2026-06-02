@@ -18,16 +18,16 @@ function InteractiveButton() {
       <div className="flex flex-wrap gap-3 justify-center">
         <button
           onClick={handleClick}
-            className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none ${
+            className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none ${
               size === "xs" ? "h-6 px-2 text-[10px]" : size === "sm" ? "h-8 px-3 text-xs" : size === "lg" ? "h-12 px-6 text-base" : "h-10 px-4 py-2"
           } ${
-            variant === "default" ? "bg-black text-white hover:opacity-90" :
-            variant === "destructive" ? "bg-red-600 text-white hover:opacity-90" :
-            variant === "outline" ? "border border-gray-300 bg-transparent text-gray-900 hover:bg-gray-100" :
-            variant === "secondary" ? "bg-gray-100 text-gray-900 hover:bg-gray-200" :
-            variant === "ghost" ? "bg-transparent text-gray-900 hover:bg-gray-100" :
-            variant === "link" ? "bg-transparent text-black underline hover:opacity-80" :
-            "bg-black text-white hover:opacity-90"
+            variant === "default" ? "bg-au-primary text-au-primary-foreground hover:opacity-90" :
+            variant === "destructive" ? "bg-au-destructive text-au-primary-foreground hover:opacity-90" :
+            variant === "outline" ? "border border-au-border bg-transparent text-au-foreground hover:bg-au-accent" :
+            variant === "secondary" ? "bg-au-secondary text-au-foreground hover:bg-au-accent" :
+            variant === "ghost" ? "bg-transparent text-au-foreground hover:bg-au-accent" :
+            variant === "link" ? "bg-transparent text-au-primary underline hover:opacity-80" :
+            "bg-au-primary text-au-primary-foreground hover:opacity-90"
           } ${loading ? "opacity-70 pointer-events-none" : ""}`}
         >
           {loading ? "Processing..." : "Click me"}
@@ -37,7 +37,7 @@ function InteractiveButton() {
         <select
           value={variant}
           onChange={(e) => setVariant(e.target.value)}
-          className="flex h-8 w-auto rounded-md border border-gray-300 bg-white px-2 text-xs placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex h-8 w-auto rounded-md border border-au-border bg-au-background px-2 text-xs placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50"
         >
           <option value="default">Default</option>
           <option value="destructive">Destructive</option>
@@ -49,7 +49,7 @@ function InteractiveButton() {
         <select
           value={size}
           onChange={(e) => setSize(e.target.value)}
-          className="flex h-8 w-auto rounded-md border border-gray-300 bg-white px-2 text-xs placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex h-8 w-auto rounded-md border border-au-border bg-au-background px-2 text-xs placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50"
         >
           <option value="xs">XS</option>
           <option value="sm">Small</option>
@@ -64,22 +64,22 @@ function InteractiveButton() {
 export default function ButtonPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Button</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Button</h1>
+      <p className="text-au-muted-foreground mb-8">
         A clickable button component with multiple variants and sizes.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap gap-3 items-center justify-center">
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-black text-white hover:opacity-90">Default</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-red-600 text-white hover:opacity-90">Destructive</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 border border-gray-300 bg-transparent text-gray-900 hover:bg-gray-100">Outline</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-gray-100 text-gray-900 hover:bg-gray-200">Secondary</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-transparent text-gray-900 hover:bg-gray-100">Ghost</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-transparent text-black underline hover:opacity-80">Link</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-au-primary text-au-primary-foreground hover:opacity-90">Default</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-au-destructive text-au-primary-foreground hover:opacity-90">Destructive</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Outline</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-au-secondary text-au-foreground hover:bg-au-accent">Secondary</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-transparent text-au-foreground hover:bg-au-accent">Ghost</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-transparent text-au-primary underline hover:opacity-80">Link</button>
             </div>
           }
           code={`<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-black text-white hover:opacity-90">Default</button>
@@ -92,15 +92,15 @@ export default function ButtonPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap gap-3 items-center justify-center">
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-6 px-2 text-[10px] bg-black text-white hover:opacity-90">XS</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-8 px-3 text-xs bg-black text-white hover:opacity-90">Small</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-black text-white hover:opacity-90">Medium</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-12 px-6 text-base bg-black text-white hover:opacity-90">Large</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 w-10 p-0 bg-black text-white hover:opacity-90">+</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-6 px-2 text-[10px] bg-au-primary text-au-primary-foreground hover:opacity-90">XS</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 text-xs bg-au-primary text-au-primary-foreground hover:opacity-90">Small</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-au-primary text-au-primary-foreground hover:opacity-90">Medium</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-12 px-6 text-base bg-au-primary text-au-primary-foreground hover:opacity-90">Large</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 w-10 p-0 bg-au-primary text-au-primary-foreground hover:opacity-90">+</button>
             </div>
           }
           code={`<!-- XS -->
@@ -117,7 +117,7 @@ export default function ButtonPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveButton />}
           code={`<div x-data="{ loading: false, variant: 'default', size: 'md' }">
@@ -159,12 +159,12 @@ export default function ButtonPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">States</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap gap-3 items-center justify-center">
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-black text-white hover:opacity-90" disabled>Disabled</button>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-black text-white hover:opacity-90 opacity-70 pointer-events-none">Loading</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-au-primary text-au-primary-foreground hover:opacity-90" disabled>Disabled</button>
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-au-primary text-au-primary-foreground hover:opacity-90 opacity-70 pointer-events-none">Loading</button>
             </div>
           }
           code={`<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-black text-white hover:opacity-90" disabled>Disabled</button>
@@ -173,33 +173,33 @@ export default function ButtonPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">All Variants x Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">All Variants x Sizes</h2>
         <DemoBlock
           preview={
             <div className="w-full space-y-4">
               <div className="flex items-center gap-2">
-                <span className="w-16 text-xs text-gray-500">XS</span>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-6 px-2 text-[10px] bg-black text-white hover:opacity-90">Default</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-6 px-2 text-[10px] border border-gray-300 bg-transparent text-gray-900 hover:bg-gray-100">Outline</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-6 px-2 text-[10px] bg-transparent text-gray-900 hover:bg-gray-100">Ghost</button>
+                <span className="w-16 text-xs text-au-muted-foreground">XS</span>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-6 px-2 text-[10px] bg-au-primary text-au-primary-foreground hover:opacity-90">Default</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-6 px-2 text-[10px] border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Outline</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-6 px-2 text-[10px] bg-transparent text-au-foreground hover:bg-au-accent">Ghost</button>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-16 text-xs text-gray-500">Small</span>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-8 px-3 text-xs bg-black text-white hover:opacity-90">Default</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-8 px-3 text-xs border border-gray-300 bg-transparent text-gray-900 hover:bg-gray-100">Outline</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-8 px-3 text-xs bg-transparent text-gray-900 hover:bg-gray-100">Ghost</button>
+                <span className="w-16 text-xs text-au-muted-foreground">Small</span>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 text-xs bg-au-primary text-au-primary-foreground hover:opacity-90">Default</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 text-xs border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Outline</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 text-xs bg-transparent text-au-foreground hover:bg-au-accent">Ghost</button>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-16 text-xs text-gray-500">Medium</span>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-black text-white hover:opacity-90">Default</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 border border-gray-300 bg-transparent text-gray-900 hover:bg-gray-100">Outline</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-transparent text-gray-900 hover:bg-gray-100">Ghost</button>
+                <span className="w-16 text-xs text-au-muted-foreground">Medium</span>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-au-primary text-au-primary-foreground hover:opacity-90">Default</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Outline</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-10 px-4 py-2 bg-transparent text-au-foreground hover:bg-au-accent">Ghost</button>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-16 text-xs text-gray-500">Large</span>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-12 px-6 text-base bg-black text-white hover:opacity-90">Default</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-12 px-6 text-base border border-gray-300 bg-transparent text-gray-900 hover:bg-gray-100">Outline</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-50 disabled:pointer-events-none h-12 px-6 text-base bg-transparent text-gray-900 hover:bg-gray-100">Ghost</button>
+                <span className="w-16 text-xs text-au-muted-foreground">Large</span>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-12 px-6 text-base bg-au-primary text-au-primary-foreground hover:opacity-90">Default</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-12 px-6 text-base border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Outline</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-12 px-6 text-base bg-transparent text-au-foreground hover:bg-au-accent">Ghost</button>
               </div>
             </div>
           }

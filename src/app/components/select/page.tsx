@@ -35,7 +35,7 @@ function InteractiveSelect() {
   return (
     <div className="relative w-full max-w-sm" ref={ref}>
       <button
-        className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50"
         onClick={() => setIsOpen(!isOpen)}
         data-placeholder={!selected ? "true" : undefined}
       >
@@ -43,11 +43,11 @@ function InteractiveSelect() {
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
       {isOpen && (
-        <div className="absolute z-50 w-full mt-1 rounded-md border border-gray-200 bg-white shadow-md" data-state="open">
+        <div className="absolute z-50 w-full mt-1 rounded-md border border-au-border bg-au-background shadow-md" data-state="open">
           {options.map((option) => (
             <div
               key={option.value}
-              className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100 focus:bg-gray-100"
+              className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-au-accent focus:bg-au-accent"
               onClick={() => {
                 setSelected(option.value);
                 setIsOpen(false);
@@ -96,7 +96,7 @@ function InteractiveSelectSearchable() {
   return (
     <div className="relative w-full max-w-sm" ref={ref}>
       <button
-        className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50"
         onClick={() => setIsOpen(!isOpen)}
         data-placeholder={!selected ? "true" : undefined}
       >
@@ -104,20 +104,20 @@ function InteractiveSelectSearchable() {
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
       {isOpen && (
-        <div className="absolute z-50 w-full mt-1 rounded-md border border-gray-200 bg-white shadow-md" data-state="open">
+        <div className="absolute z-50 w-full mt-1 rounded-md border border-au-border bg-au-background shadow-md" data-state="open">
           <input
             type="text"
             placeholder="Search..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             autoFocus
-            className="flex h-10 w-full rounded-md border-0 bg-transparent px-3 py-2 text-sm outline-none placeholder:text-gray-400"
+            className="flex h-10 w-full rounded-md border-0 bg-transparent px-3 py-2 text-sm outline-none placeholder:text-au-muted-foreground"
           />
           {filteredOptions.length > 0 ? (
             filteredOptions.map((option) => (
               <div
                 key={option.value}
-                className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100 focus:bg-gray-100"
+                className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-au-accent focus:bg-au-accent"
                 onClick={() => {
                   setSelected(option.value);
                   setIsOpen(false);
@@ -130,7 +130,7 @@ function InteractiveSelectSearchable() {
               </div>
             ))
           ) : (
-            <div className="px-2 py-1.5 text-sm text-gray-500 text-center">No results found</div>
+            <div className="px-2 py-1.5 text-sm text-au-muted-foreground text-center">No results found</div>
           )}
         </div>
       )}
@@ -162,11 +162,11 @@ function InteractiveSelectVariants() {
   return (
     <div className="space-y-6 w-full max-w-sm">
       <div>
-        <h4 className="text-sm font-medium mb-2 text-gray-500">Default</h4>
+        <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Default</h3>
         <div className="w-full">
           <div ref={ref}>
             <button
-              className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50"
               onClick={() => setIsOpen(!isOpen)}
               data-placeholder={!selected ? "true" : undefined}
             >
@@ -174,11 +174,11 @@ function InteractiveSelectVariants() {
               <ChevronDown className={`w-4 h-4 ${isOpen ? "rotate-180" : ""}`} />
             </button>
             {isOpen && (
-              <div className="absolute z-50 w-full mt-1 rounded-md border border-gray-200 bg-white shadow-md">
+              <div className="absolute z-50 w-full mt-1 rounded-md border border-au-border bg-au-background shadow-md">
                 {options.map((option) => (
                   <div
                     key={option.value}
-                    className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100 focus:bg-gray-100"
+                    className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-au-accent focus:bg-au-accent"
                     onClick={() => { setSelected(option.value); setIsOpen(false); }}
                     data-selected={selected === option.value ? "true" : undefined}
                   >
@@ -197,13 +197,13 @@ function InteractiveSelectVariants() {
 export default function SelectPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Select</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Select</h1>
+      <p className="text-au-muted-foreground mb-8">
         A dropdown select component with search functionality.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveSelect />}
           code={`<div x-data="{ open: false, selected: null }" @click.outside="open = false" class="relative w-full max-w-sm">
@@ -251,7 +251,7 @@ export default function SelectPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Searchable</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Searchable</h2>
         <DemoBlock
           preview={<InteractiveSelectSearchable />}
           code={`<div class="relative w-full max-w-sm">
@@ -273,19 +273,19 @@ export default function SelectPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
         <DemoBlock
           preview={
             <div className="space-y-4 w-full max-w-sm">
-              <button className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
+              <button className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
                 Small
                 <ChevronDown className="w-4 h-4" />
               </button>
-              <button className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
+              <button className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
                 Medium
                 <ChevronDown className="w-4 h-4" />
               </button>
-              <button className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
+              <button className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
                 Large
                 <ChevronDown className="w-4 h-4" />
               </button>

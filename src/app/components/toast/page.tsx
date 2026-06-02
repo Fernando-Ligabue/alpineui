@@ -40,13 +40,13 @@ function ToastContainer({ toasts, position, onDismiss }: { toasts: ToastData[]; 
   return (
     <div className={positionClasses[position] || positionClasses["top-right"]}>
       {toasts.map((toast) => (
-        <div key={toast.id} className={`group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-gray-200 bg-white p-6 shadow-lg transition-all ${variantBorderBg[toast.variant]}`}>
+        <div key={toast.id} className={`group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-au-border bg-au-background p-6 shadow-lg transition-all ${variantBorderBg[toast.variant]}`}>
           {iconMap[toast.variant]}
           <div className="flex-1 min-w-0">
             <div className="text-sm font-semibold">{toast.title}</div>
             {toast.description && <div className="text-sm opacity-90">{toast.description}</div>}
           </div>
-          <button className="shrink-0 rounded-md p-1 opacity-70 hover:opacity-100 transition-opacity" onClick={() => onDismiss(toast.id)}>
+          <button aria-label="Dismiss" className="shrink-0 rounded-md p-1 opacity-70 hover:opacity-100 transition-opacity" onClick={() => onDismiss(toast.id)}>
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -84,19 +84,19 @@ function InteractiveToasts() {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-gray-900 text-white hover:bg-gray-800" onClick={() => addToast("default")}>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-au-primary text-au-primary-foreground hover:bg-au-primary" onClick={() => addToast("default")}>
           Default
         </button>
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-gray-900 text-white hover:bg-gray-800" onClick={() => addToast("success")}>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-au-primary text-au-primary-foreground hover:bg-au-primary" onClick={() => addToast("success")}>
           Success
         </button>
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-red-600 text-white hover:bg-red-500" onClick={() => addToast("error")}>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-au-destructive text-au-destructive-foreground hover:bg-au-destructive" onClick={() => addToast("error")}>
           Error
         </button>
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-gray-100 text-gray-900 hover:bg-gray-200" onClick={() => addToast("warning")}>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-au-secondary text-au-foreground hover:bg-au-accent" onClick={() => addToast("warning")}>
           Warning
         </button>
-        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 text-gray-700 hover:bg-gray-100" onClick={() => addToast("info")}>
+        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 text-au-foreground hover:bg-au-accent" onClick={() => addToast("info")}>
           Info
         </button>
       </div>
@@ -124,14 +124,14 @@ function InteractiveToastPositions() {
         {["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"].map((pos) => (
           <button
             key={pos}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 ${position === pos ? "bg-gray-900 text-white" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}
+            className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 ${position === pos ? "bg-au-primary text-au-primary-foreground" : "border border-au-border text-au-foreground hover:bg-au-accent"}`}
             onClick={() => setPosition(pos)}
           >
             {pos}
           </button>
         ))}
       </div>
-      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-gray-900 text-white hover:bg-gray-800" onClick={showToast}>
+      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-au-primary text-au-primary-foreground hover:bg-au-primary" onClick={showToast}>
         Show Toast
       </button>
       {toast && <ToastContainer toasts={[toast]} position={position} onDismiss={() => setToast(null)} />}
@@ -142,13 +142,13 @@ function InteractiveToastPositions() {
 export default function ToastPage() {
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Toast</h1>
-      <p className="text-gray-500 mb-8">
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">Toast</h1>
+      <p className="text-au-muted-foreground mb-8">
         A notification component for displaying messages to the user.
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
         <DemoBlock
           preview={<InteractiveToasts />}
           code={`<div x-data="{ toasts: [] }">
@@ -181,12 +181,12 @@ export default function ToastPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
         <DemoBlock
           preview={
             <div className="space-y-3">
-              <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-gray-200 bg-white p-6 shadow-lg transition-all">
-                <Info className="w-5 h-5 shrink-0 text-gray-500" />
+              <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-au-border bg-au-background p-6 shadow-lg transition-all">
+                <Info className="w-5 h-5 shrink-0 text-au-muted-foreground" />
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold">Default</div>
                   <div className="text-sm opacity-90">This is a default toast.</div>
@@ -238,7 +238,7 @@ export default function ToastPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Positions</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">Positions</h2>
         <DemoBlock
           preview={<InteractiveToastPositions />}
           code={`<!-- Top left -->
