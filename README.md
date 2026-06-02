@@ -23,7 +23,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Alpine.js-3.x-77C1D2?style=flat&logo=alpine.js&logoColor=black" alt="Alpine.js">
   <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
-  <img src="https://img.shields.io/badge/52%20componentes-8A2BE2?style=flat" alt="52 components">
+  <img src="https://img.shields.io/badge/43%20componentes-8A2BE2?style=flat" alt="43 components">
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat" alt="MIT">
 </p>
 
@@ -31,7 +31,7 @@
 
 <br>
 
-# 🇧🇷 AlpineUI
+# PT | AlpineUI
 
 <table>
 <tr>
@@ -212,7 +212,7 @@ Veja a lista de issues em aberto para ideias de contribuição.
 
 <br>
 
-# 🇺🇸 AlpineUI
+# EN |  AlpineUI
 
 <table>
 <tr>
