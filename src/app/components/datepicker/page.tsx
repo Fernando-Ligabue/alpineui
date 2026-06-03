@@ -68,7 +68,7 @@ function InteractiveDatepicker() {
         <CalendarIcon className="w-4 h-4" />
       </button>
       {isOpen && (
-        <div className="absolute z-50 mt-1 w-72 rounded-md border border-au-border bg-au-background p-3 shadow-md" data-state="open">
+        <div className="absolute z-50 mt-1 w-full rounded-md border border-au-border bg-au-background p-3 shadow-md" data-state="open">
           <div className="flex items-center justify-between mb-2">
             <button
               className="inline-flex items-center justify-center rounded-md p-1 hover:bg-au-accent"
@@ -99,13 +99,10 @@ function InteractiveDatepicker() {
               return (
                 <button
                   key={i}
-                  className={`inline-flex items-center justify-center rounded-md w-8 h-8 text-sm hover:bg-au-accent ${
-                    isSelected ? "bg-au-primary text-au-primary-foreground hover:bg-au-primary" : ""
-                  } ${
-                    isToday ? "border border-au-border" : ""
-                  } ${
-                    d.otherMonth ? "text-au-muted-foreground" : ""
-                  }`}
+                  className={`inline-flex items-center justify-center rounded-md w-8 h-8 text-sm hover:bg-au-accent ${isSelected ? "bg-au-primary text-au-primary-foreground hover:bg-au-primary" : ""
+                    } ${isToday ? "border border-au-border" : ""
+                    } ${d.otherMonth ? "text-au-muted-foreground" : ""
+                    }`}
                   onClick={() => {
                     setSelectedDate(date);
                     setIsOpen(false);

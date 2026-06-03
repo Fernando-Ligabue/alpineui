@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, ChevronsLeftRight } from "lucide-react";
+import { ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, ChevronFirst, ChevronLast } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
 import { useI18n } from "@/i18n/I18nProvider";
 
@@ -202,7 +202,7 @@ function InteractiveTable() {
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
             >
-              <ChevronsLeftRight className="w-4 h-4 rotate-180" />
+              <ChevronFirst className="w-4 h-4" />
             </button>
             <button
               className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-au-border bg-au-background text-au-foreground hover:bg-au-accent h-8 w-8 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -223,7 +223,7 @@ function InteractiveTable() {
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}
             >
-              <ChevronsLeftRight className="w-4 h-4" />
+              <ChevronLast className="w-4 h-4" />
             </button>
           </div>
         </div>

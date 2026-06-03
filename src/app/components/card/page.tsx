@@ -17,12 +17,11 @@ function InteractiveCard() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl">
       {plans.map((plan) => (
-        <button
+        <div
           key={plan.id}
           onClick={() => setSelectedPlan(plan.id)}
-          className={`rounded-lg border bg-au-background shadow-sm text-left ${
-            selectedPlan === plan.id ? "ring-2 ring-au-ring border-au-border" : "border-au-border"
-          }`}
+          className={`rounded-lg border bg-au-background shadow-sm text-left ${selectedPlan === plan.id ? "ring-2 ring-au-ring border-au-border" : "border-au-border"
+            }`}
         >
           <div className="flex flex-col gap-1.5 p-6">
             {plan.id === "pro" && <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-au-primary text-au-primary-foreground w-fit">{t("common.popular")}</span>}
@@ -41,13 +40,12 @@ function InteractiveCard() {
             </ul>
           </div>
           <div className="flex items-center p-6 pt-0 *:flex-1">
-            <button className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 ${
-              selectedPlan === plan.id ? "bg-au-primary text-au-primary-foreground hover:opacity-90" : "border border-au-border bg-transparent text-au-foreground hover:bg-au-accent"
-            }`}>
+            <button className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 ${selectedPlan === plan.id ? "bg-au-primary text-au-primary-foreground hover:opacity-90" : "border border-au-border bg-transparent text-au-foreground hover:bg-au-accent"
+              }`}>
               {selectedPlan === plan.id ? t("common.selected") : t("common.select")}
             </button>
           </div>
-        </button>
+        </div>
       ))}
     </div>
   );
@@ -413,11 +411,11 @@ export default function CardPage() {
               <div className="p-6 pt-0">
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-3 py-2 border-b border-au-border last:border-b-0">
-                    <input type="checkbox" checked className="h-4 w-4 rounded border-au-border" />
+                    <input type="checkbox" checked readOnly className="h-4 w-4 rounded border-au-border" />
                     <span className="line-through text-au-muted-foreground">{t("common.reviewDocumentation")}</span>
                   </div>
                   <div className="flex items-center gap-3 py-2 border-b border-au-border last:border-b-0">
-                    <input type="checkbox" checked className="h-4 w-4 rounded border-au-border" />
+                    <input type="checkbox" checked readOnly className="h-4 w-4 rounded border-au-border" />
                     <span className="line-through text-au-muted-foreground">{t("common.createTests")}</span>
                   </div>
                   <div className="flex items-center gap-3 py-2 border-b border-au-border last:border-b-0">

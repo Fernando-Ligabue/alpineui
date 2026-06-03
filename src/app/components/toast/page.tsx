@@ -209,29 +209,29 @@ export default function ToastPage() {
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-green-500 bg-green-50 p-6 shadow-lg transition-all">
                 <CheckCircle className="w-5 h-5 shrink-0 text-green-500" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">{t("common.success")}</div>
-                  <div className="text-sm opacity-90">{t("common.operationCompleted")}</div>
+                  <div className="text-sm font-semibold text-au-success">{t("common.success")}</div>
+                  <div className="text-sm opacity-90 text-au-success">{t("common.operationCompleted")}</div>
                 </div>
               </div>
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-red-500 bg-red-50 p-6 shadow-lg transition-all">
                 <XCircle className="w-5 h-5 shrink-0 text-red-500" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">{t("common.error")}</div>
-                  <div className="text-sm opacity-90">{t("common.somethingWentWrong")}</div>
+                  <div className="text-sm font-semibold text-au-destructive">{t("common.error")}</div>
+                  <div className="text-sm opacity-90 text-au-destructive">{t("common.somethingWentWrong")}</div>
                 </div>
               </div>
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-amber-500 bg-amber-50 p-6 shadow-lg transition-all">
                 <AlertTriangle className="w-5 h-5 shrink-0 text-amber-500" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">{t("common.warning")}</div>
-                  <div className="text-sm opacity-90">{t("common.reviewBeforeProceeding")}</div>
+                  <div className="text-sm font-semibold text-au-warning">{t("common.warning")}</div>
+                  <div className="text-sm opacity-90 text-au-warning">{t("common.reviewBeforeProceeding")}</div>
                 </div>
               </div>
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-blue-500 bg-blue-50 p-6 shadow-lg transition-all">
                 <Info className="w-5 h-5 shrink-0 text-blue-500" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">{t("common.info")}</div>
-                  <div className="text-sm opacity-90">{t("common.newInfoAvailable")}</div>
+                  <div className="text-sm font-semibold text-au-info">{t("common.info")}</div>
+                  <div className="text-sm opacity-90 text-au-info">{t("common.newInfoAvailable")}</div>
                 </div>
               </div>
             </div>

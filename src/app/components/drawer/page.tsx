@@ -187,7 +187,7 @@ export default function DrawerPage() {
         <div className="border border-gray-200 rounded-lg overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-gray-100">
-              <tr>
+              <tr className="bg-au-secondary">
                 <th className="text-left px-4 py-3 font-medium">{t("drawer.direction")}</th>
                 <th className="text-left px-4 py-3 font-medium">{t("drawer.classes")}</th>
               </tr>

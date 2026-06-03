@@ -16,6 +16,9 @@
   --color-au-accent-foreground: #0a0a0a;
   --color-au-destructive: #dc2626;
   --color-au-destructive-foreground: #ffffff;
+  --color-au-success: #00c951;
+  --color-au-warning: #fe9a00;
+  --color-au-info: #2b7fff;
   --color-au-border: #e5e5e5;
   --color-au-ring: #0a0a0a;
   --color-au-radius: 0.5rem;
@@ -167,7 +170,7 @@ body {
     min-height: 100vh;
   }
 
-  .main-content > div {
+  .main-content>div {
     margin: 0 auto;
   }
 
@@ -251,7 +254,7 @@ body {
     display: block;
   }
 
-  .footer-desktop > div {
+  .footer-desktop>div {
     display: flex !important;
     flex-direction: column;
     justify-content: center;
@@ -276,6 +279,7 @@ main {
 .demo-header {
   display: flex;
   border-bottom: 1px solid var(--color-au-border);
+  border-radius: 0.5rem 0.5rem 0 0;
   background: var(--color-au-secondary);
 }
 
@@ -300,6 +304,7 @@ main {
 .demo-tab.active {
   color: var(--color-au-primary);
   border-bottom-color: var(--color-au-primary);
+  border-radius: 0.5rem 0.5rem 0 0;
   background: var(--color-au-background);
 }
 
@@ -314,6 +319,7 @@ main {
   background: var(--color-au-background);
   position: relative;
   overflow: visible !important;
+  border-radius: 0.5rem;
 }
 
 .demo-code {
@@ -394,6 +400,7 @@ main {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -403,6 +410,7 @@ main {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -413,6 +421,7 @@ main {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -420,40 +429,48 @@ main {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-20px) rotate(5deg);
   }
 }
 
 @keyframes float-delayed {
+
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-15px) rotate(-5deg);
   }
 }
 
 @keyframes float-slow {
+
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-25px) rotate(3deg);
   }
 }
 
 @keyframes float-delay-2000 {
+
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-18px) rotate(-3deg);
   }
@@ -464,6 +481,7 @@ main {
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: translateY(8px);
@@ -504,14 +522,15 @@ main {
 .delay-200 {
   animation-delay: 200ms;
 }
+
 .delay-500 {
   animation-delay: 500ms;
 }
+
 .delay-1000 {
   animation-delay: 1000ms;
 }
+
 .delay-2000 {
   animation-delay: 2s;
 }
-
-

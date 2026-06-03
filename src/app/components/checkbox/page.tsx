@@ -30,13 +30,13 @@ function InteractiveSwitch() {
   return (
     <div className="flex items-center gap-3">
       <div
-        className="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 bg-au-secondary data-[checked=true]:bg-au-primary"
+        className="group peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 bg-au-secondary data-[checked=true]:bg-au-primary"
         data-checked={enabled ? "true" : undefined}
         onClick={() => setEnabled(!enabled)}
         role="switch"
         aria-checked={enabled}
       >
-        <div className="pointer-events-none block h-5 w-5 rounded-full bg-au-background shadow-lg ring-0 transition-transform translate-x-0 data-[checked=true]:translate-x-5" />
+        <div className="pointer-events-none block h-5 w-5 rounded-full bg-au-background shadow-lg ring-0 transition-transform translate-x-0 group-data-[checked=true]:translate-x-5" />
       </div>
       <span>{enabled ? t("common.enabled") : t("common.disabled")}</span>
     </div>
