@@ -83,7 +83,7 @@ Diferente de bibliotecas tradicionais, você não instala nada — basta copiar 
 
 ### 🎯 Modo de uso
 
-1. Aceda a **[alpineui.netlify.app](https://alpineui.netlify.app)**
+1. Aceda a **[uialpine.netlify.app](https://uialpine.netlify.app)**
 2. Navegue até o componente desejado
 3. Clique no separador **Code** para ver o código
 4. **Copie e cole** no seu projeto
@@ -264,7 +264,7 @@ Unlike traditional libraries, you don't install anything — just copy the HTML 
 
 ### 🎯 How to use
 
-1. Go to **[alpineui.netlify.app](https://alpineui.netlify.app)**
+1. Go to **[uialpine.netlify.app](https://uialpine.netlify.app)**
 2. Browse to the component you need
 3. Click the **Code** tab to show the source
 4. **Copy and paste** into your project
