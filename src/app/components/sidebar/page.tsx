@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Home, Settings, User, FileText, Bell, Mail, Search, Menu, X, PanelLeftOpen, PanelRightOpen } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveSidebarDefault() {
+  const { t } = useI18n();
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -20,7 +22,7 @@ function InteractiveSidebarDefault() {
           <button
             className={`p-2 rounded-md hover:bg-au-accent transition-colors ${collapsed ? "mx-auto" : ""}`}
             onClick={() => setCollapsed(!collapsed)}
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            aria-label={collapsed ? t("sidebar.expand") : t("sidebar.collapse")}
           >
             {collapsed ? <PanelLeftOpen className="w-6 h-6 text-au-foreground" /> : <PanelRightOpen className="w-6 h-6 text-au-foreground" />}
           </button>
@@ -28,81 +30,83 @@ function InteractiveSidebarDefault() {
         <nav className="flex-1 overflow-y-auto p-2 space-y-1">
           <a href="#" className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium bg-au-primary text-au-primary-foreground hover:bg-au-primary ${collapsed ? "justify-center px-2.5" : ""}`}>
             <Home className="w-5 h-5 shrink-0" />
-            <span className={`${collapsed ? "hidden" : "truncate"}`}>Home</span>
+            <span className={`${collapsed ? "hidden" : "truncate"}`}>{t("sidebar.home")}</span>
           </a>
           <a href="#" className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors ${collapsed ? "justify-center px-2.5" : ""}`}>
             <User className="w-5 h-5 shrink-0" />
-            <span className={`${collapsed ? "hidden" : "truncate"}`}>Profile</span>
+            <span className={`${collapsed ? "hidden" : "truncate"}`}>{t("sidebar.profile")}</span>
           </a>
           <a href="#" className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors ${collapsed ? "justify-center px-2.5" : ""}`}>
             <FileText className="w-5 h-5 shrink-0" />
-            <span className={`${collapsed ? "hidden" : "truncate"}`}>Documents</span>
+            <span className={`${collapsed ? "hidden" : "truncate"}`}>{t("sidebar.documents")}</span>
           </a>
           <a href="#" className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors ${collapsed ? "justify-center px-2.5" : ""}`}>
             <Bell className="w-5 h-5 shrink-0" />
-            <span className={`${collapsed ? "hidden" : "truncate"}`}>Notifications</span>
+            <span className={`${collapsed ? "hidden" : "truncate"}`}>{t("sidebar.notifications")}</span>
           </a>
           <div className="h-px my-2 mx-3 bg-au-border" />
           <a href="#" className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors ${collapsed ? "justify-center px-2.5" : ""}`}>
             <Settings className="w-5 h-5 shrink-0" />
-            <span className={`${collapsed ? "hidden" : "truncate"}`}>Settings</span>
+            <span className={`${collapsed ? "hidden" : "truncate"}`}>{t("sidebar.settings")}</span>
           </a>
         </nav>
       </aside>
       <main className="flex-1 p-4 bg-au-secondary/30">
-        <p className="text-au-muted-foreground">Main content area</p>
+        <p className="text-au-muted-foreground">{t("sidebar.mainContent")}</p>
       </main>
     </div>
   );
 }
 
 function InteractiveSidebarGroups() {
+  const { t } = useI18n();
   return (
     <div className="flex h-64 w-full max-w-md border border-au-border rounded-lg overflow-hidden">
       <aside className="relative flex flex-col h-full bg-au-background border-r border-au-border w-80">
         <div className="flex items-center justify-between p-4 border-b border-au-border">
-          <span className="text-lg font-semibold text-au-foreground truncate">Dashboard</span>
+          <span className="text-lg font-semibold text-au-foreground truncate">{t("sidebar.dashboard")}</span>
         </div>
         <nav className="flex-1 overflow-y-auto p-2 space-y-1">
           <div className="mb-4">
-            <span className="block px-3 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider mb-2">Main</span>
+            <span className="block px-3 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider mb-2">{t("sidebar.main")}</span>
             <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium bg-au-primary text-au-primary-foreground hover:bg-au-primary">
               <Home className="w-5 h-5 shrink-0" />
-              <span className="truncate">Home</span>
+              <span className="truncate">{t("sidebar.home")}</span>
             </a>
             <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors">
               <Search className="w-5 h-5 shrink-0" />
-              <span className="truncate">Explore</span>
+              <span className="truncate">{t("sidebar.explore")}</span>
             </a>
           </div>
           <div className="mb-4">
-            <span className="block px-3 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider mb-2">Content</span>
+            <span className="block px-3 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider mb-2">{t("sidebar.content")}</span>
             <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors">
               <FileText className="w-5 h-5 shrink-0" />
-              <span className="truncate">Documents</span>
+              <span className="truncate">{t("sidebar.documents")}</span>
             </a>
             <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors">
               <Mail className="w-5 h-5 shrink-0" />
-              <span className="truncate">Messages</span>
+              <span className="truncate">{t("sidebar.messages")}</span>
             </a>
           </div>
           <div className="mb-4">
-            <span className="block px-3 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider mb-2">System</span>
+            <span className="block px-3 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider mb-2">{t("sidebar.system")}</span>
             <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors">
               <Settings className="w-5 h-5 shrink-0" />
-              <span className="truncate">Settings</span>
+              <span className="truncate">{t("sidebar.settings")}</span>
             </a>
           </div>
         </nav>
       </aside>
       <main className="flex-1 p-4 bg-au-secondary/30">
-        <p className="text-au-muted-foreground">Content with groups</p>
+        <p className="text-au-muted-foreground">{t("sidebar.contentWithGroups")}</p>
       </main>
     </div>
   );
 }
 
 function InteractiveSidebarSizes() {
+  const { t } = useI18n();
   const [size, setSize] = useState("md");
 
   const sizeWidths: Record<string, string> = {
@@ -133,11 +137,11 @@ function InteractiveSidebarSizes() {
           <nav className="flex-1 overflow-y-auto p-2 space-y-1">
             <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium bg-au-primary text-au-primary-foreground hover:bg-au-primary">
               <Home className="w-5 h-5 shrink-0" />
-              <span className="truncate">Home</span>
+              <span className="truncate">{t("sidebar.home")}</span>
             </a>
             <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors">
               <Settings className="w-5 h-5 shrink-0" />
-              <span className="truncate">Settings</span>
+              <span className="truncate">{t("sidebar.settings")}</span>
             </a>
           </nav>
         </aside>
@@ -147,6 +151,7 @@ function InteractiveSidebarSizes() {
 }
 
 function InteractiveSidebarToggle() {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -154,7 +159,7 @@ function InteractiveSidebarToggle() {
       <button
         className="p-2 rounded-md hover:bg-au-accent transition-colors"
         onClick={() => setIsOpen(true)}
-        aria-label="Open menu"
+        aria-label={t("sidebar.openMenu")}
       >
         <Menu className="w-5 h-5" />
       </button>
@@ -166,11 +171,11 @@ function InteractiveSidebarToggle() {
           />
           <aside className="fixed top-0 bottom-0 z-50 shadow-lg left-0 w-80 flex flex-col h-full bg-au-background border-r border-au-border">
             <div className="flex items-center justify-between p-4 border-b border-au-border">
-              <span className="text-lg font-semibold text-au-foreground truncate">Menu</span>
+              <span className="text-lg font-semibold text-au-foreground truncate">{t("sidebar.menu")}</span>
               <button
                 className="p-2 rounded-md hover:bg-au-accent transition-colors"
                 onClick={() => setIsOpen(false)}
-                aria-label="Close menu"
+                aria-label={t("sidebar.closeMenu")}
               >
                 <X className="w-4 h-4" />
               </button>
@@ -178,15 +183,15 @@ function InteractiveSidebarToggle() {
             <nav className="flex-1 overflow-y-auto p-2 space-y-1">
               <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium bg-au-primary text-au-primary-foreground hover:bg-au-primary">
                 <Home className="w-5 h-5 shrink-0" />
-                <span className="truncate">Home</span>
+                <span className="truncate">{t("sidebar.home")}</span>
               </a>
               <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors">
                 <User className="w-5 h-5 shrink-0" />
-                <span className="truncate">Profile</span>
+                <span className="truncate">{t("sidebar.profile")}</span>
               </a>
               <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-au-muted-foreground hover:bg-au-accent hover:text-au-foreground transition-colors">
                 <Settings className="w-5 h-5 shrink-0" />
-                <span className="truncate">Settings</span>
+                <span className="truncate">{t("sidebar.settings")}</span>
               </a>
             </nav>
           </aside>
@@ -197,15 +202,16 @@ function InteractiveSidebarToggle() {
 }
 
 export default function SidebarPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Sidebar</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("sidebar.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A collapsible navigation sidebar for organizing and accessing app navigation.
+        {t("sidebar.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Default Sidebar</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.defaultSidebar")}</h2>
         <DemoBlock
           preview={<InteractiveSidebarDefault />}
           code={`<div x-data="{ collapsed: false }" class="flex h-64 w-full max-w-md border border-gray-200 rounded-lg overflow-hidden">
@@ -261,7 +267,7 @@ export default function SidebarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Groups</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.withGroups")}</h2>
         <DemoBlock
           preview={<InteractiveSidebarGroups />}
           code={`<aside class="relative flex flex-col h-full bg-white border-r border-gray-200 w-80">
@@ -291,7 +297,7 @@ export default function SidebarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={<InteractiveSidebarSizes />}
           code={`<!-- Small: 16rem (w-64) -->
@@ -309,7 +315,7 @@ export default function SidebarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Mobile Toggle</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.mobileToggle")}</h2>
         <DemoBlock
           preview={<InteractiveSidebarToggle />}
           code={`<div x-data="{ open: false }" class="relative">

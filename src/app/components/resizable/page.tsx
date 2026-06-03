@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveResizable() {
   const [leftWidth, setLeftWidth] = useState(50);
@@ -51,14 +52,63 @@ function InteractiveResizable() {
   );
 }
 
+function InteractiveResizableVertical() {
+  const [topHeight, setTopHeight] = useState(50);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dragging.current = true;
+    const startY = e.clientY;
+    const startHeight = topHeight;
+
+    const handleMouseMove = (ev: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const dy = ev.clientY - startY;
+      const pct = ((startHeight / 100) * rect.height + dy) / rect.height * 100;
+      setTopHeight(Math.min(Math.max(pct, 20), 80));
+    };
+
+    const handleMouseUp = () => {
+      dragging.current = false;
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
+
+  return (
+    <div className="w-full max-w-lg">
+      <div ref={containerRef} className="flex flex-col border border-au-border rounded-lg overflow-hidden h-48 select-none">
+        <div className="flex items-center justify-center bg-au-accent text-sm text-au-muted-foreground" style={{ height: `${topHeight}%` }}>
+          Top Panel
+        </div>
+        <div
+          onMouseDown={handleMouseDown}
+          className="h-1 bg-au-border hover:bg-au-muted-foreground cursor-row-resize shrink-0 transition-colors"
+        />
+        <div className="flex-1 flex items-center justify-center bg-au-background text-sm text-au-muted-foreground">
+          Bottom Panel
+        </div>
+      </div>
+      <p className="text-xs text-au-muted-foreground mt-2 text-center">Drag the divider to resize</p>
+    </div>
+  );
+}
+
 export default function ResizablePage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Resizable</h1>
-      <p className="text-au-muted-foreground mb-8">A container with draggable divider for resizing panels.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("resizable.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("resizable.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveResizable />}
           code={`<div x-data="{ leftWidth: 50, dragging: false, startX: 0, startWidth: 0 }"
@@ -88,21 +138,9 @@ export default function ResizablePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Vertical Resizable</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.vertical")} Resizable</h2>
         <DemoBlock
-          preview={
-            <div className="w-full max-w-lg">
-              <div className="flex flex-col border border-au-border rounded-lg overflow-hidden h-48 select-none">
-                <div className="flex items-center justify-center bg-au-accent text-sm text-au-muted-foreground" style={{ height: "50%" }}>
-                  Top Panel
-                </div>
-                <div className="h-1 bg-au-border hover:bg-au-muted-foreground cursor-row-resize shrink-0 transition-colors" />
-                <div className="flex-1 flex items-center justify-center bg-au-background text-sm text-au-muted-foreground">
-                  Bottom Panel
-                </div>
-              </div>
-            </div>
-          }
+          preview={<InteractiveResizableVertical />}
           code={`<div x-data="{ topHeight: 50, dragging: false }"
   class="flex flex-col border border-gray-200 rounded-lg overflow-hidden h-48 select-none">
   <div class="flex items-center justify-center bg-gray-50 text-sm text-gray-600"

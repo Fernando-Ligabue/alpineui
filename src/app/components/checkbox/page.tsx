@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveCheckbox() {
+  const { t } = useI18n();
   const [checked, setChecked] = useState(true);
 
   return (
@@ -15,13 +17,14 @@ function InteractiveCheckbox() {
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
         />
-        <span>Accept terms</span>
+        <span>{t("common.acceptTerms")}</span>
       </label>
     </div>
   );
 }
 
 function InteractiveSwitch() {
+  const { t } = useI18n();
   const [enabled, setEnabled] = useState(false);
 
   return (
@@ -35,21 +38,22 @@ function InteractiveSwitch() {
       >
         <div className="pointer-events-none block h-5 w-5 rounded-full bg-au-background shadow-lg ring-0 transition-transform translate-x-0 data-[checked=true]:translate-x-5" />
       </div>
-      <span>{enabled ? "Enabled" : "Disabled"}</span>
+      <span>{enabled ? t("common.enabled") : t("common.disabled")}</span>
     </div>
   );
 }
 
 export default function CheckboxPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Checkbox</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("checkbox.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A control that allows the user to toggle between checked and not checked.
+        {t("checkbox.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveCheckbox />}
           code={`<div x-data="{ checked: true }">
@@ -65,25 +69,25 @@ export default function CheckboxPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.states")}</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap gap-4">
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground" defaultChecked />
-                <span>Checked</span>
+                <span>{t("common.checked")}</span>
               </label>
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground" />
-                <span>Unchecked</span>
+                <span>{t("common.unchecked")}</span>
               </label>
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground" disabled />
-                <span>Disabled</span>
+                <span>{t("common.disabled")}</span>
               </label>
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="peer h-4 w-4 shrink-0 rounded-sm border border-au-border ring-offset-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50 checked:bg-au-primary checked:border-au-primary checked:text-au-primary-foreground" disabled defaultChecked />
-                <span>Checked Disabled</span>
+                <span>{t("common.checkedDisabled")}</span>
               </label>
             </div>
           }

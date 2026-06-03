@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { User } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const sizeClasses: Record<string, string> = {
   xs: "w-6 h-6",
@@ -135,15 +136,16 @@ function InteractiveAvatarGroup() {
 }
 
 export default function AvatarPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Avatar</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("avatar.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A user avatar component with fallback support.
+        {t("avatar.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={
             <div className="flex gap-4">
@@ -176,7 +178,7 @@ export default function AvatarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock preview={<InteractiveAvatars />} code={`<div class="relative flex shrink-0 overflow-hidden rounded-full w-6 h-6">...</div>
 <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">...</div>
 <div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
@@ -185,14 +187,14 @@ export default function AvatarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Shapes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.shapes")}</h2>
         <DemoBlock preview={<InteractiveAvatarShapes />} code={`<div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
 <div class="relative flex shrink-0 overflow-hidden rounded-none w-10 h-10">...</div>
 <div class="relative flex shrink-0 overflow-hidden rounded-md w-10 h-10">...</div>`} />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Status</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.status")}</h2>
         <DemoBlock preview={<InteractiveAvatarStatus />} code={`<div class="relative">
   <div class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">...</div>
   <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-green-500"></div>
@@ -200,7 +202,7 @@ export default function AvatarPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Avatar Group</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.avatarGroup")}</h2>
         <DemoBlock preview={<InteractiveAvatarGroup />} code={`<div class="flex -space-x-2">
   <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white">...</div>
   <div class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 ring-2 ring-white">...</div>

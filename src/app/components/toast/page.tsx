@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { CheckCircle, XCircle, AlertTriangle, Info, X } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 interface ToastData {
   id: string;
@@ -37,6 +38,7 @@ const variantBorderBg: Record<string, string> = {
 };
 
 function ToastContainer({ toasts, position, onDismiss }: { toasts: ToastData[]; position: string; onDismiss: (id: string) => void }) {
+  const { t } = useI18n();
   return (
     <div className={positionClasses[position] || positionClasses["top-right"]}>
       {toasts.map((toast) => (
@@ -46,7 +48,7 @@ function ToastContainer({ toasts, position, onDismiss }: { toasts: ToastData[]; 
             <div className="text-sm font-semibold">{toast.title}</div>
             {toast.description && <div className="text-sm opacity-90">{toast.description}</div>}
           </div>
-          <button aria-label="Dismiss" className="shrink-0 rounded-md p-1 opacity-70 hover:opacity-100 transition-opacity" onClick={() => onDismiss(toast.id)}>
+          <button aria-label={t("toast.dismiss")} className="shrink-0 rounded-md p-1 opacity-70 hover:opacity-100 transition-opacity" onClick={() => onDismiss(toast.id)}>
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -56,16 +58,17 @@ function ToastContainer({ toasts, position, onDismiss }: { toasts: ToastData[]; 
 }
 
 function InteractiveToasts() {
+  const { t } = useI18n();
   const [toasts, setToasts] = useState<ToastData[]>([]);
 
   const addToast = (variant: ToastData["variant"]) => {
     const id = Date.now().toString();
-    const messages = {
-      default: { title: "Notification", description: "This is a default toast message." },
-      success: { title: "Success!", description: "Your changes have been saved." },
-      error: { title: "Error", description: "Something went wrong. Please try again." },
-      warning: { title: "Warning", description: "Your session will expire soon." },
-      info: { title: "Info", description: "New updates are available." },
+    const messages: Record<string, { title: string; description: string }> = {
+      default: { title: t("common.notifications"), description: t("common.defaultToast") },
+      success: { title: t("common.success"), description: t("common.savedSuccess") },
+      error: { title: t("common.error"), description: t("common.somethingWentWrong") },
+      warning: { title: t("common.warning"), description: t("common.sessionExpiring") },
+      info: { title: t("common.info"), description: t("common.newUpdates") },
     };
     setToasts((prev) => [...prev, { id, ...messages[variant], variant }]);
   };
@@ -85,19 +88,19 @@ function InteractiveToasts() {
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
         <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-au-primary text-au-primary-foreground hover:bg-au-primary" onClick={() => addToast("default")}>
-          Default
+          {t("common.default")}
         </button>
         <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-au-primary text-au-primary-foreground hover:bg-au-primary" onClick={() => addToast("success")}>
-          Success
+          {t("common.success")}
         </button>
         <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-au-destructive text-au-destructive-foreground hover:bg-au-destructive" onClick={() => addToast("error")}>
-          Error
+          {t("common.error")}
         </button>
         <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 bg-au-secondary text-au-foreground hover:bg-au-accent" onClick={() => addToast("warning")}>
-          Warning
+          {t("common.warning")}
         </button>
         <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 text-au-foreground hover:bg-au-accent" onClick={() => addToast("info")}>
-          Info
+          {t("common.info")}
         </button>
       </div>
       <ToastContainer toasts={toasts} position="top-right" onDismiss={dismissToast} />
@@ -106,13 +109,23 @@ function InteractiveToasts() {
 }
 
 function InteractiveToastPositions() {
+  const { t } = useI18n();
   const [position, setPosition] = useState("top-right");
   const [toast, setToast] = useState<ToastData | null>(null);
+
+  const positionLabels: Record<string, string> = {
+    "top-left": t("common.topLeft"),
+    "top-center": t("common.topCenter"),
+    "top-right": t("common.topRight"),
+    "bottom-left": t("common.bottomLeft"),
+    "bottom-center": t("common.bottomCenter"),
+    "bottom-right": t("common.bottomRight"),
+  };
 
   const showToast = () => {
     setToast({
       id: Date.now().toString(),
-      title: "Notification",
+      title: t("common.notifications"),
       description: `Toast anchored to ${position}`,
       variant: "default" as const,
     });
@@ -127,12 +140,12 @@ function InteractiveToastPositions() {
             className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-8 px-3 ${position === pos ? "bg-au-primary text-au-primary-foreground" : "border border-au-border text-au-foreground hover:bg-au-accent"}`}
             onClick={() => setPosition(pos)}
           >
-            {pos}
+            {positionLabels[pos]}
           </button>
         ))}
       </div>
       <button className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-au-primary text-au-primary-foreground hover:bg-au-primary" onClick={showToast}>
-        Show Toast
+        {t("common.show")}
       </button>
       {toast && <ToastContainer toasts={[toast]} position={position} onDismiss={() => setToast(null)} />}
     </div>
@@ -140,15 +153,16 @@ function InteractiveToastPositions() {
 }
 
 export default function ToastPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Toast</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("toast.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A notification component for displaying messages to the user.
+        {t("toast.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveToasts />}
           code={`<div x-data="{ toasts: [] }">
@@ -181,43 +195,43 @@ export default function ToastPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.variants")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-3">
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-au-border bg-au-background p-6 shadow-lg transition-all">
                 <Info className="w-5 h-5 shrink-0 text-au-muted-foreground" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">Default</div>
-                  <div className="text-sm opacity-90">This is a default toast.</div>
+                  <div className="text-sm font-semibold">{t("common.default")}</div>
+                  <div className="text-sm opacity-90">{t("common.defaultToast")}</div>
                 </div>
               </div>
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-green-500 bg-green-50 p-6 shadow-lg transition-all">
                 <CheckCircle className="w-5 h-5 shrink-0 text-green-500" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">Success</div>
-                  <div className="text-sm opacity-90">Operation completed successfully.</div>
+                  <div className="text-sm font-semibold">{t("common.success")}</div>
+                  <div className="text-sm opacity-90">{t("common.operationCompleted")}</div>
                 </div>
               </div>
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-red-500 bg-red-50 p-6 shadow-lg transition-all">
                 <XCircle className="w-5 h-5 shrink-0 text-red-500" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">Error</div>
-                  <div className="text-sm opacity-90">Something went wrong.</div>
+                  <div className="text-sm font-semibold">{t("common.error")}</div>
+                  <div className="text-sm opacity-90">{t("common.somethingWentWrong")}</div>
                 </div>
               </div>
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-amber-500 bg-amber-50 p-6 shadow-lg transition-all">
                 <AlertTriangle className="w-5 h-5 shrink-0 text-amber-500" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">Warning</div>
-                  <div className="text-sm opacity-90">Please review before proceeding.</div>
+                  <div className="text-sm font-semibold">{t("common.warning")}</div>
+                  <div className="text-sm opacity-90">{t("common.reviewBeforeProceeding")}</div>
                 </div>
               </div>
               <div className="group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-blue-500 bg-blue-50 p-6 shadow-lg transition-all">
                 <Info className="w-5 h-5 shrink-0 text-blue-500" />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">Info</div>
-                  <div className="text-sm opacity-90">New information available.</div>
+                  <div className="text-sm font-semibold">{t("common.info")}</div>
+                  <div className="text-sm opacity-90">{t("common.newInfoAvailable")}</div>
                 </div>
               </div>
             </div>
@@ -238,7 +252,7 @@ export default function ToastPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Positions</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.positions")}</h2>
         <DemoBlock
           preview={<InteractiveToastPositions />}
           code={`<!-- Top left -->

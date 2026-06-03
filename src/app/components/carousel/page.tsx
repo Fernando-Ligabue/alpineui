@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const slides = [
   { color: "bg-blue-500", label: "Slide 1" },
@@ -115,6 +116,7 @@ function MultiItemCarousel() {
 }
 
 function AutoplayCarousel() {
+  const { t } = useI18n();
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const total = slides.length;
@@ -140,7 +142,7 @@ function AutoplayCarousel() {
           >
             <div className="text-center">
               <div>{slide.label}</div>
-              <div className="text-sm font-normal mt-2 opacity-80">Auto-advances every 3s</div>
+              <div className="text-sm font-normal mt-2 opacity-80">{t("common.autoAdvances")}</div>
             </div>
           </div>
         ))}
@@ -163,7 +165,7 @@ function AutoplayCarousel() {
           onClick={() => setPaused(!paused)}
           className={`ml-2 px-2 py-1 text-xs rounded transition-colors ${paused ? "bg-au-destructive text-au-primary-foreground" : "bg-white/20 text-white"}`}
         >
-          {paused ? "Resume" : "Pause"}
+          {paused ? t("common.resume") : t("common.pause")}
         </button>
       </div>
     </div>
@@ -213,13 +215,14 @@ function ThumbnailCarousel() {
 }
 
 export default function CarouselPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Carousel</h1>
-      <p className="text-au-muted-foreground mb-8">An image or content slider with navigation controls. Multiple variants for different use cases.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("carousel.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("carousel.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.basic")}</h2>
         <DemoBlock
           preview={<InteractiveCarousel />}
           code={`<div x-data="{ current: 0 }" class="relative w-full max-w-lg overflow-hidden rounded-lg">
@@ -265,8 +268,8 @@ export default function CarouselPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Multi-Item</h2>
-        <p className="text-au-muted-foreground mb-4">Shows three slides at once — previous, current (highlighted), and next.</p>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.multiItem")}</h2>
+        <p className="text-au-muted-foreground mb-4">{t("common.showsThreeSlides")}</p>
         <DemoBlock
           preview={<MultiItemCarousel />}
           code={`<div x-data="{ current: 0, prev() { this.current = this.current === 0 ? 4 : this.current - 1 }, next() { this.current = this.current === 4 ? 0 : this.current + 1 } }" class="relative w-full max-w-2xl overflow-hidden rounded-lg">
@@ -314,8 +317,8 @@ export default function CarouselPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Autoplay</h2>
-        <p className="text-au-muted-foreground mb-4">Automatically advances through slides with optional pause control.</p>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.autoplay")}</h2>
+        <p className="text-au-muted-foreground mb-4">{t("common.autoAdvanceCarousel")}</p>
         <DemoBlock
           preview={<AutoplayCarousel />}
           code={`<div x-data="{
@@ -385,8 +388,8 @@ export default function CarouselPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Thumbnails</h2>
-        <p className="text-au-muted-foreground mb-4">Image carousel with clickable thumbnail navigation.</p>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.thumbnails")}</h2>
+        <p className="text-au-muted-foreground mb-4">{t("common.imageCarouselThumbnails")}</p>
         <DemoBlock
           preview={<ThumbnailCarousel />}
           code={`<div x-data="{ current: 0 }" class="w-full max-w-lg">

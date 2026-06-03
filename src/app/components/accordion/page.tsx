@@ -3,14 +3,16 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveAccordionDefault() {
+  const { t } = useI18n();
   const [openItem, setOpenItem] = useState<string | null>("faq-1");
 
   const items = [
-    { id: "faq-1", title: "What is AlpineUI?", content: "AlpineUI is a collection of beautiful, copy-paste ready components built with Alpine.js and Tailwind CSS." },
-    { id: "faq-2", title: "How do I install it?", content: "Just copy the component HTML from this page and paste it into your project. No CLI, no npm install needed." },
-    { id: "faq-3", title: "Can I customize the styles?", content: "Yes! All components use CSS variables that you can override to match your design system. Check the Theming page for more details." },
+    { id: "faq-1", title: t("common.whatIsAlpineUI"), content: "AlpineUI is a collection of beautiful, copy-paste ready components built with Alpine.js and Tailwind CSS." },
+    { id: "faq-2", title: t("common.howToInstall"), content: "Just copy the component HTML from this page and paste it into your project. No CLI, no npm install needed." },
+    { id: "faq-3", title: t("common.canCustomize"), content: "Yes! All components use CSS variables that you can override to match your design system. Check the Theming page for more details." },
   ];
 
   return (
@@ -37,12 +39,13 @@ function InteractiveAccordionDefault() {
 }
 
 function InteractiveAccordionGhost() {
+  const { t } = useI18n();
   const [openItem, setOpenItem] = useState<string | null>("item-1");
 
   const items = [
-    { id: "item-1", title: "Getting Started", content: "Learn how to set up AlpineUI in your project." },
-    { id: "item-2", title: "Components", content: "Browse our collection of ready-to-use components." },
-    { id: "item-3", title: "Theming", content: "Customize colors, spacing, and more with CSS variables." },
+    { id: "item-1", title: t("common.gettingStarted"), content: "Learn how to set up AlpineUI in your project." },
+    { id: "item-2", title: t("common.components"), content: "Browse our collection of ready-to-use components." },
+    { id: "item-3", title: t("common.themingSection"), content: "Customize colors, spacing, and more with CSS variables." },
   ];
 
   return (
@@ -69,12 +72,13 @@ function InteractiveAccordionGhost() {
 }
 
 function InteractiveAccordionMultiple() {
+  const { t } = useI18n();
   const [openItems, setOpenItems] = useState<string[]>(["item-1"]);
 
   const items = [
     { id: "item-1", title: "Multi-select allowed", content: "This accordion allows multiple items to be open at the same time." },
-    { id: "item-2", title: "Click to toggle", content: "Click any item to open or close it independently." },
-    { id: "item-3", title: "Great for FAQs", content: "Perfect for frequently asked questions sections." },
+    { id: "item-2", title: t("common.clickToToggle"), content: "Click any item to open or close it independently." },
+    { id: "item-3", title: t("common.greatForFAQs"), content: "Perfect for frequently asked questions sections." },
   ];
 
   const toggleItem = (id: string) => {
@@ -107,15 +111,16 @@ function InteractiveAccordionMultiple() {
 }
 
 export default function AccordionPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Accordion</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("accordion.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        An expandable content component for showing and hiding sections.
+        {t("accordion.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveAccordionDefault />}
           code={`<div x-data="{ open: 'faq-1' }" class="divide-y divide-gray-200 border border-gray-200 rounded-lg">
@@ -160,16 +165,16 @@ export default function AccordionPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.variants")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-8 w-full max-w-md">
               <div>
-                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Default</h3>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.default")}</h3>
                 <InteractiveAccordionDefault />
               </div>
               <div>
-                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Ghost</h3>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.ghost")}</h3>
                 <InteractiveAccordionGhost />
               </div>
               <div>
@@ -196,14 +201,14 @@ export default function AccordionPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-6 w-full max-w-md">
               <div className="border border-au-border rounded-lg overflow-hidden">
                 <div>
                   <button className="flex w-full items-center justify-between px-3 py-2 text-xs font-medium text-left text-au-foreground hover:bg-au-accent transition-colors" data-state="open">
-                    Small
+                    {t("common.sm")}
                     <ChevronDown className="w-3 h-3 shrink-0 text-au-muted-foreground transition-transform duration-200" />
                   </button>
                   <div className="px-3 pb-2 text-xs text-au-muted-foreground">
@@ -214,7 +219,7 @@ export default function AccordionPage() {
               <div className="border border-au-border rounded-lg overflow-hidden">
                 <div>
                   <button className="flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-left text-au-foreground hover:bg-au-accent transition-colors" data-state="open">
-                    Medium
+                    {t("common.md")}
                     <ChevronDown className="w-4 h-4 shrink-0 text-au-muted-foreground transition-transform duration-200" />
                   </button>
                   <div className="px-4 pb-4 text-sm text-au-muted-foreground">
@@ -225,7 +230,7 @@ export default function AccordionPage() {
               <div className="border border-au-border rounded-lg overflow-hidden">
                 <div>
                   <button className="flex w-full items-center justify-between px-5 py-5 text-base font-medium text-left text-au-foreground hover:bg-au-accent transition-colors" data-state="open">
-                    Large
+                    {t("common.lg")}
                     <ChevronDown className="w-5 h-5 shrink-0 text-au-muted-foreground transition-transform duration-200" />
                   </button>
                   <div className="px-5 pb-5 text-base text-au-muted-foreground">

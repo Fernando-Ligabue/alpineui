@@ -4,8 +4,10 @@ import { useState } from "react";
 import MobileHeader from "./MobileHeader";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
+  const { t } = useI18n();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
@@ -18,7 +20,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-au-primary focus:text-au-primary-foreground focus:rounded-md focus:text-sm focus:font-medium"
       >
-        Skip to content
+        {t("layout.skipToContent")}
       </a>
 
       {/* Mobile Header */}

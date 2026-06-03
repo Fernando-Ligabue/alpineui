@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveTabs() {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState("account");
 
   return (
@@ -13,30 +15,30 @@ function InteractiveTabs() {
           className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "account" ? "bg-au-background text-au-foreground shadow-sm" : "hover:text-au-foreground"}`}
           onClick={() => setActiveTab("account")}
         >
-          Account
+          {t("common.account")}
         </button>
         <button
           className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "password" ? "bg-au-background text-au-foreground shadow-sm" : "hover:text-au-foreground"}`}
           onClick={() => setActiveTab("password")}
         >
-          Password
+          {t("common.password")}
         </button>
         <button
           className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "notifications" ? "bg-au-background text-au-foreground shadow-sm" : "hover:text-au-foreground"}`}
           onClick={() => setActiveTab("notifications")}
         >
-          Notifications
+          {t("common.notifications")}
         </button>
       </div>
       <div className="mt-2">
         {activeTab === "account" && (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-au-foreground mb-1">Username</label>
+              <label className="block text-sm font-medium text-au-foreground mb-1">{t("common.username")}</label>
               <input type="text" className="w-full px-3 py-2 border border-au-border rounded-md text-sm" defaultValue="johndoe" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-au-foreground mb-1">Email</label>
+              <label className="block text-sm font-medium text-au-foreground mb-1">{t("common.email")}</label>
               <input type="email" className="w-full px-3 py-2 border border-au-border rounded-md text-sm" defaultValue="john@example.com" />
             </div>
           </div>
@@ -44,12 +46,12 @@ function InteractiveTabs() {
         {activeTab === "password" && (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-au-foreground mb-1">Current Password</label>
-              <input type="password" className="w-full px-3 py-2 border border-au-border rounded-md text-sm" placeholder="Enter current password" />
+              <label className="block text-sm font-medium text-au-foreground mb-1">{t("common.currentPassword")}</label>
+              <input type="password" className="w-full px-3 py-2 border border-au-border rounded-md text-sm" placeholder={t("common.enterCurrentPassword")} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-au-foreground mb-1">New Password</label>
-              <input type="password" className="w-full px-3 py-2 border border-au-border rounded-md text-sm" placeholder="Enter new password" />
+              <label className="block text-sm font-medium text-au-foreground mb-1">{t("common.newPassword")}</label>
+              <input type="password" className="w-full px-3 py-2 border border-au-border rounded-md text-sm" placeholder={t("common.enterNewPassword")} />
             </div>
           </div>
         )}
@@ -57,15 +59,15 @@ function InteractiveTabs() {
           <div className="space-y-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input type="checkbox" className="rounded border-au-border" defaultChecked />
-              <span>Email notifications</span>
+              <span>{t("common.emailNotifications")}</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input type="checkbox" className="rounded border-au-border" defaultChecked />
-              <span>Push notifications</span>
+              <span>{t("common.pushNotifications")}</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input type="checkbox" className="rounded border-au-border" />
-              <span>SMS notifications</span>
+              <span>{t("common.smsNotifications")}</span>
             </label>
           </div>
         )}
@@ -75,6 +77,7 @@ function InteractiveTabs() {
 }
 
 function InteractiveTabsPill() {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
@@ -84,31 +87,32 @@ function InteractiveTabsPill() {
           className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "overview" ? "bg-au-primary text-au-primary-foreground shadow-sm" : "hover:text-au-foreground hover:bg-au-accent"}`}
           onClick={() => setActiveTab("overview")}
         >
-          Overview
+          {t("common.overview")}
         </button>
         <button
           className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "analytics" ? "bg-au-primary text-au-primary-foreground shadow-sm" : "hover:text-au-foreground hover:bg-au-accent"}`}
           onClick={() => setActiveTab("analytics")}
         >
-          Analytics
+          {t("common.analytics")}
         </button>
         <button
           className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all ${activeTab === "reports" ? "bg-au-primary text-au-primary-foreground shadow-sm" : "hover:text-au-foreground hover:bg-au-accent"}`}
           onClick={() => setActiveTab("reports")}
         >
-          Reports
+          {t("common.reports")}
         </button>
       </div>
       <div className="mt-2 p-4 bg-au-background border border-au-border rounded-lg">
-        {activeTab === "overview" && <p>This is the overview content.</p>}
-        {activeTab === "analytics" && <p>This is the analytics content.</p>}
-        {activeTab === "reports" && <p>This is the reports content.</p>}
+        {activeTab === "overview" && <p>{t("common.overviewContent")}</p>}
+        {activeTab === "analytics" && <p>{t("common.analyticsContent")}</p>}
+        {activeTab === "reports" && <p>{t("common.reportsContent")}</p>}
       </div>
     </div>
   );
 }
 
 function InteractiveTabsUnderline() {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState("first");
 
   return (
@@ -118,43 +122,44 @@ function InteractiveTabsUnderline() {
           className={`inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-all relative ${activeTab === "first" ? "text-au-foreground" : "text-au-muted-foreground hover:text-au-foreground"}`}
           onClick={() => setActiveTab("first")}
         >
-          First
+          {t("common.firstTab")}
           {activeTab === "first" && <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-au-primary" />}
         </button>
         <button
           className={`inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-all relative ${activeTab === "second" ? "text-au-foreground" : "text-au-muted-foreground hover:text-au-foreground"}`}
           onClick={() => setActiveTab("second")}
         >
-          Second
+          {t("common.secondTab")}
           {activeTab === "second" && <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-au-primary" />}
         </button>
         <button
           className={`inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-all relative ${activeTab === "third" ? "text-au-foreground" : "text-au-muted-foreground hover:text-au-foreground"}`}
           onClick={() => setActiveTab("third")}
         >
-          Third
+          {t("common.thirdTab")}
           {activeTab === "third" && <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-au-primary" />}
         </button>
       </div>
       <div className="mt-2">
-        {activeTab === "first" && <p>First tab content.</p>}
-        {activeTab === "second" && <p>Second tab content.</p>}
-        {activeTab === "third" && <p>Third tab content.</p>}
+        {activeTab === "first" && <p>{t("common.firstTabContent")}</p>}
+        {activeTab === "second" && <p>{t("common.secondTabContent")}</p>}
+        {activeTab === "third" && <p>{t("common.thirdTabContent")}</p>}
       </div>
     </div>
   );
 }
 
 export default function TabsPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Tabs</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("tabs.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A navigable tab component for organizing content into switchable sections.
+        {t("tabs.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveTabs />}
           code={`<div x-data="{ activeTab: 'account' }" class="w-full max-w-md">
@@ -208,37 +213,37 @@ export default function TabsPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.variants")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-8 w-full">
               <div>
-                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Default</h3>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.default")}</h3>
                 <div className="w-full">
                   <div className="inline-flex h-10 items-center justify-center rounded-md bg-au-secondary p-1 text-au-muted-foreground">
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-au-background text-au-foreground shadow-sm">Tab 1</button>
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-au-foreground">Tab 2</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-au-background text-au-foreground shadow-sm">{t("common.tab1")}</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-au-foreground">{t("common.tab2")}</button>
                   </div>
                 </div>
               </div>
               <div>
-                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Pill</h3>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.pill")}</h3>
                 <div>
                   <div className="inline-flex h-10 items-center justify-center p-1 text-au-muted-foreground gap-2">
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium bg-au-primary text-au-primary-foreground shadow-sm">Tab 1</button>
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium hover:text-au-foreground hover:bg-au-accent">Tab 2</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium bg-au-primary text-au-primary-foreground shadow-sm">{t("common.tab1")}</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium hover:text-au-foreground hover:bg-au-accent">{t("common.tab2")}</button>
                   </div>
                 </div>
               </div>
               <div>
-                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Underline</h3>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.underline")}</h3>
                 <div>
                   <div className="flex h-10 items-center border-b border-au-border">
                     <button className="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium text-au-foreground relative">
-                      Tab 1
+                      {t("common.tab1")}
                       <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-au-primary" />
                     </button>
-                    <button className="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium text-au-muted-foreground hover:text-au-foreground">Tab 2</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium text-au-muted-foreground hover:text-au-foreground">{t("common.tab2")}</button>
                   </div>
                 </div>
               </div>
@@ -277,34 +282,34 @@ export default function TabsPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-6 w-full max-w-md">
               <div>
-                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Small</h3>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.sm")}</h3>
                 <div className="w-full">
                   <div className="inline-flex h-8 items-center justify-center rounded-md bg-au-secondary p-1 text-au-muted-foreground">
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-2.5 py-1 text-xs font-medium bg-au-background text-au-foreground shadow-sm">Tab</button>
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-2.5 py-1 text-xs font-medium hover:text-au-foreground">Tab</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-2.5 py-1 text-xs font-medium bg-au-background text-au-foreground shadow-sm">{t("common.tab")}</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-2.5 py-1 text-xs font-medium hover:text-au-foreground">{t("common.tab")}</button>
                   </div>
                 </div>
               </div>
               <div>
-                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Medium</h3>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.md")}</h3>
                 <div className="w-full">
                   <div className="inline-flex h-10 items-center justify-center rounded-md bg-au-secondary p-1 text-au-muted-foreground">
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-au-background text-au-foreground shadow-sm">Tab</button>
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-au-foreground">Tab</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-au-background text-au-foreground shadow-sm">{t("common.tab")}</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-au-foreground">{t("common.tab")}</button>
                   </div>
                 </div>
               </div>
               <div>
-                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Large</h3>
+                <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.lg")}</h3>
                 <div className="w-full">
                   <div className="inline-flex h-12 items-center justify-center rounded-md bg-au-secondary p-1 text-au-muted-foreground">
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-4 py-2 text-base font-medium bg-au-background text-au-foreground shadow-sm">Tab</button>
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-4 py-2 text-base font-medium hover:text-au-foreground">Tab</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-4 py-2 text-base font-medium bg-au-background text-au-foreground shadow-sm">{t("common.tab")}</button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-4 py-2 text-base font-medium hover:text-au-foreground">{t("common.tab")}</button>
                   </div>
                 </div>
               </div>
@@ -317,23 +322,23 @@ export default function TabsPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Disabled Tab</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.disabled")}</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-md">
               <div className="inline-flex h-10 items-center justify-center rounded-md bg-au-secondary p-1 text-au-muted-foreground">
                 <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-au-background text-au-foreground shadow-sm">
-                  Active
+                  {t("common.tabActive")}
                 </button>
                 <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-au-foreground opacity-50 cursor-not-allowed" disabled>
-                  Disabled
+                  {t("common.tabDisabled")}
                 </button>
                 <button className="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium hover:text-au-foreground">
-                  Tab
+                  {t("common.tab")}
                 </button>
               </div>
               <div className="mt-2">
-                <p>Content for active tab.</p>
+                <p>{t("common.contentForActiveTab")}</p>
               </div>
             </div>
           }

@@ -13,21 +13,21 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alpineui.netlify.app"),
-  title: "AlpineUI - Beautiful components for Alpine.js",
+  title: "AlpineUI — Componentes bonitos para Alpine.js",
   description:
-    "A collection of re-usable components built with Alpine.js and Tailwind CSS. Copy and paste beautifully designed components into your projects.",
+    "Uma coleção de componentes reutilizáveis construídos com Alpine.js e Tailwind CSS. Copie e cole componentes lindamente projetados nos seus projetos.",
   icons: {
     icon: "/alpine.ico",
   },
 
   openGraph: {
-    title: "AlpineUI - Beautiful components for Alpine.js",
+    title: "AlpineUI — Componentes bonitos para Alpine.js",
     description:
-      "A collection of re-usable components built with Alpine.js and Tailwind CSS. Copy and paste beautifully designed components into your projects.",
+      "Uma coleção de componentes reutilizáveis construídos com Alpine.js e Tailwind CSS. Copie e cole componentes lindamente projetados nos seus projetos.",
     url: "https://alpineui.netlify.app",
     siteName: "AlpineUI",
     type: "website",
-    locale: "en_US",
+    locale: "pt_PT",
     images: [
       {
         url: "/icon.svg",
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AlpineUI - Beautiful components for Alpine.js",
+    title: "AlpineUI — Componentes bonitos para Alpine.js",
     description:
-      "A collection of re-usable components built with Alpine.js and Tailwind CSS.",
+      "Uma coleção de componentes reutilizáveis construídos com Alpine.js e Tailwind CSS.",
     images: ["/icon.svg"],
   },
   robots: {
@@ -66,7 +66,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-PT"
       className={`${inter.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning

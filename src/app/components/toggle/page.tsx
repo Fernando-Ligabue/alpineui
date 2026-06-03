@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveToggle() {
+  const { t } = useI18n();
   const [pressed, setPressed] = useState(false);
 
   return (
@@ -19,18 +21,19 @@ function InteractiveToggle() {
       <svg className={`w-4 h-4 ${pressed ? "text-au-primary-foreground" : "text-au-muted-foreground"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
       </svg>
-      {pressed ? "Active" : "Inactive"}
+      {pressed ? t("common.active") : t("common.inactive")}
     </button>
   );
 }
 
 function InteractiveToggleGroup() {
+  const { t } = useI18n();
   const [selected, setSelected] = useState("bold");
 
   const options = [
-    { value: "bold", label: "Bold" },
-    { value: "italic", label: "Italic" },
-    { value: "underline", label: "Underline" },
+    { value: "bold", label: t("common.bold") },
+    { value: "italic", label: t("common.italic") },
+    { value: "underline", label: t("common.underline") },
   ];
 
   return (
@@ -53,13 +56,14 @@ function InteractiveToggleGroup() {
 }
 
 export default function TogglePage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Toggle</h1>
-      <p className="text-au-muted-foreground mb-8">A button that toggles between pressed and unpressed states.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("toggle.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("toggle.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveToggle />}
           code={`<div x-data="{ pressed: false }">
@@ -76,7 +80,7 @@ export default function TogglePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Toggle Group</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("toggle.toggleGroup")}</h2>
         <DemoBlock
           preview={<InteractiveToggleGroup />}
           code={`<div x-data="{ selected: 'bold' }" class="inline-flex rounded-md border border-gray-300 overflow-hidden">
@@ -91,18 +95,18 @@ export default function TogglePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="flex items-center gap-4">
               <button className="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium rounded-md bg-au-primary text-au-primary-foreground border border-au-primary" aria-pressed>
-                Small
+                {t("common.sm")}
               </button>
               <button className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-md bg-au-primary text-au-primary-foreground border border-au-primary" aria-pressed>
-                Medium
+                {t("common.md")}
               </button>
               <button className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-base font-medium rounded-md bg-au-primary text-au-primary-foreground border border-au-primary" aria-pressed>
-                Large
+                {t("common.lg")}
               </button>
             </div>
           }

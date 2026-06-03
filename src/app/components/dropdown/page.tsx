@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type DropdownItem = {
   label?: string;
@@ -11,19 +12,20 @@ type DropdownItem = {
 };
 
 function InteractiveDropdown({ 
-  label = "Actions",
+  label,
   items
 }: { 
   label?: string;
   items?: DropdownItem[];
 }) {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const defaultItems: DropdownItem[] = items || [
-    { label: "Edit" },
-    { label: "Duplicate" },
-    { label: "Archive" },
+    { label: t("common.edit") },
+    { label: t("common.duplicate") },
+    { label: t("common.archive") },
   ];
 
   const renderIcon = (iconName?: string) => {
@@ -47,7 +49,7 @@ function InteractiveDropdown({
         onClick={() => setIsOpen(!isOpen)}
         className="inline-flex items-center justify-between gap-2 px-4 py-2 bg-au-primary text-au-primary-foreground text-sm font-medium rounded-md border-none cursor-pointer"
       >
-        {label}
+        {label || t("common.actions")}
         <svg className={`w-4 h-4 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
@@ -85,15 +87,16 @@ function InteractiveDropdown({
 }
 
 export default function DropdownPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Dropdown</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("dropdown.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A collapsible menu for navigation, actions, and more.
+        {t("dropdown.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic Dropdown</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.basicDropdown")}</h2>
         <DemoBlock
           preview={
             <InteractiveDropdown />
@@ -118,17 +121,17 @@ export default function DropdownPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Dividers</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.withDividers")}</h2>
         <DemoBlock
           preview={
             <InteractiveDropdown 
-              label="Menu"
+              label={t("common.settings")}
               items={[
-                { label: "Profile" },
-                { label: "Settings" },
+                { label: t("common.profile") },
+                { label: t("common.settings") },
                 { type: "divider" },
-                { label: "Team" },
-                { label: "Logout" },
+                { label: t("common.team") },
+                { label: t("common.logout") },
               ]}
             />
           }
@@ -143,15 +146,15 @@ export default function DropdownPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Icons</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.withIcons")}</h2>
         <DemoBlock
           preview={
             <InteractiveDropdown 
-              label="Options"
+              label={t("common.actions")}
               items={[
-                { label: "View", icon: "eye" },
-                { label: "Edit", icon: "pencil" },
-                { label: "Delete", icon: "trash" },
+                { label: t("common.view"), icon: "eye" },
+                { label: t("common.edit"), icon: "pencil" },
+                { label: t("common.delete"), icon: "trash" },
               ]}
             />
           }
@@ -167,15 +170,15 @@ export default function DropdownPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Disabled Items</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.disabledItems")}</h2>
         <DemoBlock
           preview={
             <InteractiveDropdown 
-              label="Items"
+              label={t("common.items")}
               items={[
-                { label: "Active Item" },
-                { label: "Disabled Item", disabled: true },
-                { label: "Another Item" },
+                { label: t("common.activeItem") },
+                { label: t("common.disabledItem"), disabled: true },
+                { label: t("common.anotherItem") },
               ]}
             />
           }

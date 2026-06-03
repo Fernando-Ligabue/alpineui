@@ -1,15 +1,17 @@
 "use client";
 
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function KbdPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Kbd</h1>
-      <p className="text-au-muted-foreground mb-8">A styled keyboard key element for displaying keyboard shortcuts.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("kbd.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("kbd.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap items-center gap-2">
@@ -27,12 +29,12 @@ export default function KbdPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Common Shortcuts</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.usageExamples")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-4 w-full max-w-md">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-au-foreground">Copy</span>
+                <span className="text-sm text-au-foreground">{t("common.copy")}</span>
                 <div className="flex items-center gap-1.5">
                   <kbd className="px-2 py-1 text-xs font-medium text-au-foreground bg-au-secondary border border-au-border rounded-md shadow-[0_2px_0_0_#d1d5db]">Ctrl</kbd>
                   <span className="text-xs text-au-muted-foreground">+</span>
@@ -40,7 +42,7 @@ export default function KbdPage() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-au-foreground">Save</span>
+                <span className="text-sm text-au-foreground">{t("common.save")}</span>
                 <div className="flex items-center gap-1.5">
                   <kbd className="px-2 py-1 text-xs font-medium text-au-foreground bg-au-secondary border border-au-border rounded-md shadow-[0_2px_0_0_#d1d5db]">Ctrl</kbd>
                   <span className="text-xs text-au-muted-foreground">+</span>
@@ -48,7 +50,7 @@ export default function KbdPage() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-au-foreground">Select All</span>
+                <span className="text-sm text-au-foreground">{t("kbd.selectAll")}</span>
                 <div className="flex items-center gap-1.5">
                   <kbd className="px-2 py-1 text-xs font-medium text-au-foreground bg-au-secondary border border-au-border rounded-md shadow-[0_2px_0_0_#d1d5db]">Ctrl</kbd>
                   <span className="text-xs text-au-muted-foreground">+</span>
@@ -56,7 +58,7 @@ export default function KbdPage() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-au-foreground">Find</span>
+                <span className="text-sm text-au-foreground">{t("kbd.find")}</span>
                 <div className="flex items-center gap-1.5">
                   <kbd className="px-2 py-1 text-xs font-medium text-au-foreground bg-au-secondary border border-au-border rounded-md shadow-[0_2px_0_0_#d1d5db]">Ctrl</kbd>
                   <span className="text-xs text-au-muted-foreground">+</span>
@@ -64,7 +66,7 @@ export default function KbdPage() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-au-foreground">Delete</span>
+                <span className="text-sm text-au-foreground">{t("common.delete")}</span>
                 <kbd className="px-2 py-1 text-xs font-medium text-au-foreground bg-au-secondary border border-au-border rounded-md shadow-[0_2px_0_0_#d1d5db]">Del</kbd>
               </div>
             </div>
@@ -86,7 +88,7 @@ export default function KbdPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="flex items-center gap-3">

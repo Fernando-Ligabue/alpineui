@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveRadioGroup() {
+  const { t } = useI18n();
   const [value, setValue] = useState("option1");
 
   const options = [
-    { value: "option1", label: "Option 1" },
-    { value: "option2", label: "Option 2" },
-    { value: "option3", label: "Option 3" },
+    { value: "option1", label: t("common.option1") },
+    { value: "option2", label: t("common.option2") },
+    { value: "option3", label: t("common.option3") },
   ];
 
   return (
@@ -33,15 +35,16 @@ function InteractiveRadioGroup() {
 }
 
 export default function RadioGroupPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Radio Group</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("radioGroup.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A component that allows the user to select one option from a set.
+        {t("radioGroup.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveRadioGroup />}
           code={`<div x-data="{ value: 'option1' }" class="grid gap-2">
@@ -65,7 +68,7 @@ export default function RadioGroupPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.states")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-4">
@@ -73,17 +76,17 @@ export default function RadioGroupPage() {
                 <label className="flex items-center gap-2">
                   <input type="radio" name="state-demo" className="peer sr-only" defaultChecked />
                   <div className="aspect-square h-4 w-4 rounded-full border border-au-border peer-checked:border-au-primary peer-checked:bg-au-primary flex items-center justify-center after:content-[''] after:block after:w-2 after:h-2 after:rounded-full after:bg-au-background after:invisible peer-checked:after:visible" />
-                  <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Checked</span>
+                  <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{t("common.checked")}</span>
                 </label>
                 <label className="flex items-center gap-2">
                   <input type="radio" name="state-demo" className="peer sr-only" />
                   <div className="aspect-square h-4 w-4 rounded-full border border-au-border peer-checked:border-au-primary peer-checked:bg-au-primary flex items-center justify-center after:content-[''] after:block after:w-2 after:h-2 after:rounded-full after:bg-au-background after:invisible peer-checked:after:visible" />
-                  <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Unchecked</span>
+                  <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{t("common.unchecked")}</span>
                 </label>
                 <label className="flex items-center gap-2">
                   <input type="radio" name="state-disabled" className="peer sr-only" disabled />
                   <div className="aspect-square h-4 w-4 rounded-full border border-au-border peer-checked:border-au-primary peer-checked:bg-au-primary disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center after:content-[''] after:block after:w-2 after:h-2 after:rounded-full after:bg-au-background after:invisible peer-checked:after:visible peer-disabled:opacity-50 peer-disabled:cursor-not-allowed" />
-                  <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Disabled</span>
+                  <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{t("common.disabled")}</span>
                 </label>
               </div>
             </div>

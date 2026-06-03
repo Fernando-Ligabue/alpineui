@@ -1,15 +1,17 @@
 "use client";
 
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function NativeSelectPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Native Select</h1>
-      <p className="text-au-muted-foreground mb-8">A styled native select element for choosing from a list of options.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("nativeSelect.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("nativeSelect.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-xs">
@@ -33,18 +35,18 @@ export default function NativeSelectPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap items-center gap-4">
               <select className="flex h-8 w-36 rounded-md border border-au-border bg-au-background px-2 py-1 text-xs text-au-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring cursor-pointer">
-                <option>Small</option>
+                <option>{t("common.sm")}</option>
               </select>
               <select className="flex h-10 w-36 rounded-md border border-au-border bg-au-background px-3 py-2 text-sm text-au-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring cursor-pointer">
-                <option>Medium</option>
+                <option>{t("common.md")}</option>
               </select>
               <select className="flex h-12 w-36 rounded-md border border-au-border bg-au-background px-4 py-3 text-base text-au-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring cursor-pointer">
-                <option>Large</option>
+                <option>{t("common.lg")}</option>
               </select>
             </div>
           }
@@ -60,18 +62,18 @@ export default function NativeSelectPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.states")}</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap items-center gap-4">
               <select className="flex h-10 w-36 rounded-md border border-au-border bg-au-background px-3 py-2 text-sm text-au-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring cursor-pointer">
-                <option>Default</option>
+                <option>{t("common.default")}</option>
               </select>
               <select className="flex h-10 w-36 rounded-md border border-au-border bg-au-secondary px-3 py-2 text-sm text-au-muted-foreground cursor-not-allowed" disabled>
-                <option>Disabled</option>
+                <option>{t("common.disabled")}</option>
               </select>
               <select className="flex h-10 w-36 rounded-md border border-red-500 bg-au-background px-3 py-2 text-sm text-au-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 cursor-pointer">
-                <option>Error</option>
+                <option>{t("common.error")}</option>
               </select>
             </div>
           }
@@ -87,7 +89,7 @@ export default function NativeSelectPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Grouped Options</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.withGroups")}</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-xs">

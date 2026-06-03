@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveProgress() {
   const [value, setValue] = useState(45);
@@ -25,22 +26,23 @@ function InteractiveProgress() {
 }
 
 export default function ProgressPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Progress</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("progress.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A component that displays the progress of an action.
+        {t("progress.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock preview={<InteractiveProgress />} code={`<div class="relative h-4 w-full overflow-hidden rounded-full bg-gray-100">
   <div class="h-full w-full flex-1 bg-black transition-all duration-500 ease-in-out" style="width: \${value}%" />
 </div>`} />
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-4 w-full max-w-sm">

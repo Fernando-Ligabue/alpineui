@@ -1,15 +1,17 @@
 "use client";
 
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function SkeletonPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Skeleton</h1>
-      <p className="text-au-muted-foreground mb-8">Loading placeholder components for content that is still loading.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("skeleton.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("skeleton.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-md space-y-4">
@@ -44,7 +46,7 @@ export default function SkeletonPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Card Skeleton</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.cardSkeleton")}</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-sm border border-au-border rounded-lg p-6 space-y-4">
@@ -79,7 +81,7 @@ export default function SkeletonPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">List Skeleton</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.listSkeleton")}</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-md space-y-3">

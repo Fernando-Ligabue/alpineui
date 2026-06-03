@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Check } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 interface SelectOption {
   value: string;
@@ -11,15 +12,16 @@ interface SelectOption {
 }
 
 function InteractiveSelect() {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   const options = [
-    { value: "react", label: "React" },
-    { value: "vue", label: "Vue" },
-    { value: "angular", label: "Angular" },
-    { value: "svelte", label: "Svelte" },
+    { value: "react", label: t("common.react") },
+    { value: "vue", label: t("common.vue") },
+    { value: "angular", label: t("common.angular") },
+    { value: "svelte", label: t("common.svelte") },
   ];
 
   useEffect(() => {
@@ -39,7 +41,7 @@ function InteractiveSelect() {
         onClick={() => setIsOpen(!isOpen)}
         data-placeholder={!selected ? "true" : undefined}
       >
-        <span>{selected ? options.find((o) => o.value === selected)?.label : "Select a framework"}</span>
+        <span>{selected ? options.find((o) => o.value === selected)?.label : t("common.selectFramework")}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
       {isOpen && (
@@ -65,18 +67,19 @@ function InteractiveSelect() {
 }
 
 function InteractiveSelectSearchable() {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const ref = useRef<HTMLDivElement>(null);
 
   const options = [
-    { value: "react", label: "React" },
-    { value: "vue", label: "Vue" },
-    { value: "angular", label: "Angular" },
-    { value: "svelte", label: "Svelte" },
-    { value: "nextjs", label: "Next.js" },
-    { value: "nuxt", label: "Nuxt" },
+    { value: "react", label: t("common.react") },
+    { value: "vue", label: t("common.vue") },
+    { value: "angular", label: t("common.angular") },
+    { value: "svelte", label: t("common.svelte") },
+    { value: "nextjs", label: t("common.nextjs") },
+    { value: "nuxt", label: t("common.nuxt") },
   ];
 
   const filteredOptions = options.filter((o) =>
@@ -100,14 +103,14 @@ function InteractiveSelectSearchable() {
         onClick={() => setIsOpen(!isOpen)}
         data-placeholder={!selected ? "true" : undefined}
       >
-        <span>{selected ? options.find((o) => o.value === selected)?.label : "Search frameworks..."}</span>
+        <span>{selected ? options.find((o) => o.value === selected)?.label : t("common.searchFrameworks")}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
       {isOpen && (
         <div className="absolute z-50 w-full mt-1 rounded-md border border-au-border bg-au-background shadow-md" data-state="open">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder={t("common.search")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             autoFocus
@@ -130,7 +133,7 @@ function InteractiveSelectSearchable() {
               </div>
             ))
           ) : (
-            <div className="px-2 py-1.5 text-sm text-au-muted-foreground text-center">No results found</div>
+            <div className="px-2 py-1.5 text-sm text-au-muted-foreground text-center">{t("common.noResultsFound")}</div>
           )}
         </div>
       )}
@@ -139,14 +142,15 @@ function InteractiveSelectSearchable() {
 }
 
 function InteractiveSelectVariants() {
+  const { t } = useI18n();
   const [selected, setSelected] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const options = [
-    { value: "option1", label: "Option 1" },
-    { value: "option2", label: "Option 2" },
-    { value: "option3", label: "Option 3" },
+    { value: "option1", label: t("common.option1") },
+    { value: "option2", label: t("common.option2") },
+    { value: "option3", label: t("common.option3") },
   ];
 
   useEffect(() => {
@@ -162,7 +166,7 @@ function InteractiveSelectVariants() {
   return (
     <div className="space-y-6 w-full max-w-sm">
       <div>
-        <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">Default</h3>
+        <h3 className="text-sm font-medium mb-2 text-au-muted-foreground">{t("common.default")}</h3>
         <div className="w-full">
           <div ref={ref}>
             <button
@@ -170,7 +174,7 @@ function InteractiveSelectVariants() {
               onClick={() => setIsOpen(!isOpen)}
               data-placeholder={!selected ? "true" : undefined}
             >
-              <span>{selected ? options.find((o) => o.value === selected)?.label : "Select..."}</span>
+              <span>{selected ? options.find((o) => o.value === selected)?.label : t("common.select")}</span>
               <ChevronDown className={`w-4 h-4 ${isOpen ? "rotate-180" : ""}`} />
             </button>
             {isOpen && (
@@ -195,15 +199,16 @@ function InteractiveSelectVariants() {
 }
 
 export default function SelectPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Select</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("select.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A dropdown select component with search functionality.
+        {t("select.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveSelect />}
           code={`<div x-data="{ open: false, selected: null }" @click.outside="open = false" class="relative w-full max-w-sm">
@@ -251,7 +256,7 @@ export default function SelectPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Searchable</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.searchable")}</h2>
         <DemoBlock
           preview={<InteractiveSelectSearchable />}
           code={`<div class="relative w-full max-w-sm">
@@ -273,20 +278,20 @@ export default function SelectPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-4 w-full max-w-sm">
               <button className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
-                Small
+                {t("common.sm")}
                 <ChevronDown className="w-4 h-4" />
               </button>
               <button className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
-                Medium
+                {t("common.md")}
                 <ChevronDown className="w-4 h-4" />
               </button>
               <button className="flex h-10 w-full items-center justify-between rounded-md border border-au-border bg-au-background px-3 py-2 text-sm placeholder:text-au-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:cursor-not-allowed disabled:opacity-50" data-placeholder="true">
-                Large
+                {t("common.lg")}
                 <ChevronDown className="w-4 h-4" />
               </button>
             </div>

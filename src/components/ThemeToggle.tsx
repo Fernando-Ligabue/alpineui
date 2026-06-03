@@ -3,8 +3,10 @@
 import { useTheme } from "@/components/ThemeProvider";
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function ThemeToggle() {
+  const { t } = useI18n();
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -22,7 +24,7 @@ export default function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="p-2 rounded-md hover:bg-au-accent transition-colors text-au-foreground"
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? t("themeToggle.switchToLight") : t("themeToggle.switchToDark")}
     >
       {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
     </button>

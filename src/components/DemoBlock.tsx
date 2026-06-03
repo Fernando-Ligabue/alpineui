@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 import clsx from "clsx";
+import { useI18n } from "@/i18n/I18nProvider";
 
 interface DemoBlockProps {
   preview: React.ReactNode;
@@ -11,6 +12,7 @@ interface DemoBlockProps {
 }
 
 export default function DemoBlock({ preview, code, title }: DemoBlockProps) {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState<"preview" | "code">("preview");
   const [copied, setCopied] = useState(false);
 
@@ -36,13 +38,13 @@ export default function DemoBlock({ preview, code, title }: DemoBlockProps) {
           className={clsx("demo-tab", activeTab === "preview" && "active")}
           onClick={() => setActiveTab("preview")}
         >
-          Preview
+          {t("common.preview")}
         </button>
         <button
           className={clsx("demo-tab", activeTab === "code" && "active")}
           onClick={() => setActiveTab("code")}
         >
-          Code
+          {t("common.code")}
         </button>
         <button
           onClick={handleCopy}
@@ -51,12 +53,12 @@ export default function DemoBlock({ preview, code, title }: DemoBlockProps) {
           {copied ? (
             <>
               <Check className="w-3.5 h-3.5 text-au-primary" />
-              <span className="text-au-primary">Copied!</span>
+              <span className="text-au-primary">{t("common.copied")}</span>
             </>
           ) : (
             <>
               <Copy className="w-3.5 h-3.5" />
-              <span>Copy</span>
+              <span>{t("common.copy")}</span>
             </>
           )}
         </button>

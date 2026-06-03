@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AlertTriangle } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function AlertDialog({ open, onOpenChange, children }: { open: boolean; onOpenChange: (v: boolean) => void; children: React.ReactNode }) {
   if (!open) return null;
@@ -17,20 +18,21 @@ function AlertDialog({ open, onOpenChange, children }: { open: boolean; onOpenCh
 }
 
 function AlertDialogDemo() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   return (
     <>
       <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg bg-au-primary px-4 py-2 text-sm font-medium text-au-primary-foreground hover:opacity-90">
-        Show Dialog
+        {t("common.show")}
       </button>
       <AlertDialog open={open} onOpenChange={setOpen}>
         <div className="flex flex-col gap-1.5 text-center sm:text-left mb-4">
-          <h3 className="text-lg font-semibold">Are you absolutely sure?</h3>
-          <p className="text-sm text-au-muted-foreground">This action cannot be undone. This will permanently delete your account from our servers.</p>
+          <h3 className="text-lg font-semibold">{t("common.areYouAbsolutelySure")}</h3>
+          <p className="text-sm text-au-muted-foreground">{t("common.actionCannotBeUndone")}</p>
         </div>
         <div className="flex flex-col-reverse sm:flex-row justify-end gap-2 mt-6">
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-au-primary text-au-primary-foreground hover:opacity-90">Continue</button>
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Cancel</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-au-primary text-au-primary-foreground hover:opacity-90">{t("common.continue")}</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">{t("common.cancel")}</button>
         </div>
       </AlertDialog>
     </>
@@ -38,21 +40,22 @@ function AlertDialogDemo() {
 }
 
 function AlertDialogWithMediaDemo() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   return (
     <>
       <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-au-destructive text-au-primary-foreground hover:bg-au-destructive">
-        Delete Chat
+        {t("common.delete")}
       </button>
       <AlertDialog open={open} onOpenChange={setOpen}>
         <div className="flex flex-col gap-1.5 text-center sm:text-left mb-4">
           <AlertTriangle className="h-8 w-8 text-au-destructive mx-auto sm:mx-0" />
-          <h3 className="text-lg font-semibold">Delete Chat</h3>
-          <p className="text-sm text-au-muted-foreground">Are you sure you want to delete this conversation? This action cannot be undone.</p>
+          <h3 className="text-lg font-semibold">{t("common.delete")}</h3>
+          <p className="text-sm text-au-muted-foreground">{t("common.deleteConversation")}</p>
         </div>
         <div className="flex flex-col-reverse sm:flex-row justify-end gap-2 mt-6">
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-au-destructive text-au-primary-foreground hover:bg-au-destructive">Delete</button>
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Cancel</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-au-destructive text-au-primary-foreground hover:bg-au-destructive">{t("common.delete")}</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">{t("common.cancel")}</button>
         </div>
       </AlertDialog>
     </>
@@ -60,15 +63,16 @@ function AlertDialogWithMediaDemo() {
 }
 
 export default function AlertDialogPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Alert Dialog</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("alertDialog.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A modal dialog that interrupts the user with important content and expects a response.
+        {t("alertDialog.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic Example</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.basicExample")}</h2>
         <DemoBlock
           preview={<AlertDialogDemo />}
           code={`<div x-data="{ open: false }">
@@ -101,7 +105,7 @@ export default function AlertDialogPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">With Media Icon</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.withMediaIcon")}</h2>
         <DemoBlock
           preview={<AlertDialogWithMediaDemo />}
           code={`<div x-data="{ open: false }">

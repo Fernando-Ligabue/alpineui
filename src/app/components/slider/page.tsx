@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveSlider() {
   const [value, setValue] = useState(50);
@@ -53,15 +54,16 @@ function InteractiveSlider() {
 }
 
 export default function SliderPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Slider</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("slider.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A component that allows the user to select a value by sliding.
+        {t("slider.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock preview={<InteractiveSlider />} code={`<div class="relative flex w-full touch-none select-none items-center">
   <div class="absolute h-full bg-black" style="width: \${value}%"></div>
   <div

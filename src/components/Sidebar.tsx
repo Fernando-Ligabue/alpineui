@@ -142,7 +142,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
           <button
             onClick={onClose}
             className="p-2 rounded-md hover:bg-au-accent transition-colors"
-            aria-label="Close menu"
+            aria-label={t("sidebar.closeMenu")}
           >
             <X className="w-5 h-5 text-au-foreground" />
           </button>
@@ -218,7 +218,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
           <div className="mb-6">
             <div className="flex items-center gap-2 px-3 mb-2 text-xs font-semibold text-au-muted-foreground uppercase tracking-wider">
               <Component className="w-3.5 h-3.5" />
-              Coming Soon
+              {t("sidebar.comingSoon")}
             </div>
             <ul className="space-y-1">
               {nav.commingSoon.map((item, index) => (
@@ -244,7 +244,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
             className="flex items-center gap-2 px-3 py-2 text-sm text-au-foreground hover:bg-au-accent rounded-md transition-colors"
           >
             <Github className="w-4 h-4" />
-            GitHub
+            {t("sidebar.github")}
           </a>
           <div className="flex items-center gap-2">
             <LanguageSwitcher />

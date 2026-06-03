@@ -1,17 +1,19 @@
 "use client";
 
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const longContent = Array.from({ length: 20 }, (_, i) => `Item ${i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit.`);
 
 export default function ScrollAreaPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Scroll Area</h1>
-      <p className="text-au-muted-foreground mb-8">A styled scrollable container for overflow content.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("scrollArea.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("scrollArea.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-md">
@@ -43,7 +45,7 @@ export default function ScrollAreaPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Horizontal Scroll</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.horizontal")} Scroll</h2>
         <DemoBlock
           preview={
             <div className="w-full max-w-md overflow-x-auto border border-au-border rounded-lg p-4 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-au-secondary [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full">

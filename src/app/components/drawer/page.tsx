@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function DrawerContent({ open, onClose, direction, children }: { open: boolean; onClose: () => void; direction: "top" | "bottom" | "left" | "right"; children: React.ReactNode }) {
+  const { t } = useI18n();
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -28,7 +30,7 @@ function DrawerContent({ open, onClose, direction, children }: { open: boolean; 
       <div className="fixed inset-0 z-40 bg-black/50" onClick={onClose} />
       <div className={`fixed z-50 flex flex-col ${positionClasses[direction]}`}>
         <div className="flex justify-end p-2">
-          <button aria-label="Close" onClick={onClose}>
+          <button aria-label={t("common.close")} onClick={onClose}>
             <X className="h-4 w-4 text-au-muted-foreground" />
           </button>
         </div>
@@ -39,23 +41,24 @@ function DrawerContent({ open, onClose, direction, children }: { open: boolean; 
 }
 
 function DrawerDemo() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   return (
     <>
       <button onClick={() => setOpen(true)} className="inline-flex items-center justify-center rounded-lg bg-au-primary px-4 py-2 text-sm font-medium text-au-primary-foreground hover:opacity-90">
-        Open Drawer
+        {t("common.open")}
       </button>
       <DrawerContent open={open} onClose={() => setOpen(false)} direction="bottom">
         <div className="flex flex-col gap-1.5 p-4 text-center sm:text-left">
-          <h3 className="text-lg font-semibold leading-none tracking-tight">Are you absolutely sure?</h3>
-          <p className="text-sm text-au-muted-foreground">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
+          <h3 className="text-lg font-semibold leading-none tracking-tight">{t("common.areYouAbsolutelySure")}</h3>
+          <p className="text-sm text-au-muted-foreground">{t("common.actionCannotBeUndone")} {t("common.deleteAccountPermanent")}</p>
         </div>
         <div className="px-4 py-2">
-          <p className="text-sm text-au-foreground">Are you sure you want to continue? Once you delete your account, there will be no way to recover it.</p>
+          <p className="text-sm text-au-foreground">{t("common.deleteAccountWarning")}</p>
         </div>
         <div className="flex flex-col gap-2 p-4 mt-auto">
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-gray-900 text-white hover:bg-gray-800">Continue</button>
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Cancel</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-gray-900 text-white hover:bg-gray-800">{t("common.continue")}</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">{t("common.cancel")}</button>
         </div>
       </DrawerContent>
     </>
@@ -63,15 +66,16 @@ function DrawerDemo() {
 }
 
 function DrawerDirectionsDemo() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [direction, setDirection] = useState<"top" | "bottom" | "left" | "right">("bottom");
 
   return (
     <div className="flex flex-wrap gap-4 justify-center">
-      <button onClick={() => { setDirection("top"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Top</button>
-      <button onClick={() => { setDirection("bottom"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Bottom</button>
-      <button onClick={() => { setDirection("left"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Left</button>
-      <button onClick={() => { setDirection("right"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Right</button>
+      <button onClick={() => { setDirection("top"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">{t("common.top")}</button>
+      <button onClick={() => { setDirection("bottom"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">{t("common.bottom")}</button>
+      <button onClick={() => { setDirection("left"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">{t("common.left")}</button>
+      <button onClick={() => { setDirection("right"); setOpen(true); }} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">{t("common.right")}</button>
 
       <DrawerContent open={open} onClose={() => setOpen(false)} direction={direction}>
         <div className="flex flex-col gap-1.5 p-4 text-center sm:text-left">
@@ -82,8 +86,8 @@ function DrawerDirectionsDemo() {
           <p className="text-sm text-au-foreground">This is a drawer that slides from the {direction} side of the screen.</p>
         </div>
         <div className="flex flex-col gap-2 p-4 mt-auto">
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-gray-900 text-white hover:bg-gray-800">Confirm</button>
-          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">Cancel</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-gray-900 text-white hover:bg-gray-800">{t("common.confirm")}</button>
+          <button onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-au-border text-au-foreground hover:bg-au-accent">{t("common.cancel")}</button>
         </div>
       </DrawerContent>
     </div>
@@ -91,15 +95,16 @@ function DrawerDirectionsDemo() {
 }
 
 export default function DrawerPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Drawer</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("drawer.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A drawer component for mobile-friendly slide-out panels.
+        {t("drawer.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Basic Example</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.basicExample")}</h2>
         <DemoBlock
           preview={<DrawerDemo />}
           code={`<div x-data="{ open: false }">
@@ -138,7 +143,7 @@ export default function DrawerPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Directions</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.directions")}</h2>
         <DemoBlock
           preview={<DrawerDirectionsDemo />}
           code={`<!-- Bottom -->
@@ -178,13 +183,13 @@ export default function DrawerPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Direction API</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.directions")}</h2>
         <div className="border border-gray-200 rounded-lg overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-gray-100">
               <tr>
-                <th className="text-left px-4 py-3 font-medium">Direction</th>
-                <th className="text-left px-4 py-3 font-medium">Classes</th>
+                <th className="text-left px-4 py-3 font-medium">{t("drawer.direction")}</th>
+                <th className="text-left px-4 py-3 font-medium">{t("drawer.classes")}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">

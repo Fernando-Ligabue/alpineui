@@ -3,23 +3,32 @@
 import { useState } from "react";
 import { ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, ChevronsLeftRight } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
-
-const usersData = [
-  { id: 1, name: "John Doe", email: "john@example.com", role: "Admin", status: "Active" },
-  { id: 2, name: "Jane Smith", email: "jane@example.com", role: "User", status: "Active" },
-  { id: 3, name: "Bob Wilson", email: "bob@example.com", role: "Editor", status: "Inactive" },
-  { id: 4, name: "Alice Brown", email: "alice@example.com", role: "User", status: "Active" },
-  { id: 5, name: "Charlie Davis", email: "charlie@example.com", role: "Admin", status: "Active" },
-  { id: 6, name: "Diana Evans", email: "diana@example.com", role: "User", status: "Pending" },
-  { id: 7, name: "Edward Foster", email: "edward@example.com", role: "Editor", status: "Active" },
-  { id: 8, name: "Fiona Green", email: "fiona@example.com", role: "User", status: "Inactive" },
-  { id: 9, name: "George Harris", email: "george@example.com", role: "Admin", status: "Active" },
-  { id: 10, name: "Hannah Irving", email: "hannah@example.com", role: "User", status: "Pending" },
-];
+import { useI18n } from "@/i18n/I18nProvider";
 
 type SortDirection = "asc" | "desc" | null;
 
 function InteractiveTable() {
+  const { t } = useI18n();
+
+  const usersData = [
+    { id: 1, name: t("common.johnDoe"), email: "john@example.com", role: t("common.admin"), status: "Active" as const },
+    { id: 2, name: t("common.janeSmith"), email: "jane@example.com", role: t("common.user"), status: "Active" as const },
+    { id: 3, name: t("common.bobWilson"), email: "bob@example.com", role: t("common.editor"), status: "Inactive" as const },
+    { id: 4, name: t("common.aliceBrown"), email: "alice@example.com", role: t("common.user"), status: "Active" as const },
+    { id: 5, name: t("common.charlieDavis"), email: "charlie@example.com", role: t("common.admin"), status: "Active" as const },
+    { id: 6, name: t("common.dianaEvans"), email: "diana@example.com", role: t("common.user"), status: "Pending" as const },
+    { id: 7, name: t("common.edwardFoster"), email: "edward@example.com", role: t("common.editor"), status: "Active" as const },
+    { id: 8, name: t("common.fionaGreen"), email: "fiona@example.com", role: t("common.user"), status: "Inactive" as const },
+    { id: 9, name: t("common.georgeHarris"), email: "george@example.com", role: t("common.admin"), status: "Active" as const },
+    { id: 10, name: t("common.hannahIrving"), email: "hannah@example.com", role: t("common.user"), status: "Pending" as const },
+  ];
+
+  const statusDisplay: Record<string, string> = {
+    Active: t("common.active"),
+    Inactive: t("common.inactive"),
+    Pending: t("common.pending"),
+  };
+
   const [data] = useState(usersData);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
@@ -112,7 +121,7 @@ function InteractiveTable() {
                 onClick={() => handleSort("name")}
               >
                 <div className="flex items-center gap-1">
-                  Name {getSortIcon("name")}
+                  {t("common.name")} {getSortIcon("name")}
                 </div>
               </th>
               <th
@@ -120,7 +129,7 @@ function InteractiveTable() {
                 onClick={() => handleSort("email")}
               >
                 <div className="flex items-center gap-1">
-                  Email {getSortIcon("email")}
+                  {t("common.email")} {getSortIcon("email")}
                 </div>
               </th>
               <th
@@ -128,7 +137,7 @@ function InteractiveTable() {
                 onClick={() => handleSort("role")}
               >
                 <div className="flex items-center gap-1">
-                  Role {getSortIcon("role")}
+                  {t("common.role")} {getSortIcon("role")}
                 </div>
               </th>
               <th
@@ -136,7 +145,7 @@ function InteractiveTable() {
                 onClick={() => handleSort("status")}
               >
                 <div className="flex items-center gap-1">
-                  Status {getSortIcon("status")}
+                  {t("common.status")} {getSortIcon("status")}
                 </div>
               </th>
             </tr>
@@ -160,7 +169,7 @@ function InteractiveTable() {
                 <td className="p-4 align-middle">{user.role}</td>
                 <td className="p-4 align-middle">
                   <span className={getStatusClass(user.status)}>
-                    {user.status}
+                    {statusDisplay[user.status] || user.status}
                   </span>
                 </td>
               </tr>
@@ -179,7 +188,7 @@ function InteractiveTable() {
               className="text-sm text-au-foreground hover:underline"
               onClick={() => setSelectedRows(new Set())}
             >
-              Clear selection
+              {t("common.clearSelection")}
             </button>
           )}
         </div>
@@ -224,15 +233,16 @@ function InteractiveTable() {
 }
 
 export default function TablePage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Table</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("table.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A data table component with sorting, pagination, and row selection.
+        {t("table.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock preview={<InteractiveTable />} code={`<div class="overflow-x-auto border border-gray-200 rounded-lg bg-white">
   <table class="w-full caption-bottom text-sm">
     <thead class="border-b border-gray-200 bg-gray-50">
@@ -254,13 +264,13 @@ export default function TablePage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Features</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.features")}</h2>
         <ul className="list-disc list-inside space-y-2 text-au-muted-foreground">
-          <li>Column sorting (click headers to sort)</li>
-          <li>Pagination with page navigation</li>
-          <li>Row selection with checkboxes</li>
-          <li>Select all / clear selection</li>
-          <li>Visual feedback for selected rows</li>
+          <li>{t("table.columnSorting")}</li>
+          <li>{t("table.pagination")}</li>
+          <li>{t("table.rowSelection")}</li>
+          <li>{t("table.selectAll")}</li>
+          <li>{t("table.visualFeedback")}</li>
         </ul>
       </section>
     </div>

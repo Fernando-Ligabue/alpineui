@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
@@ -16,6 +17,7 @@ const MONTHS = ["January", "February", "March", "April", "May", "June", "July", 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 function InteractiveDatepicker() {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -62,7 +64,7 @@ function InteractiveDatepicker() {
         onClick={() => setIsOpen(!isOpen)}
         data-placeholder={!selectedDate ? "true" : undefined}
       >
-        <span>{selectedDate ? formatDate(selectedDate) : "Pick a date"}</span>
+        <span>{selectedDate ? formatDate(selectedDate) : t("common.select")}</span>
         <CalendarIcon className="w-4 h-4" />
       </button>
       {isOpen && (
@@ -122,15 +124,16 @@ function InteractiveDatepicker() {
 }
 
 export default function DatepickerPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">DatePicker</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("datePicker.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A date selection component with calendar view.
+        {t("datePicker.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveDatepicker />}
           code={`<div x-data="{ open: false, selected: null, month: new Date().getMonth(), year: new Date().getFullYear() }"

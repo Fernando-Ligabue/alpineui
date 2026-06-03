@@ -3,68 +3,75 @@
 import { useState } from "react";
 import { X, CheckCircle, AlertTriangle, AlertCircle, Info } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveAlertDefault() {
+  const { t } = useI18n();
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border bg-au-secondary border-au-border text-au-foreground">
       <Info className="w-5 h-5 shrink-0 mt-0.5" />
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm mb-1">Default Alert</p>
-        <p className="text-sm">This is a default alert message.</p>
+        <p className="font-semibold text-sm mb-1">{t("common.default")}</p>
+        <p className="text-sm">{t("common.defaultAlert")}</p>
       </div>
     </div>
   );
 }
 
 function InteractiveAlertSuccess() {
+  const { t } = useI18n();
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border bg-green-50 border-green-500 text-green-800">
       <CheckCircle className="w-5 h-5 shrink-0 mt-0.5" />
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm mb-1">Success!</p>
-        <p className="text-sm">Your changes have been saved successfully.</p>
+        <p className="font-semibold text-sm mb-1">{t("common.success")}</p>
+        <p className="text-sm">{t("common.savedSuccess")}</p>
       </div>
     </div>
   );
 }
 
 function InteractiveAlertWarning() {
+  const { t } = useI18n();
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border bg-amber-50 border-amber-500 text-amber-800">
       <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm mb-1">Warning</p>
-        <p className="text-sm">Please review your information before submitting.</p>
+        <p className="font-semibold text-sm mb-1">{t("common.warning")}</p>
+        <p className="text-sm">{t("common.reviewInfo")}</p>
       </div>
     </div>
   );
 }
 
 function InteractiveAlertError() {
+  const { t } = useI18n();
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border bg-red-50 border-red-500 text-red-800">
       <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm mb-1">Error</p>
-        <p className="text-sm">Something went wrong. Please try again.</p>
+        <p className="font-semibold text-sm mb-1">{t("common.error")}</p>
+        <p className="text-sm">{t("common.somethingWentWrong")}</p>
       </div>
     </div>
   );
 }
 
 function InteractiveAlertInfo() {
+  const { t } = useI18n();
   return (
     <div className="flex items-start gap-3 p-4 rounded-lg border bg-blue-50 border-blue-500 text-blue-800">
       <Info className="w-5 h-5 shrink-0 mt-0.5" />
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm mb-1">Information</p>
-        <p className="text-sm">New features are available. Check them out!</p>
+        <p className="font-semibold text-sm mb-1">{t("common.info")}</p>
+        <p className="text-sm">{t("common.newFeaturesAvailable")}</p>
       </div>
     </div>
   );
 }
 
 function InteractiveAlertDismissible() {
+  const { t } = useI18n();
   const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
@@ -73,8 +80,8 @@ function InteractiveAlertDismissible() {
     <div className="flex items-start gap-3 p-4 rounded-lg border bg-green-50 border-green-500 text-green-800">
       <CheckCircle className="w-5 h-5 shrink-0 mt-0.5" />
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm mb-1">Saved!</p>
-        <p className="text-sm">Your preferences have been updated.</p>
+        <p className="font-semibold text-sm mb-1">{t("common.savedPrefs")}</p>
+        <p className="text-sm">{t("common.savedPrefs")}</p>
       </div>
       <button className="shrink-0 flex items-center justify-center w-6 h-6 border-none bg-transparent rounded cursor-pointer opacity-50 hover:opacity-100 transition-opacity" onClick={() => setVisible(false)}>
         <X className="w-4 h-4" />
@@ -84,26 +91,27 @@ function InteractiveAlertDismissible() {
 }
 
 function InteractiveAlertSizes() {
+  const { t } = useI18n();
   return (
     <div className="space-y-4">
       <div className="flex items-start gap-2 p-2 rounded-lg border bg-blue-50 border-blue-500 text-blue-800">
         <Info className="w-4 h-4 shrink-0 mt-0.5" />
         <div className="flex-1 min-w-0">
-          <p className="font-semibold text-xs mb-1">Small Alert</p>
+          <p className="font-semibold text-xs mb-1">{t("common.sm")}</p>
           <p className="text-sm">Compact alert for tight spaces.</p>
         </div>
       </div>
       <div className="flex items-start gap-3 p-4 rounded-lg border bg-blue-50 border-blue-500 text-blue-800">
         <Info className="w-5 h-5 shrink-0 mt-0.5" />
         <div className="flex-1 min-w-0">
-          <p className="font-semibold text-sm mb-1">Medium Alert</p>
+          <p className="font-semibold text-sm mb-1">{t("common.md")}</p>
           <p className="text-sm">Default alert size for most cases.</p>
         </div>
       </div>
       <div className="flex items-start gap-4 p-5 rounded-lg border bg-blue-50 border-blue-500 text-blue-800">
         <Info className="w-6 h-6 shrink-0 mt-0.5" />
         <div className="flex-1 min-w-0">
-          <p className="font-semibold text-base mb-1">Large Alert</p>
+          <p className="font-semibold text-base mb-1">{t("common.lg")}</p>
           <p className="text-sm">Larger alert for important notifications.</p>
         </div>
       </div>
@@ -112,15 +120,16 @@ function InteractiveAlertSizes() {
 }
 
 export default function AlertPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Alert</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("alert.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A component to display important messages or notifications to users.
+        {t("alert.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.variants")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-4">
@@ -147,7 +156,7 @@ export default function AlertPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Dismissible</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.dismissible")}</h2>
         <DemoBlock
           preview={<InteractiveAlertDismissible />}
           code={`<div x-data="{ visible: true }" x-show="visible"
@@ -170,7 +179,7 @@ export default function AlertPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={<InteractiveAlertSizes />}
           code={`<div class="flex items-start gap-2 p-2 rounded-lg border bg-blue-50 border-blue-500 text-blue-800">...</div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveNavigationMenu() {
   const [active, setActive] = useState<string | null>(null);
@@ -47,15 +48,16 @@ function InteractiveNavigationMenu() {
 }
 
 export default function NavigationMenuPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Navigation Menu</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("navigationMenu.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A navigation menu component with dropdown support.
+        {t("navigationMenu.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock preview={<InteractiveNavigationMenu />} code={`<nav class="relative z-10 flex max-w-max flex-1 items-center justify-center">
   <div class="group flex flex-1 list-none items-center justify-center space-x-1">
     <div class="relative">

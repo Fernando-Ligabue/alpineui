@@ -3,16 +3,19 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractivePagination() {
+  const { t } = useI18n();
   const [page, setPage] = useState(3);
   const totalPages = 10;
 
   return (
     <div className="mx-auto flex w-full justify-center">
       <div className="flex items-center gap-1">
+
         <button
-          aria-label="Previous page"
+          aria-label={t("pagination.previousPage")}
           className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-au-accent ${page === 1 ? "opacity-50 pointer-events-none" : ""}`}
           onClick={() => setPage(Math.max(1, page - 1))}
           disabled={page === 1}
@@ -33,7 +36,7 @@ function InteractivePagination() {
         <span className="flex h-9 w-9 items-center justify-center text-sm text-au-muted-foreground">...</span>
 
         <button
-          aria-label="Next page"
+          aria-label={t("pagination.nextPage")}
           className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-9 w-9 hover:bg-au-accent ${page === totalPages ? "opacity-50 pointer-events-none" : ""}`}
           onClick={() => setPage(Math.min(totalPages, page + 1))}
           disabled={page === totalPages}
@@ -46,15 +49,16 @@ function InteractivePagination() {
 }
 
 export default function PaginationPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Pagination</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("pagination.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A component for navigating between pages of content.
+        {t("pagination.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractivePagination />}
           code={`<div x-data="{ page: 3, totalPages: 10 }" class="mx-auto flex w-full justify-center">

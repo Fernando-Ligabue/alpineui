@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveToggleGroup() {
+  const { t } = useI18n();
   const [selected, setSelected] = useState("bold");
 
   const options = [
-    { value: "bold", label: "Bold" },
-    { value: "italic", label: "Italic" },
-    { value: "underline", label: "Underline" },
+    { value: "bold", label: t("common.bold") },
+    { value: "italic", label: t("common.italic") },
+    { value: "underline", label: t("common.underline") },
   ];
 
   return (
@@ -67,13 +69,14 @@ function InteractiveMultiple() {
 }
 
 export default function ToggleGroupPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Toggle Group</h1>
-      <p className="text-au-muted-foreground mb-8">A group of toggle buttons for selecting one or multiple options.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("toggleGroup.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("toggleGroup.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Single Select</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.basic")}</h2>
         <DemoBlock
           preview={<InteractiveToggleGroup />}
           code={`<div x-data="{ selected: 'bold' }" class="inline-flex rounded-md border border-gray-300 overflow-hidden">
@@ -88,7 +91,7 @@ export default function ToggleGroupPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Multiple Select</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.searchable")}</h2>
         <DemoBlock
           preview={<InteractiveMultiple />}
           code={`<div x-data="{ selected: ['bold', 'italic'] }" class="inline-flex rounded-md border border-gray-300 overflow-hidden">
@@ -104,12 +107,12 @@ export default function ToggleGroupPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="flex flex-wrap items-center gap-6">
               <div className="inline-flex rounded-md border border-au-border overflow-hidden">
-                <button className="px-2 py-1 text-xs font-medium bg-au-primary text-au-primary-foreground border-r border-au-border">XS</button>
+                <button className="px-2 py-1 text-xs font-medium bg-au-primary text-au-primary-foreground border-r border-au-border">{t("common.xs")}</button>
                 <button className="px-2 py-1 text-xs font-medium bg-au-background text-au-foreground hover:bg-au-accent">S</button>
               </div>
               <div className="inline-flex rounded-md border border-au-border overflow-hidden">
@@ -122,7 +125,7 @@ export default function ToggleGroupPage() {
               </div>
               <div className="inline-flex rounded-md border border-au-border overflow-hidden">
                 <button className="px-5 py-2.5 text-base font-medium bg-au-primary text-au-primary-foreground border-r border-au-border">L</button>
-                <button className="px-5 py-2.5 text-base font-medium bg-au-background text-au-foreground hover:bg-au-accent">XL</button>
+                <button className="px-5 py-2.5 text-base font-medium bg-au-background text-au-foreground hover:bg-au-accent">{t("common.xl")}</button>
               </div>
             </div>
           }

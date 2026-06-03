@@ -139,20 +139,20 @@ export default function Home() {
             <div className="p-12">
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {/* Button Variants */}
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">Default</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-secondary text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">Secondary</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md border border-au-border bg-transparent text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">Outline</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-transparent text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">Ghost</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-destructive text-au-destructive-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Destructive</button>
-                <button aria-label="Icon button" className="inline-flex items-center justify-center gap-2 h-10 w-10 px-0 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">{t("common.default")}</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-secondary text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">{t("common.secondary")}</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md border border-au-border bg-transparent text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">{t("common.outline")}</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-transparent text-au-foreground text-sm font-medium hover:bg-au-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">{t("common.ghost")}</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-destructive text-au-destructive-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">{t("common.destructive")}</button>
+                <button aria-label={t("home.preview.iconButton")} className="inline-flex items-center justify-center gap-2 h-10 w-10 px-0 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring">
                   <Zap className="w-4 h-4" />
                 </button>
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
-                <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-au-primary text-au-primary-foreground text-xs font-medium hover:opacity-90">Small</button>
-                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90">Medium</button>
-                <button className="inline-flex items-center justify-center gap-2 h-12 px-6 py-3 rounded-md bg-au-primary text-au-primary-foreground text-base font-medium hover:opacity-90">Large</button>
+                <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-au-primary text-au-primary-foreground text-xs font-medium hover:opacity-90">{t("common.sm")}</button>
+                <button className="inline-flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md bg-au-primary text-au-primary-foreground text-sm font-medium hover:opacity-90">{t("common.md")}</button>
+                <button className="inline-flex items-center justify-center gap-2 h-12 px-6 py-3 rounded-md bg-au-primary text-au-primary-foreground text-base font-medium hover:opacity-90">{t("common.lg")}</button>
               </div>
             </div>
           </div>
@@ -254,7 +254,7 @@ export default function Home() {
                   t("home.showcase.item1"),
                   t("home.showcase.item2"),
                   t("home.showcase.item3"),
-                  t("home.showcase.item4"),
+                  // t("home.showcase.item4"),
                   t("home.showcase.item5")
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-au-foreground">
@@ -283,16 +283,16 @@ export default function Home() {
                         A
                       </div>
                       <div>
-                        <h3 className="font-semibold text-au-foreground">AlpineUI Components</h3>
-                        <p className="text-sm text-au-muted-foreground">Beautiful by default</p>
+                        <h3 className="font-semibold text-au-foreground">{t("home.preview.alpineuiComponents")}</h3>
+                        <p className="text-sm text-au-muted-foreground">{t("home.preview.beautifulByDefault")}</p>
                       </div>
                     </div>
                     <p className="text-sm text-au-muted-foreground mb-4">
-                      A collection of reusable components that help you build beautiful interfaces faster.
+                      {t("home.preview.description")}
                     </p>
                     <div className="flex gap-2">
-                      <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-au-primary text-au-primary-foreground text-xs font-medium hover:opacity-90">Get Started</button>
-                      <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-transparent text-au-foreground text-xs font-medium hover:bg-au-accent">Learn More</button>
+                      <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-au-primary text-au-primary-foreground text-xs font-medium hover:opacity-90">{t("common.getStarted")}</button>
+                      <button className="inline-flex items-center justify-center gap-2 h-8 px-3 py-1.5 rounded-md bg-transparent text-au-foreground text-xs font-medium hover:bg-au-accent">{t("home.preview.learnMore")}</button>
                     </div>
                   </div>
 
@@ -300,7 +300,7 @@ export default function Home() {
                   <div className="relative">
                     <input
                       type="text"
-                      placeholder="Search components..."
+                      placeholder={t("home.preview.searchPlaceholder")}
                       className="w-full px-4 py-3 pl-10 border border-au-border rounded-lg bg-au-background text-au-foreground placeholder:text-au-muted-foreground focus:outline-none focus:ring-2 focus:ring-au-ring"
                     />
                     <MousePointerClick className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-au-muted-foreground" />
@@ -308,11 +308,11 @@ export default function Home() {
 
                   {/* Badge Preview */}
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/10 text-au-primary rounded-full">Button</span>
-                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/15 text-au-primary rounded-full">Card</span>
-                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/10 text-au-primary rounded-full">Input</span>
-                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/15 text-au-primary rounded-full">Dialog</span>
-                    <span className="px-3 py-1 text-xs font-medium bg-au-accent text-au-accent-foreground rounded-full">+10 more</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/10 text-au-primary rounded-full">{t("home.preview.badgeButton")}</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/15 text-au-primary rounded-full">{t("home.preview.badgeCard")}</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/10 text-au-primary rounded-full">{t("home.preview.badgeInput")}</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-primary/15 text-au-primary rounded-full">{t("home.preview.badgeDialog")}</span>
+                    <span className="px-3 py-1 text-xs font-medium bg-au-accent text-au-accent-foreground rounded-full">{t("home.preview.badgeMore")}</span>
                   </div>
                 </div>
               </div>
@@ -404,7 +404,7 @@ function ComponentShowcase({ t }: { t: (key: string) => string }) {
 
   return (
     <div className="flex flex-col items-center gap-6 pb-8">
-      <div className="flex items-baseline gap-3">
+      <div className="flex items-center gap-3">
         <span className="text-5xl font-extrabold bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
           {COMPONENTS.length}
         </span>

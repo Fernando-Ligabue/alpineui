@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveCollapsible() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(true);
 
   return (
@@ -13,7 +15,7 @@ function InteractiveCollapsible() {
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between px-4 py-3 text-sm font-medium text-left text-au-foreground hover:bg-au-accent transition-colors"
       >
-        <span>Show details</span>
+        <span>{t("common.showDetails")}</span>
         <ChevronDown className={`w-4 h-4 text-au-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
@@ -26,13 +28,14 @@ function InteractiveCollapsible() {
 }
 
 export default function CollapsiblePage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Collapsible</h1>
-      <p className="text-au-muted-foreground mb-8">An expandable content container for showing and hiding sections.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("collapsible.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("collapsible.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveCollapsible />}
           code={`<div x-data="{ open: true }" class="border border-gray-200 rounded-lg overflow-hidden">

@@ -1,15 +1,17 @@
 "use client";
 
 import DemoBlock from "@/components/DemoBlock";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function AspectRatioPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Aspect Ratio</h1>
-      <p className="text-au-muted-foreground mb-8">A container that maintains a specific aspect ratio for its content.</p>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("aspectRatio.title")}</h1>
+      <p className="text-au-muted-foreground mb-8">{t("aspectRatio.description")}</p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={
             <div className="space-y-8 w-full max-w-md">

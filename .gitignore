@@ -41,6 +41,14 @@ coverage/
 .turbopack/
 .turbo/
 
+# personal files
 .playwright-mcp/
 /docs/
+/scripts/
+/workflows/
+/agents/
 AGENTS.md
+HISTORY.md
+PROGRESS.md
+SPECS.md
+netlify.toml

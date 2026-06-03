@@ -3,13 +3,15 @@
 import { useState } from "react";
 import DemoBlock from "@/components/DemoBlock";
 import Image from "next/image";
+import { useI18n } from "@/i18n/I18nProvider";
 
 function InteractiveCard() {
+  const { t } = useI18n();
   const [selectedPlan, setSelectedPlan] = useState<string | null>("pro");
   const plans = [
-    { id: "free", name: "Free", price: "€0", features: ["1 project", "5 members"] },
-    { id: "pro", name: "Pro", price: "€49", features: ["10 projects", "50 members", "Priority support"] },
-    { id: "enterprise", name: "Enterprise", price: "Custom", features: ["Unlimited projects", "Unlimited members", "Dedicated SLA"] },
+    { id: "free", name: t("common.free"), price: "€0", features: ["1 project", "5 members"] },
+    { id: "pro", name: t("common.pro"), price: "€49", features: ["10 projects", "50 members", "Priority support"] },
+    { id: "enterprise", name: t("common.enterprise"), price: "Custom", features: ["Unlimited projects", "Unlimited members", "Dedicated SLA"] },
   ];
 
   return (
@@ -23,14 +25,14 @@ function InteractiveCard() {
           }`}
         >
           <div className="flex flex-col gap-1.5 p-6">
-            {plan.id === "pro" && <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-au-primary text-au-primary-foreground w-fit">Popular</span>}
+            {plan.id === "pro" && <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-au-primary text-au-primary-foreground w-fit">{t("common.popular")}</span>}
             <h3 className="text-base font-semibold leading-tight tracking-tight">{plan.name}</h3>
-            <p className="text-sm text-au-muted-foreground">For teams</p>
+            <p className="text-sm text-au-muted-foreground">{t("common.forTeams")}</p>
           </div>
           <div className="p-6 pt-0">
             <div className="flex flex-col">
               <span className="text-2xl font-bold leading-tight text-au-foreground">{plan.price}</span>
-              <span className="text-sm text-au-muted-foreground">/month</span>
+              <span className="text-sm text-au-muted-foreground">{t("common.perMonth")}</span>
             </div>
             <ul className="mt-4 space-y-2 text-sm">
               {plan.features.map((feature, i) => (
@@ -42,7 +44,7 @@ function InteractiveCard() {
             <button className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 ${
               selectedPlan === plan.id ? "bg-au-primary text-au-primary-foreground hover:opacity-90" : "border border-au-border bg-transparent text-au-foreground hover:bg-au-accent"
             }`}>
-              {selectedPlan === plan.id ? "Selected" : "Select"}
+              {selectedPlan === plan.id ? t("common.selected") : t("common.select")}
             </button>
           </div>
         </button>
@@ -52,15 +54,16 @@ function InteractiveCard() {
 }
 
 export default function CardPage() {
+  const { t } = useI18n();
   return (
     <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-au-foreground mb-2">Card</h1>
+      <h1 className="text-3xl font-bold text-au-foreground mb-2">{t("card.title")}</h1>
       <p className="text-au-muted-foreground mb-8">
-        A versatile container for organizing and displaying content in a structured layout.
+        {t("card.description")}
       </p>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Interactive Demo</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.interactiveDemo")}</h2>
         <DemoBlock
           preview={<InteractiveCard />}
           code={`<div x-data="{ selected: 'pro' }" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -105,27 +108,27 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.variants")}</h2>
         <DemoBlock
           preview={
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl">
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm">
                 <div className="flex flex-col gap-1.5 p-6">
-                  <h3 className="text-sm font-semibold leading-tight tracking-tight">Default</h3>
+                  <h3 className="text-sm font-semibold leading-tight tracking-tight">{t("common.default")}</h3>
                 </div>
-                <div className="p-6 pt-0">Default card.</div>
+                <div className="p-6 pt-0">{t("common.default")}</div>
               </div>
               <div className="rounded-lg bg-au-secondary border border-transparent shadow-sm">
                 <div className="flex flex-col gap-1.5 p-6">
-                  <h3 className="text-sm font-semibold leading-tight tracking-tight">Subtle</h3>
+                  <h3 className="text-sm font-semibold leading-tight tracking-tight">{t("common.subtle")}</h3>
                 </div>
-                <div className="p-6 pt-0">Muted background.</div>
+                <div className="p-6 pt-0">{t("common.mutedBackground")}</div>
               </div>
               <div className="rounded-lg border-2 border-au-border bg-au-background">
                 <div className="flex flex-col gap-1.5 p-6">
-                  <h3 className="text-sm font-semibold leading-tight tracking-tight">Outline</h3>
+                  <h3 className="text-sm font-semibold leading-tight tracking-tight">{t("common.outline")}</h3>
                 </div>
-                <div className="p-6 pt-0">Solid border.</div>
+                <div className="p-6 pt-0">{t("common.solidBorder")}</div>
               </div>
             </div>
           }
@@ -153,25 +156,25 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">More Variants</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.moreVariants")}</h2>
         <DemoBlock
           preview={
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl">
               <div className="rounded-lg border border-au-border bg-au-background shadow-md">
-                <h3 className="text-sm font-semibold leading-tight tracking-tight p-6 pb-0">Elevated</h3>
-                <div className="p-6 pt-3">High shadow.</div>
+                <h3 className="text-sm font-semibold leading-tight tracking-tight p-6 pb-0">{t("common.elevated")}</h3>
+                <div className="p-6 pt-3">{t("common.highShadow")}</div>
               </div>
               <div className="rounded-lg bg-au-background/80 backdrop-blur-sm border border-au-border shadow-sm">
-                <h3 className="text-sm font-semibold leading-tight tracking-tight p-6 pb-0">Glass</h3>
-                <div className="p-6 pt-3">Blur effect.</div>
+                <h3 className="text-sm font-semibold leading-tight tracking-tight p-6 pb-0">{t("common.glass")}</h3>
+                <div className="p-6 pt-3">{t("common.blurEffect")}</div>
               </div>
               <div className="rounded-lg border-2 border-dashed border-au-border bg-au-background">
-                <h3 className="text-sm font-semibold leading-tight tracking-tight p-6 pb-0">Dashed</h3>
-                <div className="p-6 pt-3">Dashed border.</div>
+                <h3 className="text-sm font-semibold leading-tight tracking-tight p-6 pb-0">{t("common.dashed")}</h3>
+                <div className="p-6 pt-3">{t("common.dashedBorder")}</div>
               </div>
               <div className="rounded-lg border border-au-border bg-au-background">
-                <h3 className="text-sm font-semibold leading-tight tracking-tight p-6 pb-0">Flat</h3>
-                <div className="p-6 pt-3">Flat design.</div>
+                <h3 className="text-sm font-semibold leading-tight tracking-tight p-6 pb-0">{t("common.flat")}</h3>
+                <div className="p-6 pt-3">{t("common.flatDesign")}</div>
               </div>
             </div>
           }
@@ -183,18 +186,18 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Sizes</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.sizes")}</h2>
         <DemoBlock
           preview={
             <div className="flex flex-col gap-3 w-full max-w-sm">
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm p-3">
-                <div className="text-sm text-au-foreground">Small</div>
+                <div className="text-sm text-au-foreground">{t("common.sm")}</div>
               </div>
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm p-4">
-                <div className="text-sm text-au-foreground">Medium</div>
+                <div className="text-sm text-au-foreground">{t("common.md")}</div>
               </div>
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm p-6">
-                <div className="text-sm text-au-foreground">Large</div>
+                <div className="text-sm text-au-foreground">{t("common.lg")}</div>
               </div>
             </div>
           }
@@ -205,15 +208,15 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">States</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.states")}</h2>
         <DemoBlock
           preview={
             <div className="grid grid-cols-2 gap-4 w-full max-w-lg">
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm p-4 cursor-pointer transition-all hover:border-au-border hover:shadow-md active:scale-[0.98] select-none">
-                <div className="text-sm text-au-foreground">Hover here</div>
+                <div className="text-sm text-au-foreground">{t("common.hoverMe")}</div>
               </div>
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm p-4 animate-pulse relative overflow-hidden">
-                <div className="text-sm text-au-foreground">Loading...</div>
+                <div className="text-sm text-au-foreground">{t("common.loading")}</div>
               </div>
             </div>
           }
@@ -228,18 +231,18 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Card with Footer</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.cardWithFooter")}</h2>
         <DemoBlock
           preview={
             <div className="rounded-lg border border-au-border bg-au-background shadow-sm w-full max-w-md">
               <div className="flex flex-col gap-1.5 p-6">
-                <h3 className="text-lg font-semibold leading-tight tracking-tight">Confirm Action</h3>
-                <p className="text-sm text-au-muted-foreground">Are you sure?</p>
+                <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.confirmAction")}</h3>
+                <p className="text-sm text-au-muted-foreground">{t("common.areYouSure")}</p>
               </div>
-              <div className="p-6 pt-0">This action cannot be undone.</div>
+              <div className="p-6 pt-0">{t("common.actionCannotBeUndone")}</div>
               <div className="flex items-center justify-between p-6 pt-0">
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Cancel</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 bg-au-primary text-au-primary-foreground hover:opacity-90">Confirm</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">{t("common.cancel")}</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 bg-au-primary text-au-primary-foreground hover:opacity-90">{t("common.confirm")}</button>
               </div>
             </div>
           }
@@ -258,25 +261,25 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Card Stats</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.cardStats")}</h2>
         <DemoBlock
           preview={
             <div className="rounded-lg border border-au-border bg-au-background shadow-sm w-full max-w-lg">
               <div className="flex flex-col gap-1.5 p-6">
-                <h3 className="text-lg font-semibold leading-tight tracking-tight">Statistics</h3>
+                <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.features")}</h3>
               </div>
               <div className="p-6 pt-0 flex gap-12 justify-center text-center">
                 <div className="flex flex-col">
                   <span className="text-2xl font-bold leading-tight text-au-foreground">10.5K</span>
-                  <span className="text-sm text-au-muted-foreground">Visitors</span>
+                  <span className="text-sm text-au-muted-foreground">{t("common.visitors")}</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="text-2xl font-bold leading-tight text-au-foreground">893</span>
-                  <span className="text-sm text-au-muted-foreground">Sales</span>
+                  <span className="text-sm text-au-muted-foreground">{t("common.sales")}</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="text-2xl font-bold leading-tight text-au-foreground">12%</span>
-                  <span className="text-sm text-au-muted-foreground">Growth</span>
+                  <span className="text-sm text-au-muted-foreground">{t("common.growth")}</span>
                 </div>
               </div>
             </div>
@@ -304,7 +307,7 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Card with Image</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.cardWithImage")}</h2>
         <DemoBlock
           preview={
             <div className="rounded-lg border border-au-border bg-au-background shadow-sm w-full max-w-sm">
@@ -316,7 +319,7 @@ export default function CardPage() {
                 height={250}
               />
               <div className="flex flex-col gap-1.5 p-6 space-y-1">
-                <h3 className="text-lg font-semibold leading-tight tracking-tight">Minimalist Design</h3>
+                <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.minimalistDesign")}</h3>
                 <p className="text-sm text-au-muted-foreground">Abstract art in shades of blue.</p>
               </div>
               <div className="p-6 pt-0">Explore the beauty of simplicity.</div>
@@ -325,7 +328,7 @@ export default function CardPage() {
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                   12 apr
                 </span>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 bg-au-primary text-au-primary-foreground hover:opacity-90">See more</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 bg-au-primary text-au-primary-foreground hover:opacity-90">{t("common.seeMore")}</button>
               </div>
             </div>
           }
@@ -345,19 +348,19 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Card with Avatar</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.cardWithAvatar")}</h2>
         <DemoBlock
           preview={
             <div className="rounded-lg border border-au-border bg-au-background shadow-sm w-full max-w-sm">
               <div className="flex flex-col gap-1.5 p-6">
-                <h3 className="text-lg font-semibold leading-tight tracking-tight">Team Members</h3>
-                <p className="text-sm text-au-muted-foreground">Manage your team members.</p>
+                <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.teamMembers")}</h3>
+                <p className="text-sm text-au-muted-foreground">{t("common.manageTeam")}</p>
               </div>
               <div className="p-6 pt-0">
                 <div className="flex items-center gap-3 p-2">
                   <Image width={150} height={150} src="https://i.pravatar.cc/100?img=1" alt="Avatar" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
                   <div>
-                    <p className="font-medium">John Smith</p>
+                    <p className="font-medium">{t("common.johnDoe")}</p>
                     <p className="text-sm text-au-muted-foreground">john@example.com</p>
                   </div>
                 </div>
@@ -365,14 +368,14 @@ export default function CardPage() {
                 <div className="flex items-center gap-3 p-2">
                   <Image width={150} height={150} src="https://i.pravatar.cc/100?img=2" alt="Avatar" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
                   <div>
-                    <p className="font-medium">Jane Doe</p>
+                    <p className="font-medium">{t("common.janeSmith")}</p>
                     <p className="text-sm text-au-muted-foreground">jane@example.com</p>
                   </div>
                 </div>
               </div>
               <div className="flex items-center justify-between p-6 pt-0">
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Cancel</button>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 bg-au-primary text-au-primary-foreground hover:opacity-90">Invite</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">{t("common.cancel")}</button>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 bg-au-primary text-au-primary-foreground hover:opacity-90">{t("common.invite")}</button>
               </div>
             </div>
           }
@@ -399,35 +402,35 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Card with List</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.cardWithList")}</h2>
         <DemoBlock
           preview={
             <div className="rounded-lg border border-au-border bg-au-background shadow-sm w-full max-w-sm">
               <div className="flex flex-col gap-1.5 p-6">
-                <h3 className="text-lg font-semibold leading-tight tracking-tight">Tasks</h3>
+                <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.tasks")}</h3>
                 <p className="text-sm text-au-muted-foreground">2 of 5 completed</p>
               </div>
               <div className="p-6 pt-0">
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-3 py-2 border-b border-au-border last:border-b-0">
                     <input type="checkbox" checked className="h-4 w-4 rounded border-au-border" />
-                    <span className="line-through text-au-muted-foreground">Review documentation</span>
+                    <span className="line-through text-au-muted-foreground">{t("common.reviewDocumentation")}</span>
                   </div>
                   <div className="flex items-center gap-3 py-2 border-b border-au-border last:border-b-0">
                     <input type="checkbox" checked className="h-4 w-4 rounded border-au-border" />
-                    <span className="line-through text-au-muted-foreground">Create tests</span>
+                    <span className="line-through text-au-muted-foreground">{t("common.createTests")}</span>
                   </div>
                   <div className="flex items-center gap-3 py-2 border-b border-au-border last:border-b-0">
                     <input type="checkbox" className="h-4 w-4 rounded border-au-border" />
-                    <span>Implement dark mode</span>
+                    <span>{t("common.implementDarkMode")}</span>
                   </div>
                   <div className="flex items-center gap-3 py-2 border-b border-au-border last:border-b-0">
                     <input type="checkbox" className="h-4 w-4 rounded border-au-border" />
-                    <span>Optimize performance</span>
+                    <span>{t("common.optimizePerformance")}</span>
                   </div>
                   <div className="flex items-center gap-3 py-2 border-b border-au-border last:border-b-0">
                     <input type="checkbox" className="h-4 w-4 rounded border-au-border" />
-                    <span>Update dependencies</span>
+                    <span>{t("common.updateDependencies")}</span>
                   </div>
                 </div>
               </div>
@@ -455,20 +458,20 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Card Interactive</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.cardInteractive")}</h2>
         <DemoBlock
           preview={
             <div className="grid grid-cols-2 gap-4 w-full max-w-lg">
               <button className="rounded-lg border border-au-border bg-au-background shadow-sm text-left cursor-pointer transition-all select-none hover:border-au-border hover:shadow-md active:scale-[0.98]">
                 <div className="flex flex-col gap-1.5 p-6">
-                  <h3 className="text-lg font-semibold leading-tight tracking-tight">Selectable</h3>
-                  <p className="text-sm text-au-muted-foreground">Click to select</p>
+                  <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.selectable")}</h3>
+                  <p className="text-sm text-au-muted-foreground">{t("common.clickToSelect")}</p>
                 </div>
               </button>
               <button className="rounded-lg border border-au-border bg-au-background shadow-sm text-left cursor-pointer transition-all select-none hover:border-au-border hover:shadow-md active:scale-[0.98] ring-2 ring-au-ring">
                 <div className="flex flex-col gap-1.5 p-6">
-                  <h3 className="text-lg font-semibold leading-tight tracking-tight">Selected</h3>
-                  <p className="text-sm text-au-muted-foreground">Selected state</p>
+                  <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.selected")}</h3>
+                  <p className="text-sm text-au-muted-foreground">{t("common.selectedState")}</p>
                 </div>
               </button>
             </div>
@@ -490,19 +493,19 @@ export default function CardPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-au-foreground mb-4">Pricing Card</h2>
+        <h2 className="text-xl font-semibold text-au-foreground mb-4">{t("common.pricingCard")}</h2>
         <DemoBlock
           preview={
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl">
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm">
                 <div className="flex flex-col gap-1.5 p-6">
-                  <h3 className="text-lg font-semibold leading-tight tracking-tight">Free</h3>
-                  <p className="text-sm text-au-muted-foreground">For beginners</p>
+                  <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.free")}</h3>
+                  <p className="text-sm text-au-muted-foreground">{t("common.forBeginners")}</p>
                 </div>
                 <div className="p-6 pt-0">
                   <div className="flex flex-col">
                     <span className="text-2xl font-bold leading-tight text-au-foreground">€ 0</span>
-                    <span className="text-sm text-au-muted-foreground">/mounth</span>
+                    <span className="text-sm text-au-muted-foreground">{t("common.perMonth")}</span>
                   </div>
                   <ul className="mt-4 space-y-2 text-sm">
                     <li className="flex items-center gap-2">✓ 1 project</li>
@@ -510,19 +513,19 @@ export default function CardPage() {
                   </ul>
                 </div>
                 <div className="flex items-center p-6 pt-0 *:flex-1">
-                  <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Get start</button>
+                  <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">{t("common.getStarted")}</button>
                 </div>
               </div>
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm ring-2 ring-au-ring">
                 <div className="flex flex-col gap-1.5 p-6">
-                  <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-au-primary text-au-primary-foreground w-fit">Popular</span>
-                  <h3 className="text-lg font-semibold leading-tight tracking-tight mt-2">Pro</h3>
-                  <p className="text-sm text-au-muted-foreground">For teams</p>
+                  <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-au-primary text-au-primary-foreground w-fit">{t("common.popular")}</span>
+                  <h3 className="text-lg font-semibold leading-tight tracking-tight mt-2">{t("common.pro")}</h3>
+                  <p className="text-sm text-au-muted-foreground">{t("common.forTeams")}</p>
                 </div>
                 <div className="p-6 pt-0">
                   <div className="flex flex-col">
                     <span className="text-2xl font-bold leading-tight text-au-foreground">€ 49</span>
-                    <span className="text-sm text-au-muted-foreground">/mounth</span>
+                    <span className="text-sm text-au-muted-foreground">{t("common.perMonth")}</span>
                   </div>
                   <ul className="mt-4 space-y-2 text-sm">
                     <li className="flex items-center gap-2">✓ 10 projects</li>
@@ -531,13 +534,13 @@ export default function CardPage() {
                   </ul>
                 </div>
                 <div className="flex items-center p-6 pt-0 *:flex-1">
-                  <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 bg-au-primary text-au-primary-foreground hover:opacity-90">Sign in</button>
+                  <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 bg-au-primary text-au-primary-foreground hover:opacity-90">{t("common.signIn")}</button>
                 </div>
               </div>
               <div className="rounded-lg border border-au-border bg-au-background shadow-sm">
                 <div className="flex flex-col gap-1.5 p-6">
-                  <h3 className="text-lg font-semibold leading-tight tracking-tight">Enterprise</h3>
-                  <p className="text-sm text-au-muted-foreground">For big teams</p>
+                  <h3 className="text-lg font-semibold leading-tight tracking-tight">{t("common.enterprise")}</h3>
+                  <p className="text-sm text-au-muted-foreground">{t("common.forBigTeams")}</p>
                 </div>
                 <div className="p-6 pt-0">
                   <div className="flex flex-col">
@@ -550,7 +553,7 @@ export default function CardPage() {
                   </ul>
                 </div>
                 <div className="flex items-center p-6 pt-0 *:flex-1">
-                  <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">Contact us</button>
+                  <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-au-ring disabled:opacity-50 disabled:pointer-events-none h-8 px-3 border border-au-border bg-transparent text-au-foreground hover:bg-au-accent">{t("common.contactUs")}</button>
                 </div>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 interface CodeBlockProps {
   code: string;
@@ -9,6 +10,7 @@ interface CodeBlockProps {
 }
 
 export default function CodeBlock({ code, className = "" }: CodeBlockProps) {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -33,12 +35,12 @@ export default function CodeBlock({ code, className = "" }: CodeBlockProps) {
         {copied ? (
           <>
             <Check className="w-3.5 h-3.5 text-au-primary" />
-            <span className="text-au-primary">Copied!</span>
+            <span className="text-au-primary">{t("common.copied")}</span>
           </>
         ) : (
           <>
             <Copy className="w-3.5 h-3.5" />
-            <span>Copy</span>
+            <span>{t("common.copy")}</span>
           </>
         )}
       </button>
